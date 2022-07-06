@@ -41,4 +41,12 @@ public class UserEntity {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }
