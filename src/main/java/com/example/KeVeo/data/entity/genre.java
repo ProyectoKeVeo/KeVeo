@@ -1,4 +1,4 @@
-/*package com.example.KeVeo.data.entity;
+package com.example.KeVeo.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,4 +48,3 @@ public class genre {
         this.title = title;
     }
 }
-*/
