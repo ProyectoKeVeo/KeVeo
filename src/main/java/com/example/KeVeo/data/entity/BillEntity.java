@@ -18,6 +18,14 @@ public class BillEntity {
 
     @Column(name = "billDate")
     private Date date;
+<<<<<<< HEAD
     public BillEntity() {
+=======
+
+    public BillEntity(Integer id, String name, Date date) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+>>>>>>> 80f109999cefd5bcdd171379697825d11dc641b9
     }
 }
