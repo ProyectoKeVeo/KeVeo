@@ -1,5 +1,7 @@
 package com.example.KeVeo.data.entity;
 
+import org.springframework.http.converter.json.GsonBuilderUtils;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,5 +18,6 @@ public class BillEntity {
 
     @Column(name = "billDate")
     private Date date;
-
+    public BillEntity() {
+    }
 }
