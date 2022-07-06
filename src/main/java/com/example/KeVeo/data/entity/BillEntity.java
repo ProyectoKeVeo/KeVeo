@@ -17,4 +17,9 @@ public class BillEntity {
     @Column(name = "billDate")
     private Date date;
 
+    public BillEntity(Integer id, String name, Date date) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+    }
 }
