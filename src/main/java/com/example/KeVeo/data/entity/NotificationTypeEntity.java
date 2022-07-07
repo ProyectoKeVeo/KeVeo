@@ -13,5 +13,22 @@ public class NotificationTypeEntity {
     @Column(name = "notificationTypeType")
     private String type;
 
-// TODO: 05/07/2022 foreign keys y enum 
+// TODO: 05/07/2022 foreign keys y enum
+    //añadidos getter and setter
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

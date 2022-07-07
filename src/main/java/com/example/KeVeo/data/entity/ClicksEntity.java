@@ -18,6 +18,9 @@ public class ClicksEntity {
     private Date date;
 
     // TODO: 05/07/2022 foreign keys
+// Añado @ManyToOne dirigida hacia PlatformEntity.
+    @ManyToOne (optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private PlatformEntity platformEntity;
 
 
 }
