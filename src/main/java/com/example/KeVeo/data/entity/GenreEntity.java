@@ -5,9 +5,10 @@ import java.util.Set;
 
 public class GenreEntity {
     @Id
-    @Column(name = "id_genre")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String title;
 
 
@@ -30,23 +31,12 @@ public class GenreEntity {
     }
 
 
-
-
-
-    public GenreEntity(Integer id) {
-        this.id = id;
-    }
-
-    public GenreEntity(String title) {
-        this.title = title;
-    }
-
     // Añado relación de genre a FilmEntity
 
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(
             name = "genre_has_film",
-            joinColumns = @JoinColumn(name= "film_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false))
+            joinColumns = @JoinColumn(name= "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id"))
     Set<FilmEntity> filmEntitiesGenre;
 }
