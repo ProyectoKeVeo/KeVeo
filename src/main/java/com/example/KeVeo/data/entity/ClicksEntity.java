@@ -1,5 +1,4 @@
 package com.example.KeVeo.data.entity;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,19 +7,21 @@ public class ClicksEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clicksName")
     private Integer id;
 
-    @Column(name = "clicksStep")
-    private byte step;
+    @Column
+    private byte paso;
 
-    @Column(name = "clicksDate")
+    @Column(nullable = false)
     private Date date;
 
-    // TODO: 05/07/2022 foreign keys
-// Añado @ManyToOne dirigida hacia PlatformEntity.
-    @ManyToOne (optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    // Añado @ManyToOne dirigida hacia PlatformEntity.
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PlatformEntity platformEntity;
+    // Añadimos relación de ClicksEntity hacia PlatformEntity de @ManyToOne
+    @ManyToOne
+    private PlatformEntity platformEntities;
 
 
 }

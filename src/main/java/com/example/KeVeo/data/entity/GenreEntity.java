@@ -1,14 +1,9 @@
 package com.example.KeVeo.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
-@Entity
 public class GenreEntity {
-
     @Id
     @Column(name = "id_genre")
     private Integer id;
@@ -16,7 +11,6 @@ public class GenreEntity {
     private String title;
 
 
-    //*********************************GETTERS & SETTERS****************************************************************
 
 
     public Integer getId() {
@@ -35,12 +29,9 @@ public class GenreEntity {
         this.title = title;
     }
 
-    //**************************************CONSTRUCTORS****************************************************************
 
 
-    public GenreEntity() {
 
-    }
 
     public GenreEntity(Integer id) {
         this.id = id;
@@ -52,6 +43,10 @@ public class GenreEntity {
 
     // Añado relación de genre a FilmEntity
 
-    @ManyToMany(mappedBy = "filmEntities")
-    private List<FilmEntity> filmEntities;
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "genre_has_film",
+            joinColumns = @JoinColumn(name= "film_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false))
+    Set<FilmEntity> filmEntitiesGenre;
 }
