@@ -2,6 +2,7 @@ package com.example.KeVeo.data.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class UserEntity {
@@ -41,4 +42,20 @@ public class UserEntity {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    //Añado relación hacia film de muchos a muchos (@ManyToMany)
+    @ManyToMany(mappedBy = "filmEntities")
+    private List<FilmEntity> filmEntities;
+
+    //Añado relación hacia role de muchos a muchos (@ManyToMany)
+    @ManyToMany(mappedBy = "roleEntity")
+    private List<RoleEntity> roleEntities;
 }
