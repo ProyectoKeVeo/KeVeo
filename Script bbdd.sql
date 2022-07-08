@@ -67,11 +67,12 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification_has_user` (
 
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`url` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `film_id` INT NOT NULL,
   `platform_id` INT NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `url` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`film_id`, `platform_id`),
+  PRIMARY KEY (`id`,`film_id`, `platform_id`),
   INDEX `fk_pelicula_has_plataforma_plataforma1_idx` (`platform_id` ASC) VISIBLE,
   INDEX `fk_pelicula_has_plataforma_pelicula1_idx` (`film_id` ASC) VISIBLE,
   CONSTRAINT `fk_pelicula_has_plataforma_pelicula1`
