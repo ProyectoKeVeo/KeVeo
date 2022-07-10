@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification` (
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`type_notification` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `tipe` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(255) NOT NULL,
   `notification_id` INT NOT NULL,
-  `enum` VARCHAR(45) NULL,
+  `enumerator` VARCHAR(45) NULL,
   PRIMARY KEY (`id`, `notification_id`),
   INDEX `fk_tipo_notificacion_notificacion_idx` (`notification_id` ASC) VISIBLE,
   CONSTRAINT `fk_tipo_notificacion_notificacion`
@@ -97,8 +97,8 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`bill` (
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`clicks` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `paso` TINYINT NULL DEFAULT 0,
-  `fecha` DATETIME NOT NULL,
+  `step` TINYINT NULL DEFAULT 0,
+  `date` DATETIME NOT NULL,
   `platform_id` INT NOT NULL,
   PRIMARY KEY (`id`, `platform_id`),
   INDEX `fk_clicks_plataforma1_idx` (`platform_id` ASC) VISIBLE,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`clicks` (
     REFERENCES `base_KeVeo`.`platform` (`id`));
 
 
-CREATE TABLE IF NOT EXISTS `base_KeVeo`.`puntuation` (
+CREATE TABLE IF NOT EXISTS `base_KeVeo`.`punctuation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `opinion` VARCHAR(255) NULL,
   `user_id` INT NOT NULL,
@@ -176,5 +176,3 @@ ALTER TABLE  USER_ROLES  ADD CONSTRAINT FOREIGN KEY( USERS_ID ) REFERENCES  USER
 ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( MENU_ID ) REFERENCES  MENU ( ID );      
 ALTER TABLE  MENU  ADD CONSTRAINT FOREIGN KEY( PARENT_ID ) REFERENCES  MENU ( ID );              
 ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( ROLES_ID ) REFERENCES  ROLE ( ID ); 
-
-
