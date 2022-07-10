@@ -2,6 +2,7 @@ package com.example.KeVeo.data.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "url")
 public class UrlEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +14,14 @@ public class UrlEntity {
     @Column(nullable = false)
     private String url;
 
-// Añadimos Getter y setter
+    // Añadimos relación de UrlEntity hacia PlatformEntity
+    @ManyToOne
+    private PlatformEntity platformEntityUrl;
+    @ManyToOne
+    private FilmEntity filmEntityUrl;
 
+
+    // Añadimos Getter y setter
     public Integer getId() {
         return id;
     }
@@ -38,9 +45,5 @@ public class UrlEntity {
     public void setUrl(String url) {
         this.url = url;
     }
-    // Añadimos relación de UrlEntity hacia PlatformEntity
-    @ManyToOne
-    private PlatformEntity platformEntityUrl;
-    @ManyToOne
-    private FilmEntity filmEntityUrl;
+
 }

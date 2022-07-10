@@ -1,21 +1,26 @@
 package com.example.KeVeo.data.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
+@Table(name = "type_notification")
 public class NotificationTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "notificationTypeId")
     private Integer id;
 
-    @Column(name = "notificationTypeType")
+    @Column(nullable = false)
     private String type;
 
-// TODO: 05/07/2022 foreign keys y enum
-    //añadidos getter and setter
+    private String enumerator;
 
+    // Añado relación hacia NotificationEntity
+    @OneToOne
+    @JoinColumn(name = "notification_id")
+    private NotificationEntity notificationEntity;
+
+
+    //añadidos getter and setter
     public Integer getId() {
         return id;
     }
@@ -31,4 +36,13 @@ public class NotificationTypeEntity {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getEnumerator() {
+        return enumerator;
+    }
+
+    public void setEnumerator(String enumerator) {
+        this.enumerator = enumerator;
+    }
+
 }

@@ -3,14 +3,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "clicks")
 public class ClicksEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private byte paso;
+    private Short step;
 
     @Column(nullable = false)
     private Date date;
@@ -32,11 +32,11 @@ public class ClicksEntity {
         this.id = id;
     }
 
-    public byte getStep() {
+    public Short getStep() {
         return step;
     }
 
-    public void setStep(byte step) {
+    public void setStep(Short step) {
         this.step = step;
     }
 

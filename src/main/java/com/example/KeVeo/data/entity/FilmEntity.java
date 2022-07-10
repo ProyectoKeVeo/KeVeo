@@ -1,38 +1,52 @@
 package com.example.KeVeo.data.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "film")
 public class FilmEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "filmName")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "filmAge")
+    @Column(nullable = false)
     private Integer year;
 
-    @Column(name = "filmLength")
-    private Integer length;
+    @Column(nullable = false)
+    private Integer duration;
 
-    @Column(name = "filmViews")
+    @Column(nullable = false)
     private Integer number_views;
 
-    @Column(name = "filmDescrition")
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "filmTrailer")
     private String trailer;
 
-    @Column(name = "filmCreation")
-    private Date creation;
+    @Column(name= "creation_date", nullable = false)
+    private ZonedDateTime creation;
+
+    private String image;
+
+    //Añado la relación con PuntuationEntity
+    @OneToMany (mappedBy = "filmEntityPuntuation")
+    private Set<PunctuationEntity> puntuationEntitiesFilms = new HashSet<>();
+
+
+    // Añadimos relación de FilmEntity con UrlEntity
+    @OneToMany (mappedBy = "filmEntityUrl")
+    private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
+
+    // Añadimos relación de FilmEntity y GenreEntity
+    @ManyToMany (mappedBy = "filmEntitiesGenre")
+    private Set<GenreEntity> genreEntities;
 
     // Añado los getter y los setter
 
@@ -60,12 +74,12 @@ public class FilmEntity {
         this.year = year;
     }
 
-    public Integer getLength() {
-        return length;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Integer getNumber_views() {
@@ -92,49 +106,21 @@ public class FilmEntity {
         this.trailer = trailer;
     }
 
-    public Date getCreation() {
+    public ZonedDateTime getCreation() {
         return creation;
     }
 
-    public void setCreation(Date creation) {
+    public void setCreation(ZonedDateTime creation) {
         this.creation = creation;
     }
 
+    public String getImage() {
+        return image;
+    }
 
-    //Añado relación con la clase PlatformEntity con una relación de muchos a muchos (@ManyToMany).
-
-
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "url",
-            joinColumns = @JoinColumn(name= "platform_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "film_id", nullable = false)
-    )
-    private List <PlatformEntity> platformEntities;
-
-    // Añado relación hacia User muchos a muchos (@manyToMany)
-
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "url",
-            joinColumns = @JoinColumn(name= "film_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false)
-    )
-    private List <UserEntity> userEntities;
-
-    // Añadimos relación de FilmEntity con UrlEntity
-    @OneToMany (mappedBy = "filmEntityUrl")
-    private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
-
-// Añadimos relación de FilmEntity y GenreEntity
-    @ManyToMany (mappedBy = "filmEntitiesGenre")
-    private Set<GenreEntity> genreEntities;
-
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "genre_film",
-//            joinColumns = @JoinColumn(name = "id_film"),
-//            inverseJoinColumns = @JoinColumn(name = "id_genre"))
-//    private List<GenreEntity> generos;
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 }
 

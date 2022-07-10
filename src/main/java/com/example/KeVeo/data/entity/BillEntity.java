@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 
 
 @Entity
+@Table(name = "bill")
 public class BillEntity {
 
     @Id
@@ -15,6 +16,11 @@ public class BillEntity {
 
     @Column(nullable = false)
     private ZonedDateTime date;
+
+    // Añadimos relación @OneToOne hacia PlatformEntity.
+    @OneToOne
+    @JoinColumn(name = "platform_id", unique = true)
+    private PlatformEntity platformEntity;
 
     // Añado getter y setter
     public Integer getId() {
@@ -41,8 +47,4 @@ public class BillEntity {
         this.date = date;
     }
 
-// Añadimos relación @OneToOne hacia PlatformEntity.
-    @OneToOne
-    @JoinColumn(name = "platform_id", unique = true)
-    private PlatformEntity platformEntity;
 }

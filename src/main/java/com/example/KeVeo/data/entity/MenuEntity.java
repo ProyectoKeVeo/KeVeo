@@ -1,22 +1,31 @@
 package com.example.KeVeo.data.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "menu")
 public class MenuEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_menu")
     private Integer id;
     private String active;
+
+    @Column(nullable = false)
     private String description;
+    @Column(name = "APP_ORDER")
     private Integer app_order;
     private String url;
-    private Integer parent;
+    @ManyToOne
+    private MenuEntity parent;
 
-
-
-    //*********************************GETTERS & SETTERS****************************************************************
+    // Añado relación con RoleEntity
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "menu_roles",
+            joinColumns = @JoinColumn(name= "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    private Set<RoleEntity> roleEntities;
 
     public Integer getId() {
         return id;
@@ -58,11 +67,12 @@ public class MenuEntity{
         this.url = url;
     }
 
-    public Integer getParent() {
+    public MenuEntity getParent() {
         return parent;
     }
 
-    public void setParent(Integer parent) {
+    public void setParent(MenuEntity parent) {
         this.parent = parent;
     }
+
 }

@@ -2,20 +2,34 @@ package com.example.KeVeo.data.entity;
 
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "role")
 public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idRole")
     private Integer id;
 
-    @Column(name = "roleName")
+    @Column(nullable = false)
     private String roleName;
-// añado getter and setter
 
+
+    // Añado relación hacia UserEntity
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name= "roles_id"),
+            inverseJoinColumns = @JoinColumn(name = "users_id"))
+    private Set<UserEntity> userEntitiesRole;
+
+    // Añado relación con MenuEntity
+    @ManyToMany(mappedBy = "roleEntities")
+    private Set<MenuEntity> menuEntities;
+
+
+    // añado getter and setter
     public Integer getId() {
         return id;
     }
@@ -31,14 +45,6 @@ public class RoleEntity {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    // Añado relación hacia user muchos a muchos (@manyToMany)
-    @JoinTable(
-            name = "url",
-            joinColumns = @JoinColumn(name= "ROLES_ID", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "USERS_ID", nullable = false)
-    )
 
-    @ManyToMany (cascade = CascadeType.ALL)
-    private List<RoleEntity> roleEntities;
 }
 

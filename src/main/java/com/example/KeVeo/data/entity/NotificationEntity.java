@@ -1,23 +1,37 @@
 package com.example.KeVeo.data.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.util.Set;
 
 @Entity
+@Table(name = "notification")
 public class NotificationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "notificationId")
     private Integer id;
 
-    @Column(name = "notificationDescription")
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "notificationDate")
-    private Date date;
+    @Column(nullable = false)
+    private ZonedDateTime date;
+
+    // Añado relación hacia UserEntity
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "notification_has_user",
+            joinColumns = @JoinColumn(name= "notification_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<UserEntity> userEntitiesNotification;
+
+
+    //Añado relación con NotificationTypeEntity
+    @OneToOne(mappedBy = "notificationEntity", cascade = CascadeType.ALL)
+    private NotificationTypeEntity notificationTypeEntity;
+
+
     // añadidos getter y setter
-
-
     public Integer getId() {
         return id;
     }
@@ -34,11 +48,13 @@ public class NotificationEntity {
         this.description = description;
     }
 
-    public Date getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(ZonedDateTime date) {
         this.date = date;
     }
+
+
 }
