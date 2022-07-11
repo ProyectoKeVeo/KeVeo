@@ -18,7 +18,7 @@ public class MenuEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String active;
+    private Integer active;
 
     @Column(nullable = false)
     private String description;
