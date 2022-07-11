@@ -4,8 +4,8 @@ spring:
       indent-output: true
   datasource:
     url: jdbc:mysql://localhost:3306/base_keveo
-    username: root
-    password: 1234
+    username: aplicacion
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
     cache: false
@@ -18,7 +18,7 @@ spring:
       period: 0
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     defer-datasource-initialization: true
   sql:
     init:

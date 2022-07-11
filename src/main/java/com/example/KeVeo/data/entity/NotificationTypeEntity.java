@@ -1,34 +1,30 @@
 package com.example.KeVeo.data.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
+@Table(name = "type_notification")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NotificationTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "notificationTypeId")
     private Integer id;
 
-    @Column(name = "notificationTypeType")
+    @Column(nullable = false)
     private String type;
 
-// TODO: 05/07/2022 foreign keys y enum
-    //añadidos getter and setter
+    private String enumerator;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    // Añado relación hacia NotificationEntity
+    @OneToOne
+    @JoinColumn(name = "notification_id")
+    private NotificationEntity notificationEntity;
 }

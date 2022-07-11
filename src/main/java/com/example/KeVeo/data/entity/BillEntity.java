@@ -1,9 +1,16 @@
 package com.example.KeVeo.data.entity;
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 
 @Entity
+@Table(name = "bill")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BillEntity {
 
     @Id
@@ -16,33 +23,11 @@ public class BillEntity {
     @Column(nullable = false)
     private ZonedDateTime date;
 
-    // Añado getter y setter
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ZonedDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(ZonedDateTime date) {
-        this.date = date;
-    }
-
-// Añadimos relación @OneToOne hacia PlatformEntity.
+    // Añadimos relación @OneToOne hacia PlatformEntity.
     @OneToOne
     @JoinColumn(name = "platform_id", unique = true)
     private PlatformEntity platformEntity;
+
+    // Añado getter y setter
+
 }

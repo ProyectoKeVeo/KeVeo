@@ -1,4 +1,5 @@
 package com.example.KeVeo.data.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,25 +8,22 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "url")
+@Table(name = "punctuation")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UrlEntity {
+public class PunctuationEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private Boolean active;
+    private String opinion;
 
-    @Column(nullable = false)
-    private String url;
-
-    // Añadimos relación de UrlEntity hacia PlatformEntity
+    // Añadimos relaciones con FilmEntity y UserEntity
     @ManyToOne
-    private PlatformEntity platformEntityUrl;
+    private FilmEntity filmEntityPuntuation;
     @ManyToOne
-    private FilmEntity filmEntityUrl;
+    private UserEntity userEntityPuntuation;
 }
