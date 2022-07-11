@@ -1,8 +1,17 @@
 package com.example.KeVeo.data.entity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "url")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UrlEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,31 +28,4 @@ public class UrlEntity {
     private PlatformEntity platformEntityUrl;
     @ManyToOne
     private FilmEntity filmEntityUrl;
-
-
-    // Añadimos Getter y setter
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
 }

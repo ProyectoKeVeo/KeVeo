@@ -1,11 +1,20 @@
 package com.example.KeVeo.data.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "notification")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NotificationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,32 +38,5 @@ public class NotificationEntity {
     //Añado relación con NotificationTypeEntity
     @OneToOne(mappedBy = "notificationEntity", cascade = CascadeType.ALL)
     private NotificationTypeEntity notificationTypeEntity;
-
-
-    // añadidos getter y setter
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ZonedDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(ZonedDateTime date) {
-        this.date = date;
-    }
-
 
 }

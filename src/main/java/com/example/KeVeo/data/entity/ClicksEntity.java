@@ -1,9 +1,18 @@
 package com.example.KeVeo.data.entity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "clicks")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClicksEntity {
 
     @Id
@@ -24,27 +33,4 @@ public class ClicksEntity {
     private PlatformEntity platformEntities;
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Short getStep() {
-        return step;
-    }
-
-    public void setStep(Short step) {
-        this.step = step;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

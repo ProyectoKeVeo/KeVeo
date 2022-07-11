@@ -1,9 +1,18 @@
 package com.example.KeVeo.data.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "punctuation")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PunctuationEntity {
 
     @Id
@@ -17,23 +26,4 @@ public class PunctuationEntity {
     private FilmEntity filmEntityPuntuation;
     @ManyToOne
     private UserEntity userEntityPuntuation;
-
-    //Añado getters y setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getOpinion() {
-        return opinion;
-    }
-
-    public void setOpinion(String opinion) {
-        this.opinion = opinion;
-    }
-
 }

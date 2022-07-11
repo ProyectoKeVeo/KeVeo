@@ -1,11 +1,20 @@
 package com.example.KeVeo.data.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "role")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoleEntity {
 
     @Id
@@ -27,24 +36,5 @@ public class RoleEntity {
     // Añado relación con MenuEntity
     @ManyToMany(mappedBy = "roleEntities")
     private Set<MenuEntity> menuEntities;
-
-
-    // añado getter and setter
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
 }
 
