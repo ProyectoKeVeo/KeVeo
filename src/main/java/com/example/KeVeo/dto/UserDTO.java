@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.Set;
+
 
 @Getter
 @Setter
@@ -16,17 +17,21 @@ public class UserDTO implements Serializable {
 
     private Integer id;
 
-    private String login;
+    private String username;
 
     private String password;
 
-    private String username;
-
     private String email;
+
+    private String accountName;
 
     private boolean active;
 
     private Date date;
 
-    private Set<RoleDTO> roles;
+    public Date getDate(){
+        LocalDate fecha = LocalDate.now();
+        return java.sql.Date.valueOf(fecha);
+    }
+
 }
