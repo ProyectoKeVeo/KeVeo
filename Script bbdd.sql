@@ -1,15 +1,15 @@
 CREATE SCHEMA IF NOT EXISTS `base_KeVeo` DEFAULT CHARACTER SET utf8 ;
 USE `base_KeVeo` ;
 
-CREATE TABLE IF NOT EXISTS `base_KeVeo`.`USER` (
+CREATE TABLE IF NOT EXISTS `base_KeVeo`.`USERS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL UNIQUE,
   `PASSWORD` VARCHAR(255) NOT NULL,
-  `accountName` VARCHAR(255) NOT NULL,
+  `account_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
-  `ACTIVE` TINYINT NOT NULL,
-  `DATE` DATE NULL,
-  `registerDate` DATETIME NULL,
+  `active` tinyint NOT NULL,
+  `birth_date` DATE NULL,
+  `register_date` DATETIME NULL,
   PRIMARY KEY (`ID`));
 
 
@@ -55,16 +55,16 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`type_notification` (
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification_has_user` (
   `notification_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`notification_id`, `user_id`),
-  INDEX `fk_notificacion_has_usuario_usuario1_idx` (`user_id` ASC) VISIBLE,
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`notification_id`, `users_id`),
+  INDEX `fk_notificacion_has_usuario_usuario1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_notificacion_has_usuario_notificacion1_idx` (`notification_id` ASC) VISIBLE,
   CONSTRAINT `fk_notificacion_has_usuario_notificacion1`
     FOREIGN KEY (`notification_id`)
     REFERENCES `base_KeVeo`.`notification` (`id`),
   CONSTRAINT `fk_notificacion_has_usuario_usuario1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `base_KeVeo`.`USER` (`ID`));
+    FOREIGN KEY (`users_id`)
+    REFERENCES `base_KeVeo`.`USERS` (`ID`));
 
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`url` (
@@ -111,14 +111,14 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`clicks` (
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`punctuation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `opinion` VARCHAR(255) NULL,
-  `user_id` INT NOT NULL,
+  `users_id` INT NOT NULL,
   `film_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `user_id`, `film_id`),
-  INDEX `fk_puntuation_user1_idx` (`user_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`, `users_id`, `film_id`),
+  INDEX `fk_puntuation_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_puntuation_film1_idx` (`film_id` ASC) VISIBLE,
-  CONSTRAINT `fk_puntuation_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `base_KeVeo`.`USER` (`ID`),
+  CONSTRAINT `fk_puntuation_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `base_KeVeo`.`USERS` (`ID`),
   CONSTRAINT `fk_puntuation_film1`
     FOREIGN KEY (`film_id`)
     REFERENCES `base_KeVeo`.`film` (`id`));
@@ -144,10 +144,10 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`genre_has_film` (
     REFERENCES `base_KeVeo`.`film` (`id`));
 
 
-CREATE TABLE IF NOT EXISTS  MENU (
+CREATE TABLE IF NOT EXISTS  MENUS (
      ID  INTEGER NOT NULL AUTO_INCREMENT ,
-     ACTIVE  INTEGER,
-     DESCRIPTION  VARCHAR(255) NOT NULL,
+     `ACTIVE`  INTEGER,
+     `DESCRIPTION`  VARCHAR(255) NOT NULL,
      APP_ORDER  INTEGER,
      URL  VARCHAR(255),
      PARENT_ID  INTEGER,
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS  MENU_ROLES (
      CONSTRAINT PRIMARY KEY( MENU_ID ,  ROLES_ID )
 );              
 
-CREATE TABLE IF NOT EXISTS  ROLE (
+CREATE TABLE IF NOT EXISTS  ROLES (
      ID  INTEGER NOT NULL auto_increment,
      ROLE_NAME  VARCHAR(255) NOT NULL,
      CONSTRAINT PRIMARY KEY( ID )
@@ -172,8 +172,8 @@ CREATE TABLE IF NOT EXISTS  USER_ROLES (
      CONSTRAINT PRIMARY KEY( USERS_ID ,  ROLES_ID )
 );    
 
-ALTER TABLE  USER_ROLES  ADD CONSTRAINT FOREIGN KEY( ROLES_ID ) REFERENCES  ROLE ( ID );     
-ALTER TABLE  USER_ROLES  ADD CONSTRAINT FOREIGN KEY( USERS_ID ) REFERENCES  USER ( ID );     
-ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( MENU_ID ) REFERENCES  MENU ( ID );      
-ALTER TABLE  MENU  ADD CONSTRAINT FOREIGN KEY( PARENT_ID ) REFERENCES  MENU ( ID );              
-ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( ROLES_ID ) REFERENCES  ROLE ( ID ); 
+ALTER TABLE  USER_ROLES  ADD CONSTRAINT FOREIGN KEY( ROLES_ID ) REFERENCES  ROLES ( ID );     
+ALTER TABLE  USER_ROLES  ADD CONSTRAINT FOREIGN KEY( USERS_ID ) REFERENCES  USERS ( ID );     
+ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( MENU_ID ) REFERENCES  MENUS ( ID );      
+ALTER TABLE  MENUS  ADD CONSTRAINT FOREIGN KEY( PARENT_ID ) REFERENCES  MENUS ( ID );              
+ALTER TABLE  MENU_ROLES  ADD CONSTRAINT FOREIGN KEY( ROLES_ID ) REFERENCES  ROLES ( ID ); 
