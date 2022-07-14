@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.ParseException;
+
 
 @Controller
 @RequestMapping("/registro")
@@ -31,7 +33,7 @@ public class RegistroUsuarioControlador {
     }
 
     @PostMapping
-    public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UserDTO registroDTO) {
+    public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UserDTO registroDTO) throws ParseException {
         userService.guardar(registroDTO);
         return "redirect:/registro?exito";
     }

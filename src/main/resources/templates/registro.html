@@ -60,11 +60,17 @@
                         required autofocus="autofocus">
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label" for="date">Introduce fecha de nacimiento : </label> <input
+                        id="date" type="date" class="form-control" th:field="*{date}"
+                        required autofocus="autofocus" placeholder="yyyy-mm-dd">
+                </div>
+
 
                 <div class="form-group">
                     <label class="control-label" for="accountName">Introduce tu nombre en la aplicación : </label> <input
                         id="accountName" type="text" class="form-control" th:field="*{accountName}"
-                        required autofocus="autofocus">
+                        required autofocus="autofocus" >
                 </div>
 
 

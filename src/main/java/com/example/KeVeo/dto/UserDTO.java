@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.ZonedDateTime;
+
 
 
 @Getter
@@ -27,11 +27,13 @@ public class UserDTO implements Serializable {
 
     private boolean active;
 
-    private Date date;
+    private String date;
 
-    public Date getDate(){
-        LocalDate fecha = LocalDate.now();
-        return java.sql.Date.valueOf(fecha);
+    private ZonedDateTime registerDate;
+
+    public ZonedDateTime getregisterDate(){
+        ZonedDateTime fecha = ZonedDateTime.now();
+        return fecha;
     }
 
 }
