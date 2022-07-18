@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
+import java.time.ZonedDateTime;
+
+
 
 @Getter
 @Setter
@@ -16,17 +17,25 @@ public class UserDTO implements Serializable {
 
     private Integer id;
 
-    private String login;
+    private String username;
 
     private String password;
 
-    private String username;
-
     private String email;
+
+    private String accountName;
 
     private boolean active;
 
-    private Date date;
+    private String date;
 
-    private Set<RoleDTO> roles;
+    private ZonedDateTime registerDate;
+
+    private String roleName;
+
+    public ZonedDateTime getregisterDate(){
+        ZonedDateTime fecha = ZonedDateTime.now();
+        return fecha;
+    }
+
 }

@@ -25,6 +25,6 @@ public class NotificationTypeEntity {
 
     // Añado relación hacia NotificationEntity
     @OneToOne
-    @JoinColumn(name = "notification_id")
+    @JoinColumn(name = "notification_id", referencedColumnName = "id")
     private NotificationEntity notificationEntity;
 }

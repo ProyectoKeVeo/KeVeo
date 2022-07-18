@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,17 +22,13 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String roleName;
+    @Column(name = "ROLE_NAME", nullable = false)
+    private String name;
 
 
     // Añado relación hacia UserEntity
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name= "roles_id"),
-            inverseJoinColumns = @JoinColumn(name = "users_id"))
-    private Set<UserEntity> userEntitiesRole;
+    @ManyToMany (mappedBy = "roles", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UserEntity> users;
 
     // Añado relación con MenuEntity
     @ManyToMany(mappedBy = "roleEntities")
