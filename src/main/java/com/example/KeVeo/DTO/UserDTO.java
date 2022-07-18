@@ -1,4 +1,4 @@
-package com.example.KeVeo.dto;
+package com.example.KeVeo.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

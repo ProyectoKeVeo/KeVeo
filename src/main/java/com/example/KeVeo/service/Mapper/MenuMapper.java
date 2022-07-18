@@ -1,5 +1,6 @@
-package Service.Mapper;
+package com.example.KeVeo.service.Mapper;
 
+import com.example.KeVeo.DTO.MenuDTO;
 import com.example.KeVeo.data.entity.MenuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,13 @@ public class MenuMapper extends AbstractServiceMapper<MenuEntity, MenuDTO> {
         entity.setApp_order(dto.getApp_order());
         entity.setUrl(dto.getUrl());
         entity.setParent(toEntity(dto.getParent()));
-        entity.setRoleEntities(this.roleMapper.toEntity(dto.getRoles().stream().collect(Collectors.toList())).stream(.collect(Collectors.toSet())
-        ));
+        entity.setRoleEntities(this.roleMapper.toEntity(dto.getRoles().stream().collect(Collectors.toList())).stream().collect(Collectors.toSet())
+        );
 
-
-
-
-
-        entity.setOrder(dto.getOrder());
+        entity.setApp_order(dto.getApp_order());
         entity.setParent(toEntity(dto.getParent()));
 
-        entity.setRoles(this.roleMapper.toEntity(dto.getRoles().stream().collect(Collectors.toList())).stream()
+        entity.setRoleEntities(this.roleMapper.toEntity(dto.getRoles().stream().collect(Collectors.toList())).stream()
                 .collect(Collectors.toSet()));
         return entity;
 
@@ -39,10 +36,10 @@ public class MenuMapper extends AbstractServiceMapper<MenuEntity, MenuDTO> {
         dto.setId(entity.getId());
         dto.setDescription(entity.getDescription());
         dto.setActive(entity.getActive());
-        dto.setOrder(entity.getOrder());
+        dto.setApp_order(entity.getApp_order());
         dto.setParent(entity.getParent() != null ? toDto(entity.getParent()) : null);
         dto.setUrl(entity.getUrl());
-        dto.setRoles(this.roleMapper.toDto(entity.getRoles().stream().collect(Collectors.toList())).stream()
+        dto.setRoles(this.roleMapper.toDto(entity.getRoleEntities().stream().collect(Collectors.toList())).stream()
                 .collect(Collectors.toSet()));
         return dto;
     }

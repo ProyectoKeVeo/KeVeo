@@ -1,6 +1,6 @@
 package com.example.KeVeo.controller;
 
-import com.example.KeVeo.dto.UserDTO;
+import com.example.KeVeo.DTO.UserDTO;
 import com.example.KeVeo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

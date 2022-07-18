@@ -11,7 +11,7 @@ import com.example.KeVeo.data.entity.RoleEntity;
 import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
-import com.example.KeVeo.dto.UserDTO;
+import com.example.KeVeo.DTO.UserDTO;
 import com.example.KeVeo.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,7 +56,6 @@ public class UserService extends AbstractUserService {
                 userDTO.isActive(), DateUtil.stringToDatedate(userDTO.getDate()), userDTO.getregisterDate(),
                 roleEntities);
 
-
         UserEntity user = new UserEntity();
         user.addRole(roleUser);
 
@@ -76,7 +75,6 @@ public class UserService extends AbstractUserService {
     private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<RoleEntity> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
-
 
 
     public List<UserEntity> listarUsuarios() {
