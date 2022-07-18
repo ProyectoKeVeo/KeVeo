@@ -1,4 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS `base_KeVeo` DEFAULT CHARACTER SET utf8 ;
+-- drop database base_keveo;
+
 USE `base_KeVeo` ;
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`USERS` (
