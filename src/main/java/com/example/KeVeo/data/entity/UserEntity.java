@@ -7,10 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -35,7 +32,7 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "default true")
     private boolean active;
 
     @Column(name = "birth_date")
@@ -52,7 +49,7 @@ public class UserEntity {
         this.active = active;
         this.date = date;
         this.registerDate = registerDate;
-        this.roleEntitiesUser = roleEntitiesUser;
+        this.roles = roleEntitiesUser;
     }
 
     //Añado relación hacia PuntuationEntity
@@ -60,10 +57,15 @@ public class UserEntity {
     private Set<PunctuationEntity> puntuationEntitiesUsers = new HashSet<>();
 
     //Añado relación hacia RoleEntity
-    @ManyToMany(mappedBy = "userEntitiesRole", fetch = FetchType.EAGER)
-    private List<RoleEntity> roleEntitiesUser;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<RoleEntity> roles;
 
     //Añado relación hacia NotificationEntity
     @ManyToMany(mappedBy = "userEntitiesNotification")
     private Set<NotificationEntity> notificationEntitiesUser;
+
+    public void addRole (RoleEntity role){
+        this.roles = new ArrayList<>();
+        this.roles.add(role);
+    }
 }

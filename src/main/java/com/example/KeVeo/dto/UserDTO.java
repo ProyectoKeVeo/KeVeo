@@ -31,6 +31,8 @@ public class UserDTO implements Serializable {
 
     private ZonedDateTime registerDate;
 
+    private String roleName;
+
     public ZonedDateTime getregisterDate(){
         ZonedDateTime fecha = ZonedDateTime.now();
         return fecha;

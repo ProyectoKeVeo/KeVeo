@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public abstract class AbstractUserService implements UserDetailsService {
-    abstract UserEntity guardar(UserDTO userDTO) throws ParseException;
+    abstract void guardarRolDefecto(UserDTO userDTO) throws ParseException;
 
     abstract List<UserEntity> listarUsuarios();
 }
