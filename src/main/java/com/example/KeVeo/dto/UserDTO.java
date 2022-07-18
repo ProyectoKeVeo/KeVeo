@@ -1,4 +1,4 @@
-package com.example.KeVeo.dto;
+package com.example.KeVeo.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +30,8 @@ public class UserDTO implements Serializable {
     private String date;
 
     private ZonedDateTime registerDate;
+
+    private String roleName;
 
     public ZonedDateTime getregisterDate(){
         ZonedDateTime fecha = ZonedDateTime.now();
