@@ -32,6 +32,7 @@ public class RegistroUsuarioControlador {
 
     @GetMapping
     public String mostrarFormularioDeRegistro() {
+
         return "registro";
     }
 
