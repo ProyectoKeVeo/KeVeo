@@ -7,8 +7,13 @@
 	<link rel="stylesheet" href="css/stylecarrusel.css">
 	<link rel="stylesheet" href="css/estilobuscador.css">
 	<link rel="stylesheet" href="css/footerstyle.css">
+	<link rel="stylesheet" href="css/estilonotificacion.css">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+	<!-- Bootstrap CSS de la campan de notificación -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<title>KeVeo</title>
 </head>
 <body>
@@ -17,10 +22,14 @@
 			<!-- Logotipo tipográfico su css está en estilos.css -->
 			<h2 class="logotipo">KeVeo</h2>
 			<!-- Buscador - su css está en estilobuscador.css-->
+
+
+
 			<form class="form-wrapper cf">
 				<input type="text" placeholder="Buscar película..." required>
 				<button type="submit">Buscar</button>
 			</form>
+
 			<!-- Barra de Navegación su css está en estilos.css -->
 			<nav>
 				<a href="#" class="activo">Inicio</a>
@@ -28,10 +37,56 @@
 				<a href="#">Plataformas</a>
 				<a href="#">Géneros</a>
 				<a href="#">Login</a>
-
 			</nav>
+
 		</div>
 	</header>
+	<!-- Notificación su css es estilonotificacion.css -->
+	<div class="position-fixed top-0 mx-auto p-3 notify-bell" style="margin-left: 40px; position: absolute;z-index: 1;left: 40px;">
+		<p class="shadow my-auto bg-light" style="width: 180px; padding: 5px 30px; border-radius: 10px;">Nueva notificación <br>
+			Añadidos recientemente</p>
+	</div>
+	<div class="position-fixed top-0 mx-auto p-3" style="z-index: 11">
+		<div id="btn-perdido" class="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			<div class="my-btn-border"></div>
+			<i class="fas fa-bell btn-bell"></i>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Star wars ha llegado para quedarse</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row g-0">
+						<div class="col-md-4 text-center">
+							<img src="https://ep00.epimg.net/elpais/imagenes/2017/12/13/album/1513166327_044213_1513268843_album_normal.jpg" class="img-fluid rounded-start" width="200px" />
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">Star Wars </h5>
+								<p class="card-text">No te pierdas una nueva entrega de la gran saga de StarWars</p>
+								<p class="card-text"><small class="text-muted">Añadido hace una hora</small></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+	<script>
+
+	</script>
 	<!-- Portada - su css está en estilos.css-->
 	<main>
 		<div class="pelicula-principal">
@@ -50,111 +105,7 @@
 	<script src="js/main.js"></script>
 
 	<!-- Carrusel - su css es stylecarrusel.css-->
-	<div style = "stylecarrusel.css" class ="container">
-		<div class="arrow-left">
-			<i class="icon-angle-left"></i>
-		</div>
-		<div class="item item-1">
-			<div class="body-item">
-				<div class="body-item-1">
-					<div class="play">
-						<i class="icon-play"></i>
-					</div>
-				</div>
-				<div class="title body-item-2">Breaking Bad</div>
-				<div class="properties body-item-3">
-					<img src="https://i.pinimg.com/474x/fd/82/c1/fd82c1116eb734b625552241e00e2a20--aliens-movie-les-aliens.jpg" alt="Alien"/>
-					</a>
-				</div>
-				<p class="description body-item-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius alias libero..</p>
-				<div class="body-item-5">
-					<i class="details-icon icon-chevron-down"></i>
-				</div>
-				<div class="icon-set body-item-6">
-					<i class="icon-thumbs-up"></i>
-					<i class="icon-thumbs-down"></i>
-					<i class="icon-plus"></i>
-				</div>
-			</div>
-		</div>
 
-		<div class="item item-2">
-			<div class="body-item">
-				<div class="body-item-1">
-					<div class="play">
-						<i class="icon-play"></i>
-					</div>
-				</div>
-				<div class="title body-item-2">Case de Papel</div>
-				<div class="properties body-item-3">
-					<img src="https://static.posters.cz/image/350/posters/black-widow-unfinished-business-i122138.jpg" alt="Viuda Negra"/>
-					</a>
-				</div>
-				<p class="description body-item-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius alias libero..</p>
-				<div class="body-item-5">
-					<i class="details-icon icon-chevron-down"></i>
-				</div>
-				<div class="icon-set body-item-6">
-					<i class="icon-thumbs-up"></i>
-					<i class="icon-thumbs-down"></i>
-					<i class="icon-plus"></i>
-				</div>
-			</div>
-		</div>
-
-		<div class="item item-3">
-			<div class="body-item">
-				<div class="body-item-1">
-					<div class="play">
-						<i class="icon-play"></i>
-					</div>
-				</div>
-				<div class="title body-item-2">Black Mirror</div>
-				<div class="properties body-item-3">
-					<span class="match">% 98 Match</span>
-					<span class="year">2012</span>
-					<span class="age-limit">13+</span>
-					<span class="time">2h 13m</span>
-				</div>
-				<p class="description body-item-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius alias libero..</p>
-				<div class="body-item-5">
-					<i class="details-icon icon-chevron-down"></i>
-				</div>
-				<div class="icon-set body-item-6">
-					<i class="icon-thumbs-up"></i>
-					<i class="icon-thumbs-down"></i>
-					<i class="icon-plus"></i>
-				</div>
-			</div>
-		</div>
-
-		<div class="item item-4">
-			<div class="body-item">
-				<div class="body-item-1">
-					<div class="play">
-						<i class="icon-play"></i>
-					</div>
-				</div>
-				<div class="title body-item-2">Bojark Horseman</div>
-				<div class="properties body-item-3">
-					<img src="https://www.todocuadros.com/imagenes/posters/peliculas/braveheart.jpg" alt="BraveHeart"/>
-					</a>
-				</div>
-				<p class="description body-item-4">A humanoid horse, BoJack Horseman -- lost in a sea of self-loathing and...</p>
-				<div class="body-item-5">
-					<i class="details-icon icon-chevron-down"></i>
-				</div>
-				<div class="icon-set body-item-6">
-					<i class="icon-thumbs-up"></i>
-					<i class="icon-thumbs-down"></i>
-					<i class="icon-plus"></i>
-				</div>
-			</div>
-		</div>
-		<div class="arrow-right">
-			<i class="icon-angle-right"></i>
-		</div>
-	</div>
 	<!--Footer de la web - su css es footerstyle.css -->
 	<footer>
 		<div class="main-content">
@@ -217,4 +168,5 @@
 		</div>
 	</footer>
 </body>
+
 </html>
