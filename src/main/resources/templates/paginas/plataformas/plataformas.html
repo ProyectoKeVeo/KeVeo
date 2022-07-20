@@ -6,33 +6,28 @@
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/stylecarrusel.css">
 	<link rel="stylesheet" href="css/estilobuscador.css">
-	<link rel="stylesheet" href="css/footerstyle.css">
-	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
 	<title>KeVeo</title>
 </head>
 <body>
 	<header>
 		<div class="contenedor">
-			<!-- Logotipo tipográfico su css está en estilos.css -->
 			<h2 class="logotipo">KeVeo</h2>
-			<!-- Buscador - su css está en estilobuscador.css-->
 			<form class="form-wrapper cf">
 				<input type="text" placeholder="Buscar película..." required>
 				<button type="submit">Buscar</button>
 			</form>
-			<!-- Barra de Navegación su css está en estilos.css -->
 			<nav>
 				<a href="#" class="activo">Inicio</a>
-				<a href="#" >Películas</a>
+				<a href="#">Películas</a>
 				<a href="#">Plataformas</a>
 				<a href="#">Géneros</a>
-				<a href="#">Login</a>
+				<a href="./login.html">Login</a>
 
 			</nav>
 		</div>
 	</header>
-	<!-- Portada - su css está en estilos.css-->
+
 	<main>
 		<div class="pelicula-principal">
 			<div class="contenedor">
@@ -49,7 +44,7 @@
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 	<script src="js/main.js"></script>
 
-	<!-- Carrusel - su css es stylecarrusel.css-->
+
 	<div style = "stylecarrusel.css" class ="container">
 		<div class="arrow-left">
 			<i class="icon-angle-left"></i>
@@ -155,66 +150,6 @@
 			<i class="icon-angle-right"></i>
 		</div>
 	</div>
-	<!--Footer de la web - su css es footerstyle.css -->
-	<footer>
-		<div class="main-content">
-			<div class="left box">
-				<h2>Nosotros</h2>
-				<div class="content">
-					<p>Trabajamos para hacerte la vida más fácil. En tan solo 3 clicks podrás encontrar tu película favorita y todas las plataformas donde las puedes encontrar. </p>
-					<div class="social">
-						<a target="_blank" href="#"><span class="fab fa-facebook-f"></span></a>
-						<a target="_blank" href="#"><span class="fab fa-twitter"></span></a>
-						<a target="_blank" href="#"><span class="fab fa-instagram"></span></a>
-						<a target="_blank" href="#"><span class="fab fa-youtube"></span></a>
-					</div>
-				</div>
-			</div>
 
-			<div class="center box">
-				<h2>Ubicación</h2>
-				<div class="content">
-					<div class="place">
-						<span class="fas fa-map-marker-alt"></span>
-						<span class="text">Jerez de la Frontera, España</span>
-					</div>
-					<div class="phone">
-						<span class="fas fa-phone-alt"></span>
-						<span class="text">666999333</span>
-					</div>
-					<div class="email">
-						<span class="fas fa-envelope"></span>
-						<span class="text">info@keveo.com</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="right box">
-				<h2>Contacto</h2>
-				<div class="content">
-					<form action="#">
-						<div class="email">
-							<div class="text">Email *</div>
-							<input type="email" required>
-						</div>
-						<div class="msg">
-							<div class="text">Mensaje *</div>
-							<textarea rows="2" cols="25" required></textarea>
-						</div>
-						<div class="btn">
-							<button type="submit">Enviar Mensaje</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="bottom">
-			<center>
-          <span class="credit">Desarrollado por
-            <a target="_blank" href="https://github.com/ProyectoKeVeo/KeVeo">Grupo5 - Proyecto KeVeo - EOI</a> | </span>
-				<span class="far fa-copyright"></span><span> 2022</span>
-			</center>
-		</div>
-	</footer>
 </body>
 </html>
