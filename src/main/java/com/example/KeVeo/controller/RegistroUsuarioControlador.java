@@ -40,7 +40,7 @@ public class RegistroUsuarioControlador {
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UserDTO registroDTO) throws ParseException {
         registroDTO.setActive(true);
         registroDTO.setRoleName("ROLE_USER");
-        userService.guardarRolDefecto(registroDTO);
+        userService.registerDefaultUser(registroDTO);
         return "redirect:/registro?exito";
     }
 
