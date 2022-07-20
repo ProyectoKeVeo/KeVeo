@@ -189,7 +189,7 @@ ALTER TABLE MENUS_ROLES ADD CONSTRAINT FKQ7K54HB6F3NGDBFPBLWJ68BHG FOREIGN KEY(M
 ALTER TABLE MENUS ADD CONSTRAINT FKGEUPUBDQNCC1LPGF2CN4FQWBC FOREIGN KEY(PARENT_ID) REFERENCES MENUS(ID) ;          
 ALTER TABLE MENUS_ROLES ADD CONSTRAINT FKAUV6MBPEO296VHBM7AVTOI3O8 FOREIGN KEY(ROLES_ID) REFERENCES ROLES(ID) ; 
 
-
+/*
 -- Datos para peliculas--
 INSERT INTO `film` (`id`,`name`,`platform`,`gender`,`duration`,`year`,`description`,`number_views`,`creation_date`,`trailer`,`image`) 
 VALUES 
@@ -233,5 +233,5 @@ VALUES
 (38,'Happy Feet','HBO Max','Infantil',108,2006,'En la gélida Antártida, los pingüinos cantan para hacer el cortejo, pero lo que a Mumble se le da bien es bailar. Cuando sus compañeros pingüinos empiezan a entonar canciones románticas, los pies de Mumble no pueden evitar moverse.',0,'20/07/2022',NULL,NULL),
 (39,'Kong: La Isla Calavera','HBO Max','Aventura',120,2017,'En los años 70, un variopinto grupo de exploradores y soldados es reclutado para viajar a una misteriosa isla del Pacífico. Entre ellos están el capitán James Conrad (Tom Hiddleston), el teniente coronel Packard (Samuel L. Jackson) y una fotoperiodista (Brie Larson). Pero al adentrarse en esta bella pero traicionera isla, los exploradores encontrarán algo absolutamente sorprendente. Sin saberlo, estarán invadiendo los dominios del mítico Kong, el gorila gigante rey de esta isla. Será Marlow (John C. Reilly), un peculiar habitante del lugar, quien les enseñe los secretos de Isla Calavera, además del resto de seres monstruosos que la habitan. ',0,'20/07/2022',NULL,NULL),
 (40,'Kimi','HBO Max','Suspense',89,2022,'Una empleada de una empresa tecnológica que sufre agorafobia descubre un crimen e intenta alertar a sus superiores.',0,'20/07/2022',NULL,NULL);
-
+*/
 
