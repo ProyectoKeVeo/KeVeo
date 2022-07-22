@@ -35,56 +35,57 @@
 				<a href="#">Plataformas</a>
 				<a href="#">Géneros</a>
 				<a href="#">Login</a>
-			</nav>
+				<!-- Notificación su css es estilonotificacion.css -->
 
-		</div>
-	</header>
-	<!-- Notificación su css es estilonotificacion.css -->
-	<div class="position-fixed top-0 mx-auto p-3 notify-bell" style="margin-left: 40px; position: absolute;z-index: 1;left: 40px;">
-		<p class="shadow my-auto bg-light" style="width: 180px; padding: 5px 30px; border-radius: 10px;">Nueva notificación <br>
-			Añadidos recientemente</p>
-	</div>
-	<div class="position-fixed top-0 mx-auto p-3" style="z-index: 11">
-		<div id="btn-perdido" class="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-			<div class="my-btn-border"></div>
-			<i class="fas fa-bell btn-bell"></i>
-		</div>
-	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Star wars ha llegado para quedarse</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="position-fixed top-0 mx-auto p-3" style="z-index: 50">
+					<div id="btn-perdido" class="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						<div class="my-btn-border"></div>
+						<i class="fas fa-bell btn-bell"  style="font-size:25px;"></i>
+						<span class="badge">1</span>
+					</div>
 				</div>
-				<div class="modal-body">
-					<div class="row g-0">
-						<div class="col-md-4 text-center">
-							<img src="https://ep00.epimg.net/elpais/imagenes/2017/12/13/album/1513166327_044213_1513268843_album_normal.jpg" class="img-fluid rounded-start" width="200px" />
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Star Wars </h5>
-								<p class="card-text">No te pierdas una nueva entrega de la gran saga de StarWars</p>
-								<p class="card-text"><small class="text-muted">Añadido hace una hora</small></p>
+
+				<!-- Modal de la notificación -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Star wars ha llegado para quedarse</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="row g-0">
+									<div class="col-md-4 text-center">
+										<img src="https://ep00.epimg.net/elpais/imagenes/2017/12/13/album/1513166327_044213_1513268843_album_normal.jpg" class="img-fluid rounded-start" width="200px" />
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">Star Wars </h5>
+											<p class="card-text">No te pierdas una nueva entrega de la gran saga de StarWars</p>
+											<p class="card-text"><small class="text-muted">Añadido hace una hora</small></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-				</div>
-			</div>
+
+
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+				<script>
+
+				</script>
+			</nav>
+
 		</div>
-	</div>
+	</header>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
-	<script>
-
-	</script>
 	<!-- Portada - su css está en estilos.css-->
 	<main>
 		<div class="pelicula-principal">
