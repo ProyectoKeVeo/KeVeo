@@ -1,0 +1,35 @@
+package com.example.KeVeo.service;
+
+import com.example.KeVeo.DTO.FilmDTO;
+import com.example.KeVeo.data.entity.FilmEntity;
+import com.example.KeVeo.data.entity.GenreEntity;
+import com.example.KeVeo.data.repository.FilmRepository;
+import com.example.KeVeo.data.repository.GenreRepository;
+import com.example.KeVeo.service.Mapper.FilmMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+@Service
+public class FilmService extends AbstractBusinessService<FilmEntity, Integer, FilmDTO, FilmRepository, FilmMapper> {
+
+    private GenreRepository genreRepository;
+
+
+    @Autowired
+    protected FilmService(FilmRepository repository, FilmMapper serviceMapper, GenreRepository genreRepository) {
+        super(repository, serviceMapper);
+        this.genreRepository = genreRepository;
+    }
+    public Page<FilmDTO> listAll(Pageable pageable) {
+        return getRepository().findAll(pageable).map(getServiceMapper()::toDto);
+    }
+
+    public FilmDTO findByFilmName(String filmName) {
+        FilmEntity filmEntity = this.getRepository().findByName(filmName);
+        return this.getServiceMapper().toDto(filmEntity);
+
+    }
+
+}

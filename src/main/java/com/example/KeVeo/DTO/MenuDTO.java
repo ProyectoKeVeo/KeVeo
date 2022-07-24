@@ -26,4 +26,5 @@ public class MenuDTO implements Serializable {
     private String url;
 
     private Set<RoleDTO> roles;
+
 }

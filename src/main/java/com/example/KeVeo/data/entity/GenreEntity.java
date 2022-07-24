@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,10 +25,6 @@ public class GenreEntity {
 
 
     // Añado relación de genre a FilmEntity
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "genre_has_film",
-            joinColumns = @JoinColumn(name= "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
-    private Set<FilmEntity> filmEntitiesGenre;
+    @ManyToMany (fetch = FetchType.EAGER)
+    private Set<FilmEntity> film;
 }

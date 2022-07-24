@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,10 +55,8 @@ public class FilmEntity {
     private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
 
     // Añadimos relación de FilmEntity y GenreEntity
-    @ManyToMany (mappedBy = "filmEntitiesGenre")
-    private Set<GenreEntity> genreEntities;
-
-    // Añado los getter y los setter
+    @ManyToMany (mappedBy = "film" , cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<GenreEntity> genre;
 
 
 
