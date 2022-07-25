@@ -5,6 +5,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -21,9 +22,9 @@ public class FilmDTO implements Serializable {
     private String trailer;
     private ZonedDateTime creation;
     private String image;
-    private String genre;
+    private Set<GenreDTO> genres;
 
-    public ZonedDateTime getregisterDate(){
+    public ZonedDateTime getCreation(){
         ZonedDateTime fecha = ZonedDateTime.now();
         return fecha;
     }

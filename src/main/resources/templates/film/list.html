@@ -62,29 +62,28 @@ xmlns:sd="http://www.w3.org/1999/xhtml">
             <th>Nombre</th>
             <th>Año</th>
             <th>Duración</th>
-            <th>Genero</th>
+            <th>Géneros</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${film}">
+        <tr th:each="item,iter : ${films}">
             <td th:text="${item.id}">ID</td>
             <td th:text="${item.name}">ID</td>
             <td th:text="${item.year}">ID</td>
             <td th:text="${item.duration}">ID</td>
-            <td th:text="${item.genre}">ID</td>
-        </tr>
+            <td th:text="${item.genres}"></td>
         </tbody>
     </table>
 </div>
-<div th:if="${not #lists.isEmpty(film.content)}">
+<div th:if="${not #lists.isEmpty(films.content)}">
     <div class="text-center">
         <nav>
             <ul class="pagination" sd:pagination="full">
-                <div th:if="${film.totalPages > 0}" class="pagination"
+                <div th:if="${films.totalPages > 0}" class="pagination"
                      th:each="pageNumber : ${pageNumbers}">
-                    <li th:class="${pageNumber==film.number + 1} ? active">
-                        <a href="#" th:href="@{/film(size=${film.size}, page=${pageNumber})}"
+                    <li th:class="${pageNumber==films.number + 1} ? active">
+                        <a href="#" th:href="@{/films(size=${film.size}, page=${pageNumber})}"
                            th:text=${pageNumber}></a>
                     </li>
                 </div>

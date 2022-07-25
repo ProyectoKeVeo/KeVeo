@@ -55,8 +55,13 @@ public class FilmEntity {
     private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
 
     // Añadimos relación de FilmEntity y GenreEntity
-    @ManyToMany (mappedBy = "film" , cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<GenreEntity> genre;
+    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "genre_has_film",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<GenreEntity> genres;
 
 
 
