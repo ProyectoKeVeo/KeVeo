@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="css/stylecarrusel.css">
 	<link rel="stylesheet" href="css/estilobuscador.css">
 	<link rel="stylesheet" href="css/footerstyle.css">
-	<link rel="stylesheet" href="css/estilonotificacion.css">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 	<!-- Bootstrap CSS de la campan de notificación -->
@@ -35,20 +34,13 @@
 				<a href="#">Plataformas</a>
 				<a href="#">Géneros</a>
 				<a href="#">Login</a>
-				<!-- Notificación su css es estilonotificacion.css -->
+				<!-- Botón de alertas -->
+				<button type="button" class="btn btn-danger position-relative" id="btn-perdido" class="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Alertas <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">1
+				</span>
+				</button>
 
-
-				<div class="position-fixed top-0 mx-auto p-3" style="z-index: 50">
-					<div id="btn-perdido" class="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-						<div class="my-btn-border"></div>
-						<i class="fas fa-bell btn-bell"  style="font-size:25px;"></i>
-						<span class="badge">1</span>
-					</div>
-
-				</div>
-
-				<!-- Modal de la notificación -->
+				<!-- Modal del botón de alertas -->
 				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
