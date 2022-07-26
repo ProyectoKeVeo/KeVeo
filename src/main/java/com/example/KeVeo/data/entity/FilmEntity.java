@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "film")
+@Table(name = "films")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -57,12 +57,11 @@ public class FilmEntity {
     // Añadimos relación de FilmEntity y GenreEntity
     @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "genre_has_film",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
+            name = "genres_films",
+            joinColumns = @JoinColumn(name = "films_id"),
+            inverseJoinColumns = @JoinColumn(name = "genres_id")
     )
     private Set<GenreEntity> genres;
-
 
 
 }

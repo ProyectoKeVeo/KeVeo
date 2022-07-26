@@ -83,7 +83,7 @@ xmlns:sd="http://www.w3.org/1999/xhtml">
                 <div th:if="${films.totalPages > 0}" class="pagination"
                      th:each="pageNumber : ${pageNumbers}">
                     <li th:class="${pageNumber==films.number + 1} ? active">
-                        <a href="#" th:href="@{/films(size=${film.size}, page=${pageNumber})}"
+                        <a href="#" th:href="@{/film(size=${films.size}, page=${pageNumber})}"
                            th:text=${pageNumber}></a>
                     </li>
                 </div>
