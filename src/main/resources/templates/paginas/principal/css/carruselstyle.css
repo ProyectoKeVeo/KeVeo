@@ -1,9 +1,9 @@
 body{
   background:#000;
+
 }
 
 section.awSlider .carousel{
-  display:table;
   z-index:2;
   -moz-box-shadow: 0 0 4px #444;
 	-webkit-box-shadow: 0 0 4px #444;
@@ -11,6 +11,7 @@ section.awSlider .carousel{
 }
 
 section.awSlider{
+
   margin:30px auto;
   padding:30px;
   position:relative;
