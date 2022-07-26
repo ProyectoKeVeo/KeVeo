@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,10 @@ public class FilmController {
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         model.addAttribute("film", this.filmService.findById(id).get());
         return "film/edit";
+    }
+    @Transactional
+    @PostMapping(value = { "/film/{id}/edit", "/film/create" })
+    public String save(FilmDTO dto) {
+        return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
     }
 }
