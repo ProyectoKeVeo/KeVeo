@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!DOCTYPE html>
+        <html lang="en" xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+        <head>
+        <title>Film's management</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb" th:object="${film}">
+    <h1>Film Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/film"><i class="fa fa-tasks"></i> Film</a></li>
+        <li class="active" th:utext="@{'film ID: <b>' + ${film.id}} + '</b>'"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="form" th:object="${film}" method="post">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <input th:type="hidden" th:field="${film.id}"/>
+                            <div class="tab-pane active" id="1a">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="name" th:text="#{film.name}"></label>
+                                        <input type="text" class="form-control"
+                                               id="name"
+                                               th:field="${film.name}"
+                                               maxlength="255">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer with-border">
+                    <a th:href="@{/film}" class="btn btn-default" role="button"
+                       title="Back list" th:text="#{General.Cancel}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <button type="submit" class="box-title btn btn-primary"
+                            title="Save Data" th:text="#{General.Save}">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</head>
+
+</body>
+</html>

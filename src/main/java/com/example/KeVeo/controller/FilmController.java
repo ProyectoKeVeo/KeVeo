@@ -1,14 +1,18 @@
 package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
+import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.service.FilmService;
+import com.example.KeVeo.service.Mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,16 +28,30 @@ public class FilmController {
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                           Model model) {
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Page<FilmDTO> all = this.filmService.findAll( PageRequest.of(page.orElse(1) - 1,
+        Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(10)));
         model
                 .addAttribute("films", all)
                 .addAttribute("pageNumber", getPageNumbers(all));
         return "film/list";
     }
+
     protected List<Integer> getPageNumbers(Page<FilmDTO> pages) {
         return pages.getTotalPages() > 0 ?
                 IntStream.rangeClosed(1, pages.getTotalPages()).boxed().collect(Collectors.toList()) :
                 new ArrayList<>();
+    }
+
+    @GetMapping("/film/{id}")
+    @PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    public String detail(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("film", this.filmService.findById(id).get());
+        return "film/detail";
+    }
+    @GetMapping(value = "/film/{id}/edit")
+    @PostAuthorize("hasRole('ROLE_ADMIN')")
+    public String edit(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("film", this.filmService.findById(id).get());
+        return "film/edit";
     }
 }
