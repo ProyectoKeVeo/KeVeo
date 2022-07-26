@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "genre")
+@Table(name = "genres")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,8 +24,8 @@ public class GenreEntity {
 
 
     // Añado relación de genre a FilmEntity
-    @ManyToMany (fetch = FetchType.EAGER)
-    private Set<FilmEntity> film;
+    @ManyToMany (mappedBy = "genres", fetch = FetchType.EAGER)
+    private Set<FilmEntity> films;
 
 
 }
