@@ -26,6 +26,7 @@ public class UserDTO implements Serializable {
     private String accountName;
 
     private boolean active;
+    private String username2;
 
     private String date;
 
