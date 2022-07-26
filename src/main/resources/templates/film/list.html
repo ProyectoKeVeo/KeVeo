@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-xmlns:sd="http://www.w3.org/1999/xhtml">
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -63,6 +63,7 @@ xmlns:sd="http://www.w3.org/1999/xhtml">
             <th>Año</th>
             <th>Duración</th>
             <th>Géneros</th>
+            <th></th>
 
         </tr>
         </thead>
@@ -73,6 +74,16 @@ xmlns:sd="http://www.w3.org/1999/xhtml">
             <td th:text="${item.year}">ID</td>
             <td th:text="${item.duration}">ID</td>
             <td th:text="${item.genres}"></td>
+            <td>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id}}"
+                   title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id} + '/edit'}"
+                   title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                <button class="btn btn-danger" type="submit" value="Delete"
+                        th:formaction="'/film/' + ${item.id} + '/delete'">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
         </tbody>
     </table>
 </div>
@@ -91,7 +102,6 @@ xmlns:sd="http://www.w3.org/1999/xhtml">
         </nav>
     </div>
 </div>
-
 
 
 <!-- Latest compiled and minified JavaScript -->

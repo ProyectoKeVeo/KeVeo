@@ -29,10 +29,10 @@ public class FilmService extends AbstractBusinessService<FilmEntity, Integer, Fi
         return getRepository().findAll(pageable).map(getServiceMapper()::toDto);
     }
 
-    public FilmDTO findByFilmName(String filmName) {
-        FilmEntity filmEntity = this.getRepository().findByName(filmName);
-        return this.getServiceMapper().toDto(filmEntity);
-
-    }
+//    public FilmDTO findByFilmName(String filmName) {
+//        FilmEntity filmEntity = this.getRepository().findByName(filmName);
+//        return this.getServiceMapper().toDto(filmEntity);
+//
+//    }
 
 }
