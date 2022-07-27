@@ -1,9 +1,10 @@
 package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
-import com.example.KeVeo.data.entity.FilmEntity;
+import com.example.KeVeo.DTO.GenreDTO;
+import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.service.FilmService;
-import com.example.KeVeo.service.Mapper.FilmMapper;
+import com.example.KeVeo.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,7 @@ import java.util.stream.IntStream;
 public class FilmController {
     @Autowired
     private FilmService filmService;
+    private GenreService genreService;
 
     @GetMapping("/film")
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
@@ -33,7 +35,7 @@ public class FilmController {
                 size.orElse(10)));
         model
                 .addAttribute("films", all)
-                .addAttribute("pageNumber", getPageNumbers(all));
+                .addAttribute("pageNumbers", getPageNumbers(all));
         return "film/list";
     }
 
@@ -53,11 +55,12 @@ public class FilmController {
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         model.addAttribute("film", this.filmService.findById(id).get());
+
         return "film/edit";
     }
     @Transactional
     @PostMapping(value = { "/film/{id}/edit", "/film/create" })
-    public String save(FilmDTO dto) {
+    public String save(FilmDTO dto, GenreDTO genreDTO) {
         return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
     }
 }

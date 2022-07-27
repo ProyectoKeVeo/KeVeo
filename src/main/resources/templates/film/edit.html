@@ -35,6 +35,30 @@
                                                id="name"
                                                th:field="${film.name}"
                                                maxlength="255">
+                                        <input type="text" class="form-control"
+                                               id="year"
+                                               th:field="${film.year}"
+                                               maxlength="255">
+                                        <input type="text" class="form-control"
+                                               id="duration"
+                                               th:field="${film.duration}"
+                                               maxlength="255">
+                                        <input type="text" class="form-control"
+                                               id="numer_views"
+                                               th:field="${film.number_views}"
+                                               maxlength="255">
+                                        <input type="text" class="form-control"
+                                               id="description"
+                                               th:field="${film.description}"
+                                               maxlength="255">
+<!--                                        <input type="text" class="form-control"-->
+<!--                                               id="genres"-->
+<!--                                               th:field="${film.genres}"-->
+<!--                                               maxlength="255">-->
+<!--                                        <th:block th:each="role: ${listRoles}">-->
+<!--                                            <input type="checkbox" th:field="*{genres}"-->
+<!--                                                   th:text="${role.roleName}" th:value="${role.id}" class="m-2"/>-->
+<!--                                        </th:block>-->
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +67,7 @@
                 </div>
 
                 <div class="box-footer with-border">
-                    <a th:href="@{/film/list}" class="btn btn-default" role="button"
+                    <a th:href="@{/film}" class="btn btn-default" role="button"
                        title="Back list" th:text="#{General.Cancel}">
                         <span aria-hidden="true"></span>
                     </a>
