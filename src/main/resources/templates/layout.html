@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/carruselstyle.css">
-    <link rel="stylesheet" href="css/estilobuscador.css">
-    <link rel="stylesheet" href="css/footerstyle.css">
+
+
+    <title layout:title-parttern="$LAYOUT_TITLE :: $CONTENT_TITLE" th:text="#{Layout.Title}"></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<!--Estilos CSS con Thymeleaf-->
+    <link rel="stylesheet" href="#" th:href="@{paginas/css/estilos.css}"/>
+    <link rel="stylesheet" href="#" th:href="@{paginas/css/estilobuscador.css}"/>
+    <link rel="stylesheet" href="#" th:href="@{paginas/css/footerstyle.css}"/>
+
+<!--Ejecutable-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet">
-
     <!-- Bootstrap CSS de notificación -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -19,20 +26,17 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <title>KeVeo</title>
-
     <!--Favicon-->
-
     <link href="/img/fevicom.png">
 
 </head>
 <body>
 <header>
     <div class="contenedor">
-        <!-- Logotipo tipográfico su css está en estilos.css -->
+        <!-- Logotipo imagen-->
 
         <img src="img/logo.png" width="10%" height="10%" alt="KeVeo">
-        <!-- Buscador - su css está en estilobuscador.css-->
+        <!-- Buscador - estilobuscador.css-->
 
         <form class="form-wrapper cf">
             <input type="text" placeholder="Buscar película..." required>
@@ -92,7 +96,6 @@
                     crossorigin="anonymous"></script>
 
             <script>
-
             </script>
 
         </nav>
@@ -228,5 +231,4 @@
     </div>
 </footer>
 </body>
-
 </html>
