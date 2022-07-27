@@ -31,8 +31,8 @@ public class MenuEntity{
     // Añado relación con RoleEntity
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(
-            name = "menu_roles",
-            joinColumns = @JoinColumn(name= "menu_id"),
+            name = "menus_roles",
+            joinColumns = @JoinColumn(name= "menus_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<RoleEntity> roleEntities;
 

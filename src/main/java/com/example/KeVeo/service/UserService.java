@@ -1,70 +1,51 @@
 package com.example.KeVeo.service;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.example.KeVeo.DTO.UserDTO;
 import com.example.KeVeo.data.entity.RoleEntity;
 import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
-import com.example.KeVeo.DTO.UserDTO;
-import com.example.KeVeo.utils.DateUtil;
+import com.example.KeVeo.service.Mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class UserService extends AbstractUserService {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
+public class UserService extends AbstractBusinessService<UserEntity, Integer, UserDTO, UserRepository, UserMapper> {
     private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
+                          PasswordEncoder passwordEncoder) {
+        super(repository, serviceMapper);
 
-    public UserService(UserRepository userRepository) {
-        super();
-        this.userRepository = userRepository;
-
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-
-    public void guardarRolDefecto(UserDTO userDTO) throws ParseException {
-
-        RoleEntity roleUser = roleRepository.findByName(userDTO.getRoleName());
-        List<RoleEntity> roleEntities = new ArrayList<>();
-        roleEntities.add(roleUser);
-
-        UserEntity usuario = new UserEntity(userDTO.getUsername(),
-                passwordEncoder.encode(userDTO.getPassword()),
-                userDTO.getAccountName(),
-                userDTO.getEmail(),
-                userDTO.isActive(), DateUtil.stringToDatedate(userDTO.getDate()), userDTO.getregisterDate(),
-                roleEntities);
-
-        UserEntity user = new UserEntity();
-        user.addRole(roleUser);
-
-        userRepository.save(usuario);
+    public void registerDefaultUser(UserDTO userDTO) {
+        RoleEntity roleUser = roleRepository.findByName("ROLE_USER");
+        UserEntity entity=getServiceMapper().toEntity(userDTO);
+        entity.addRole(roleUser);
+        encodePassword(entity);
+        getRepository().save(entity);
     }
 
-    @Override
+    private void encodePassword(UserEntity user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+    }
+    
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity usuario = userRepository.findByUsername(username);
+        UserEntity usuario = getRepository().findByUsername(username);
         if(usuario == null) {
             throw new UsernameNotFoundException("Usuario o password inválidos");
         }
@@ -78,6 +59,6 @@ public class UserService extends AbstractUserService {
 
 
     public List<UserEntity> listarUsuarios() {
-        return userRepository.findAll();
+        return getRepository().findAll();
     }
 }

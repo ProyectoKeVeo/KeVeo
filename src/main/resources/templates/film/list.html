@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8">
     <title>Inicio</title>
@@ -36,8 +38,10 @@
             <ul class="nav navbar-nav">
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
                     sesión</a></li>
-                <li><a th:href="@{/film}">Lista de Peliculas</a></li>
             </ul>
+            <div class="box-header with-border">
+                <a class="box-title btn btn-primary" th:href="@{/film/create}">New Task</a>
+            </div>
         </div>
     </div>
 </nav>
@@ -58,28 +62,50 @@
         <thead class="table-dark">
         <tr>
             <th>ID</th>
-            <th>Usuario</th>
-            <th>Email</th>
             <th>Nombre</th>
-            <th>Fecha de nacimiento</th>
-            <th>Fecha de inscripción</th>
+            <th>Año</th>
+            <th>Duración</th>
+            <th>Géneros</th>
+            <th></th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="usuario : ${usuarios}">
-            <td th:text="${usuario.id}">ID</td>
-            <td th:text="${usuario.username}">ID</td>
-            <td th:text="${usuario.email}">ID</td>
-            <td th:text="${usuario.accountName}">ID</td>
-            <td th:text="${usuario.date}">ID</td>
-            <td th:text="${usuario.registerDate}">ID</td>
-
+        <tr th:each="item,iter : ${films}">
+            <td th:text="${item.id}">ID</td>
+            <td th:text="${item.name}">ID</td>
+            <td th:text="${item.year}">ID</td>
+            <td th:text="${item.duration}">ID</td>
+            <td th:text="${item.genres}"></td>
+            <td>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id}}"
+                   title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id} + '/edit'}"
+                   title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                <button class="btn btn-danger" type="submit" value="Delete"
+                        th:formaction="'/film/' + ${item.id} + '/delete'">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
-
+<div th:if="${not #lists.isEmpty(films.content)}">
+    <div class="text-center">
+        <nav>
+            <ul class="pagination" sd:pagination="full">
+                <div th:if="${films.totalPages > 0}" class="pagination"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <li th:class="${pageNumber==films.number + 1} ? active">
+                        <a href="#" th:href="@{/film(size=${films.size}, page=${pageNumber})}"
+                           th:text=${pageNumber}></a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
 
 
 <!-- Latest compiled and minified JavaScript -->
