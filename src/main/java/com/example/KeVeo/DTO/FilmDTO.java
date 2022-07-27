@@ -22,7 +22,7 @@ public class FilmDTO implements Serializable {
     private String trailer;
     private ZonedDateTime creation;
     private String image;
-    private Set<GenreDTO> genres;
+    private Set<GenreEntity> genres;
 
     public ZonedDateTime getCreation(){
         ZonedDateTime fecha = ZonedDateTime.now();

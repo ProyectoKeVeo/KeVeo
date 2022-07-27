@@ -2,9 +2,11 @@ package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
 import com.example.KeVeo.DTO.GenreDTO;
+import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.GenreService;
+import com.example.KeVeo.service.Mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +28,18 @@ import java.util.stream.IntStream;
 public class FilmController {
     @Autowired
     private FilmService filmService;
+    @Autowired
     private GenreService genreService;
+    @Autowired
+    private FilmMapper filmMapper;
 
+    //    @Autowired
+//    public FilmController(FilmService filmService,GenreService genreService,FilmMapper filmMapper){
+//        this.filmService=filmService;
+//        this.genreService=genreService;
+//        this.filmMapper=filmMapper;
+//
+//    }
     @GetMapping("/film")
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                           Model model) {
@@ -51,16 +64,44 @@ public class FilmController {
         model.addAttribute("film", this.filmService.findById(id).get());
         return "film/detail";
     }
+
+    //    @GetMapping(value = "/film/{id}/edit")
+//    @PostAuthorize("hasRole('ROLE_ADMIN')")
+//    public String edit(@PathVariable("id") Integer id, ModelMap model) {
+//        model.addAttribute("film", this.filmService.findById(id).get());
+//
+//        return "film/edit";
+//    }
     @GetMapping(value = "/film/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
+        List<GenreEntity> listGenres = filmService.listGenres();
         model.addAttribute("film", this.filmService.findById(id).get());
+        model.addAttribute("listGenres", listGenres);
+        return "film/edit";
+    }
+
+    @GetMapping(value = "/film/create")
+    @PostAuthorize("hasRole('ROLE_ADMIN')")
+    public String create(ModelMap model) {
+        FilmDTO filmDTO = new FilmDTO();
+        List<GenreEntity> listGenres = filmService.listGenres();
+        model.addAttribute("film", filmDTO);
+        model.addAttribute("listGenres", listGenres);
 
         return "film/edit";
     }
+
     @Transactional
-    @PostMapping(value = { "/film/{id}/edit", "/film/create" })
-    public String save(FilmDTO dto, GenreDTO genreDTO) {
+    @PostMapping(value = {"/film/{id}/edit", "/film/create"})
+    public String save(FilmDTO dto) {
         return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
+    }
+
+    @PostMapping({"/film/{id}/delete"})
+    public String delete(@PathVariable(value = "id") Integer id) {
+        this.filmService.delete(id);
+        return "redirect:/film";
+
     }
 }

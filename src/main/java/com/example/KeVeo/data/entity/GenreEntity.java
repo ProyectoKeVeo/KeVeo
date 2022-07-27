@@ -26,4 +26,8 @@ public class GenreEntity {
     // Añado relación de genre a FilmEntity
     @ManyToMany (mappedBy = "genres", fetch = FetchType.EAGER)
     private Set<FilmEntity> films;
+    @Override
+    public String toString() {
+        return this.title;
+    }
 }

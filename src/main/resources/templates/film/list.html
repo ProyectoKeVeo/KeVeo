@@ -39,6 +39,9 @@
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
                     sesión</a></li>
             </ul>
+            <div class="box-header with-border">
+                <a class="box-title btn btn-primary" th:href="@{/film/create}">New Task</a>
+            </div>
         </div>
     </div>
 </nav>

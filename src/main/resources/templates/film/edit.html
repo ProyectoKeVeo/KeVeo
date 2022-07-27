@@ -55,10 +55,16 @@
 <!--                                               id="genres"-->
 <!--                                               th:field="${film.genres}"-->
 <!--                                               maxlength="255">-->
-<!--                                        <th:block th:each="role: ${listRoles}">-->
-<!--                                            <input type="checkbox" th:field="*{genres}"-->
-<!--                                                   th:text="${role.roleName}" th:value="${role.id}" class="m-2"/>-->
-<!--                                        </th:block>-->
+                                        <div class="form-group row">
+                                            <label class="col-4 col-form-label">Genres: </label>
+                                            <div class="col-8">
+                                                <th:block th:each="genre: ${listGenres}">
+                                                    <input type="checkbox" th:field="*{genres}"
+                                                           th:text="${genre.title}" th:value="${genre.id}"
+                                                           class="m-2"/>
+                                                </th:block>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

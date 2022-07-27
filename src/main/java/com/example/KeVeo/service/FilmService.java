@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,9 @@ public class FilmService extends AbstractBusinessService<FilmEntity, Integer, Fi
     }
     public Page<FilmDTO> findAll(Pageable pageable) {
         return getRepository().findAll(pageable).map(getServiceMapper()::toDto);
+    }
+    public List<GenreEntity> listGenres() {
+        return genreRepository.findAll();
     }
 
 //    public FilmDTO findByFilmName(String filmName) {
