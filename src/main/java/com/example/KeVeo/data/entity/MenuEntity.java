@@ -29,12 +29,12 @@ public class MenuEntity{
     private MenuEntity parent;
 
     // Añado relación con RoleEntity
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
             name = "menus_roles",
             joinColumns = @JoinColumn(name= "menus_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
-    private Set<RoleEntity> roleEntities;
+    private Set<RoleEntity> roles;
 
 
 }

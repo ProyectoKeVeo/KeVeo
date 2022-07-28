@@ -70,4 +70,8 @@ public class UserService extends AbstractBusinessService<UserEntity, Integer, Us
     public List<UserEntity> listarUsuarios() {
         return getRepository().findAll();
     }
+
+    public List<RoleEntity> listRoles() {
+        return roleRepository.findAll();
+    }
 }
