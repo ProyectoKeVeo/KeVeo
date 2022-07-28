@@ -1,7 +1,6 @@
 package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
-import com.example.KeVeo.DTO.GenreDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.service.FilmService;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,9 +96,11 @@ public class FilmController {
         return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
     }
 
-    @PostMapping({"/film/{id}/delete"})
+    @PostMapping(value = {"/film/{id}/delete"})
     public String delete(@PathVariable(value = "id") Integer id) {
-        this.filmService.delete(id);
+        FilmDTO filmDTO = this.filmService.findById(id).get();
+        FilmEntity filmEntity= filmMapper.toEntity(filmDTO);
+        filmService.getRepository().delete(filmEntity);
         return "redirect:/film";
 
     }
