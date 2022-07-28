@@ -15,12 +15,12 @@ import java.util.Set;
 public class FilmDTO implements Serializable {
     private Integer id;
     private String name;
-    private Integer year;
     private Integer duration;
-    private Integer number_views;
+    private Integer year;
     private String description;
-    private String trailer;
+    private Integer number_views;
     private ZonedDateTime creation;
+    private String trailer;
     private String image;
     private Set<GenreDTO> genres;
 

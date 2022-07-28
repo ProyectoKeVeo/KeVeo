@@ -27,21 +27,22 @@ public class FilmEntity {
     private String name;
 
     @Column(nullable = false)
-    private Integer year;
-
-    @Column(nullable = false)
     private Integer duration;
 
     @Column(nullable = false)
-    private Integer number_views;
+    private Integer year;
 
     @Column(nullable = false)
     private String description;
 
-    private String trailer;
+    @Column(nullable = false)
+    private Integer number_views;
 
     @Column(name= "creation_date", nullable = false)
     private ZonedDateTime creation;
+
+    private String trailer;
+
 
     private String image;
 

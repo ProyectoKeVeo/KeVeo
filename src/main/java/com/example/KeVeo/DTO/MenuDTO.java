@@ -15,15 +15,15 @@ public class MenuDTO implements Serializable {
 
     private Integer id;
 
-    private String description;
+    private Integer active;
 
-    private MenuDTO parent;
+    private String description;
 
     private Integer app_order;
 
-    private Integer active;
-
     private String url;
+
+    private MenuDTO parent;
 
     private Set<RoleDTO> roles;
 
