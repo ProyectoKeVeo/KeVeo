@@ -34,6 +34,7 @@ public class UserService extends AbstractBusinessService<UserEntity, Integer, Us
     public void registerDefaultUser(UserDTO userDTO) {
         RoleEntity roleUser = roleRepository.findByName("ROLE_USER");
         UserEntity entity=getServiceMapper().toEntity(userDTO);
+        entity.setActive(true);
         entity.addRole(roleUser);
         encodePassword(entity);
         getRepository().save(entity);
@@ -60,5 +61,9 @@ public class UserService extends AbstractBusinessService<UserEntity, Integer, Us
 
     public List<UserEntity> listarUsuarios() {
         return getRepository().findAll();
+    }
+
+    public List<RoleEntity> listRoles() {
+        return roleRepository.findAll();
     }
 }

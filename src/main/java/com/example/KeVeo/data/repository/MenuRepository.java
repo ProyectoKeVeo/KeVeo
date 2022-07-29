@@ -1,5 +1,6 @@
 package com.example.KeVeo.data.repository;
 
+
 import com.example.KeVeo.data.entity.MenuEntity;
 import com.example.KeVeo.data.entity.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

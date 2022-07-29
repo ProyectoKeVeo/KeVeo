@@ -38,8 +38,8 @@ public class RegistroUsuarioControlador {
 
     @PostMapping
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UserDTO registroDTO) throws ParseException {
-        registroDTO.setActive(true);
-        registroDTO.setRoleName("ROLE_USER");
+
+
         userService.registerDefaultUser(registroDTO);
         return "redirect:/registro?exito";
     }
