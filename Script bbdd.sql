@@ -162,7 +162,9 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`genres_films` (
 INSERT INTO MENUS VALUES
 (1, 1, 'Home', 0, '/', NULL),
 (2, 1, 'Gestion de Usuarios', 1, '/gestionUser', NULL),
-(3, 1, 'Admin', 10, '/admin', NULL); 
+(3, 1, 'Películas', 10, '/film', NULL),
+(4, 1, 'Gestión de Películas', 20, '/gestionfilms',NULL);
+
              
 CREATE TABLE MENUS_ROLES(
     MENUS_ID INTEGER NOT NULL,
@@ -175,7 +177,8 @@ ALTER TABLE MENUS_ROLES ADD CONSTRAINT CONSTRAINT_4 PRIMARY KEY(MENUS_ID, ROLES_
 (1, 1),
 (1, 2),
 (2, 1),
-(3, 1);       
+(3, 2),
+(4, 1);   
   
  
 CREATE TABLE ROLES(
@@ -201,7 +204,6 @@ ALTER TABLE USERS_ROLES ADD CONSTRAINT CONSTRAINT_C PRIMARY KEY(USERS_ID, ROLES_
 
 INSERT INTO USERS_ROLES VALUES
 (1,1),
-(1,2),
 (2,2);
 
  
