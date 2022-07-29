@@ -1,12 +1,10 @@
 package com.example.KeVeo.service;
-
-
 import com.example.KeVeo.DTO.UserDTO;
 import com.example.KeVeo.data.entity.RoleEntity;
 import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
-import com.example.KeVeo.service.Mapper.MapperUser;
+import com.example.KeVeo.service.Mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,18 +13,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService extends AbstractBusinessService<UserEntity, Integer, UserDTO, UserRepository, MapperUser> {
+public class UserService extends AbstractBusinessService<UserEntity, Integer, UserDTO, UserRepository, UserMapper> {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    protected UserService(UserRepository repository, MapperUser serviceMapper, RoleRepository roleRepository,
+    protected UserService(UserRepository repository, UserMapper serviceMapper, RoleRepository roleRepository,
                           PasswordEncoder passwordEncoder) {
         super(repository, serviceMapper);
 
@@ -40,12 +37,6 @@ public class UserService extends AbstractBusinessService<UserEntity, Integer, Us
         entity.addRole(roleUser);
         encodePassword(entity);
         getRepository().save(entity);
-    }
-
-    public void save(UserEntity user) {
-        encodePassword(user);
-        getRepository().save(user);
-
     }
 
     private void encodePassword(UserEntity user) {

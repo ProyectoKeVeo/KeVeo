@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "genre")
+@Table(name = "genres")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,10 +24,10 @@ public class GenreEntity {
 
 
     // Añado relación de genre a FilmEntity
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "genre_has_film",
-            joinColumns = @JoinColumn(name= "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
-    private Set<FilmEntity> filmEntitiesGenre;
+    @ManyToMany (mappedBy = "genres", fetch = FetchType.EAGER)
+    private Set<FilmEntity> films;
+    @Override
+    public String toString() {
+        return this.title;
+    }
 }

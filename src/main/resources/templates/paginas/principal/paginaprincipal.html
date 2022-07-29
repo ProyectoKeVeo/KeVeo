@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/carruselstyle.css">
+    <link rel="stylesheet" href="css/estilobuscador.css">
+    <link rel="stylesheet" href="css/footerstyle.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap CSS de notificación -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+          integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <title>KeVeo</title>
+
+    <!--Favicon-->
+
+    <link href="/img/fevicom.png">
+
+</head>
+<body>
+<header>
+    <div class="contenedor">
+        <!-- Logotipo tipográfico su css está en estilos.css -->
+
+        <img src="img/logo.png" width="10%" height="10%" alt="KeVeo">
+        <!-- Buscador - su css está en estilobuscador.css-->
+
+        <form class="form-wrapper cf">
+            <input type="text" placeholder="Buscar película..." required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Barra de Navegación su css está en estilos.css -->
+        <nav>
+            <a href="#" class="activo">Inicio</a>
+            <a href="#">Películas</a>
+            <a href="#">Plataformas</a>
+            <a href="#">Géneros</a>
+            <a href="#">Login</a>
+            <!-- Botón de alertas -->
+            <button type="button" class="btn btn-danger position-relative" id="btn-perdido" class="my-btn"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Alertas <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">1
+				</span>
+            </button>
+
+            <!-- Modal del botón de alertas -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Star wars ha llegado para quedarse</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-0">
+                                <div class="col-md-4 text-center">
+                                    <img src="https://ep00.epimg.net/elpais/imagenes/2017/12/13/album/1513166327_044213_1513268843_album_normal.jpg"
+                                         class="img-fluid rounded-start" width="200px"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Star Wars </h5>
+                                        <p class="card-text">No te pierdas una nueva entrega de la gran saga de
+                                            StarWars</p>
+                                        <p class="card-text"><small class="text-muted">Añadido hace una hora</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                    crossorigin="anonymous"></script>
+
+            <script>
+
+            </script>
+
+        </nav>
+
+    </div>
+</header>
+
+<!-- Portada - su css está en estilos.css-->
+<main>
+    <div class="pelicula-principal">
+        <div class="contenedor">
+            <h3 class="titulo">Interestellar</h3>
+            <p class="descripcion">
+                Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente
+                descubierto para superar las limitaciones de los viajes espaciales tripulados y vencer las inmensas
+                distancias que tiene un viaje interestelar.
+            </p>
+            <button role="button" class="boton"><i class="fas fa-play"></i>Reproducir</button>
+            <button role="button" class="boton"><i class="fas fa-info-circle"></i>Más información</button>
+        </div>
+    </div>
+</main>
+
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+
+<!-- Carrusel -->
+<section class="awSlider">
+    <div class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target=".carousel" data-slide-to="0" class="active"></li>
+            <li data-target=".carousel" data-slide-to="1"></li>
+            <li data-target=".carousel" data-slide-to="2"></li>
+            <li data-target=".carousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="https://poptv.orange.es/wp-content/uploads/sites/3/2018/10/marvel-1100x514.jpg">
+                <div class="carousel-caption">Görsel #1</div>
+            </div>
+            <div class="item">
+                <img src="https://www.lavanguardia.com/files/article_main_microformat/uploads/2020/05/04/5fa922920d3b5.png">
+                <div class="carousel-caption">Görsel #2</div>
+            </div>
+            <div class="item">
+                <img src="https://www.moviesandactors-sf.com/wp-content/uploads/2021/11/Cuantas-peliculas-son-de-Harry-Potter.jpeg">
+                <div class="carousel-caption">Görsel #3</div>
+            </div>
+            <div class="item">
+                <img src="https://phantom-marca.unidadeditorial.es/3f8ff39deed35761874f53920ece11f3/resize/1320/f/jpg/assets/multimedia/imagenes/2022/04/01/16488201951473.jpg">
+                <div class="carousel-caption">Görsel #4</div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Geri</span>
+        </a>
+        <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">İleri</span>
+        </a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</section>
+
+<!--Footer de la web - su css es footerstyle.css -->
+<footer>
+    <div class="main-content">
+        <div class="left box">
+            <h2>Nosotros</h2>
+            <div class="content">
+                <p>Trabajamos para hacerte la vida más fácil. En tan solo 3 clicks podrás encontrar tu película favorita
+                    y todas las plataformas donde las puedes encontrar. </p>
+                <div class="social">
+                    <a target="_blank" href="#"><span class="fab fa-facebook-f"></span></a>
+                    <a target="_blank" href="#"><span class="fab fa-twitter"></span></a>
+                    <a target="_blank" href="#"><span class="fab fa-instagram"></span></a>
+                    <a target="_blank" href="#"><span class="fab fa-youtube"></span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="center box">
+            <h2>Ubicación</h2>
+            <div class="content">
+                <div class="place">
+                    <span class="fas fa-map-marker-alt"></span>
+                    <span class="text">Jerez de la Frontera, España</span>
+                </div>
+                <div class="phone">
+                    <span class="fas fa-phone-alt"></span>
+                    <span class="text">666999333</span>
+                </div>
+                <div class="email">
+                    <span class="fas fa-envelope"></span>
+                    <span class="text">info@keveo.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right box">
+            <h2>Contacto</h2>
+            <div class="content">
+                <form action="#">
+                    <div class="email">
+                        <div class="text">Email *</div>
+                        <input type="email" required>
+                    </div>
+                    <div class="msg">
+                        <div class="text">Mensaje *</div>
+                        <textarea rows="2" cols="25" required></textarea>
+                    </div>
+                    <div class="btn">
+                        <button type="submit">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <center>
+          <span class="credit">Desarrollado por
+            <a target="_blank" href="https://github.com/ProyectoKeVeo/KeVeo">Grupo5 - Proyecto KeVeo - EOI</a> | </span>
+            <span class="far fa-copyright"></span><span> 2022</span>
+        </center>
+    </div>
+</footer>
+</body>
+
+</html>

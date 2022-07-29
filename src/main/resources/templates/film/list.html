@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <title>Inicio</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Registro y
+                inicio de sesión</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+                    sesión</a></li>
+            </ul>
+            <div class="box-header with-border">
+                <a class="box-title btn btn-primary" th:href="@{/film/create}">New Task</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <h1>Bienvenido a KeVeo</h1>
+    <br>
+    <h4>
+        Bienvenido <span sec:authentication="principal.username"></span>
+    </h4>
+
+    <br> <br>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Año</th>
+            <th>Duración</th>
+            <th>Géneros</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item,iter : ${films}">
+            <td th:text="${item.id}">ID</td>
+            <td th:text="${item.name}">ID</td>
+            <td th:text="${item.year}">ID</td>
+            <td th:text="${item.duration}">ID</td>
+            <td th:text="${item.genres}"></td>
+            <td>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id}}"
+                   title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id} + '/edit'}"
+                   title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+
+                <a><form th:action="@{'/film/' + ${item.id} + '/delete'}" th:object="${emp2}" method="post">
+                    <button class="btn btn-danger" type="submit" value="Delete">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${not #lists.isEmpty(films.content)}">
+    <div class="text-center">
+        <nav>
+            <ul class="pagination" sd:pagination="full">
+                <div th:if="${films.totalPages > 0}" class="pagination"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <li th:class="${pageNumber==films.number + 1} ? active">
+                        <a href="#" th:href="@{/film(size=${films.size}, page=${pageNumber})}"
+                           th:text=${pageNumber}></a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
