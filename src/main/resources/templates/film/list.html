@@ -17,6 +17,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
+
+    <link rel="stylesheet" href="#" th:href="@{/css/cards.css}"/>
 </head>
 <body>
 
@@ -58,7 +60,37 @@
 
     <br> <br>
 
-    <table class="table table-striped table-bordered">
+      <div class="row">
+        <div class="grid-cards">
+            <div class="col-md-4 my-5" style="display: grid" th:each="film : ${films}"
+                 th:object="${film}">
+                <a th:href="@{/films/{id}(id=*{id})}" class="card shadow-lg"
+                   style="text-decoration: none;"> <img src="https://es.web.img3.acsta.net/pictures/18/03/15/16/35/4898546.jpg" width="250" height="300"
+                        th:alt="*{name}" class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title fs-5" th:text="*{name}"></h2>
+                        <p th:text="*{year}"
+                           class="text-muted small"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div th:if="${not #lists.isEmpty(films.content)}">
+            <div class="text-center">
+                <nav>
+                    <ul class="pagination" sd:pagination="full">
+                        <div th:if="${films.totalPages > 0}" class="pagination"
+                             th:each="pageNumber : ${pageNumbers}">
+                            <li th:class="${pageNumber==films.number + 1} ? active">
+                                <a href="#" th:href="@{/film(size=${films.size}, page=${pageNumber})}"
+                                   th:text=${pageNumber}></a>
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+    </div>
+    <!--table class="table table-striped table-bordered">
         <thead class="table-dark">
         <tr>
             <th>ID</th>
@@ -92,23 +124,9 @@
         </tr>
         </tbody>
     </table>
-</div>
-<div th:if="${not #lists.isEmpty(films.content)}">
-    <div class="text-center">
-        <nav>
-            <ul class="pagination" sd:pagination="full">
-                <div th:if="${films.totalPages > 0}" class="pagination"
-                     th:each="pageNumber : ${pageNumbers}">
-                    <li th:class="${pageNumber==films.number + 1} ? active">
-                        <a href="#" th:href="@{/film(size=${films.size}, page=${pageNumber})}"
-                           th:text=${pageNumber}></a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
+</div-->
     </div>
 </div>
-
 
 <!-- Latest compiled and minified JavaScript -->
 <script

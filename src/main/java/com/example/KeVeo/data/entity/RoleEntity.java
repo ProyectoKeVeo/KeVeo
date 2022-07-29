@@ -31,7 +31,7 @@ public class RoleEntity {
     private List<UserEntity> users;
 
     // Añado relación con MenuEntity
-    @ManyToMany(mappedBy = "roleEntities")
-    private Set<MenuEntity> menuEntities;
+    @ManyToMany(mappedBy = "roles")
+    private Set<MenuEntity> menus;
 }
 

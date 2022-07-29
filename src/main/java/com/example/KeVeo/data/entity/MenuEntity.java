@@ -34,7 +34,7 @@ public class MenuEntity{
             name = "menus_roles",
             joinColumns = @JoinColumn(name= "menus_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
-    private Set<RoleEntity> roleEntities;
+    private Set<RoleEntity> roles;
 
 
 }
