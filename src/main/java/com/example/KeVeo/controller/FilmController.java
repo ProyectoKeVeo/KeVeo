@@ -43,7 +43,7 @@ public class FilmController {
                           Model model) {
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
-                size.orElse(10)));
+                size.orElse(9)));
         model
                 .addAttribute("films", all)
                 .addAttribute("pageNumbers", getPageNumbers(all));
