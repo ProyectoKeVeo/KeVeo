@@ -12,7 +12,11 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`USERS` (
   `register_date` DATETIME NULL,
   PRIMARY KEY (`ID`));
 
-
+INSERT INTO USERS VALUES
+(1, 'admin', '$2a$04$5sT3dri6bOOG2b9P1LETEujUeYMR46G/OVybuBjxBAohlEtDsxmi2',
+'admin','admin@gmail.com',TRUE, '2022-05-08','2022-05-08T07:00:00'),
+(2, 'noactivo', '$2a$04$5sT3dri6bOOG2b9P1LETEujUeYMR46G/OVybuBjxBAohlEtDsxmi2',
+'noactivo','noactivo@gmail.com',False, '2022-05-08','2022-05-08T07:00:00');
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`platform` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -154,14 +158,25 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`genres_films` (
     CONSTRAINT CONSTRAINT_2 PRIMARY KEY(ID)
 );             
    
--- 6 +/- SELECT COUNT(*) FROM PUBLIC.MENUS;    
+-- 6 +/- SELECT COUNT(*) FROM PUBLIC.MENUS;   
+INSERT INTO MENUS VALUES
+(1, 1, 'Home', 0, '/', NULL),
+(2, 1, 'Gestion de Usuarios', 1, '/gestionUser', NULL),
+(3, 1, 'Admin', 10, '/admin', NULL); 
              
 CREATE TABLE MENUS_ROLES(
     MENUS_ID INTEGER NOT NULL,
     ROLES_ID INTEGER NOT NULL
 );              
 ALTER TABLE MENUS_ROLES ADD CONSTRAINT CONSTRAINT_4 PRIMARY KEY(MENUS_ID, ROLES_ID);  
--- 11 +/- SELECT COUNT(*) FROM PUBLIC.MENUS_ROLES;             
+-- 11 +/- SELECT COUNT(*) FROM PUBLIC.MENUS_ROLES;  
+
+ INSERT INTO MENUS_ROLES VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 1);       
+  
  
 CREATE TABLE ROLES(
     ID INTEGER auto_increment,
@@ -183,6 +198,12 @@ CREATE TABLE USERS_ROLES(
 );             
 ALTER TABLE USERS_ROLES ADD CONSTRAINT CONSTRAINT_C PRIMARY KEY(USERS_ID, ROLES_ID); 
 -- 9 +/- SELECT COUNT(*) FROM PUBLIC.USERS_ROLES;                   
+
+INSERT INTO USERS_ROLES VALUES
+(1,1),
+(1,2),
+(2,2);
+
  
 ALTER TABLE USERS_ROLES ADD CONSTRAINT FKJ9553ASS9UCTJRMH0GKQSMV0D FOREIGN KEY(ROLES_ID) REFERENCES ROLES(ID) ;     
 ALTER TABLE MENUS_ROLES ADD CONSTRAINT FKQ7K54HB6F3NGDBFPBLWJ68BHG FOREIGN KEY(MENUS_ID) REFERENCES MENUS(ID) ;      
@@ -190,49 +211,50 @@ ALTER TABLE MENUS ADD CONSTRAINT FKGEUPUBDQNCC1LPGF2CN4FQWBC FOREIGN KEY(PARENT_
 ALTER TABLE MENUS_ROLES ADD CONSTRAINT FKAUV6MBPEO296VHBM7AVTOI3O8 FOREIGN KEY(ROLES_ID) REFERENCES ROLES(ID) ; 
 
 
+
 -- Datos para peliculas --
 INSERT INTO `films` (`id`,`name`,`duration`,`year`,`description`,`number_views`,`creation_date`,`trailer`,`image`) 
 VALUES 
 (1,'Malnazidos',101,2022,'En plena guerra civil española, unos enemigos acérrimos se ven obligados a luchar codo con codo contra los zombis caníbales creados en un experimento nazi.',0,'2022-07-13','https://www.youtube.com/watch?v=MGnCUnJVse4','https://pics.filmaffinity.com/Malnazidos-290050143-large.jpg'),
 (2,'Los Futbolísimos',101,2018,'Los jugadores de un equipo de fútbol juvenil deben averiguar por qué pierden continuamente. Si siguen así, el cole cancelará el equipo y destinará los fondos a un coro.',0,'2022-07-13','https://www.youtube.com/watch?v=F5d6P6yCOSw','https://es.web.img3.acsta.net/pictures/18/03/15/16/35/4898546.jpg'),
-(3,'Alerta Roja',118,2021,'Un criminólogo del FBI y el ladrón de arte más buscado del mundo se hacen compinches para atrapar a una escurridiza estafadora que siempre va un paso por delante.',0,'2022-07-13',NULL,NULL),
-(4,'Uno más de la familia',95,2019,'Una fiel perrita, que echa de menos su hogar, emprende un peligroso viaje por el corazón de los Estados Unidos para volver con su dueño.',0,'2022-07-13',NULL,NULL),
-(5,'El Hombre de Toronto',112,2022,'Un caso de identidad equivocada obliga a un empresario inepto a colaborar con el asesino conocido como el «Hombre de Toronto» para sobrevivir.',0,'2022-07-13',NULL,NULL),
-(6,'Spider-Man: Homecoming',133,2017,'Peter Parker regresa a su vida cotidiana de estudiante. Pero la aparición de un villano le da la oportunidad de demostrar que es todo un superhéroe arácnido.',0,'2022-07-13',NULL,NULL),
-(7,'Pixels',106,2015,'Cuando los extraterrestres invaden la Tierra como en un videojuego clásico, el presidente y sus amigos de infancia, antiguos reyes de los recreativos, entran en acción.',0,'2022-07-13',NULL,NULL),
-(8,'El proyecto Adam',106,2022,'Adam Reed es un piloto de caza que viaja en el tiempo. Cuando se estrella en el año 2022, conoce a su yo de 12 años y juntos emprenden una misión para salvar el futuro.',0,'2022-07-13',NULL,NULL),
-(9,'The Equalizer 2',120,2018,'Robert McCall, un exagente de la CIA convertido en justiciero, vuelve a hacer uso de sus habilidades letales para vengar la muerte de una excolega muy amiga suya.',0,'2022-07-13',NULL,NULL),
-(10,'Enola Holmes',124,2020,'Enola Holmes, una intrépida joven que busca a su madre, utiliza su brillante instinto investigador para superar a su hermano Sherlock y ayudar a un lord en su fuga.',0,'2022-07-13',NULL,NULL),
-(11,'Tiburón',124,1975,'Cuando un insaciable gran tiburón blanco siembra el terror en Amity Island, un oceanógrafo y un curtido cazador de escualos se unen para acabar con la bestia.',0,'2022-07-13',NULL,NULL),
-(12,'Transformers',144,2007,'Los Autobots y los Decepticons luchan por hacerse con los recursos de la Tierra, y Sam Witwicky no sabe que él es la única esperanza de supervivencia para la raza humana.',0,'2022-07-13',NULL,NULL),
-(13,'Transformers: El lado oscuro de la luna',155,2011,'Cuando Optimus Prime se entera de que una nave de Transformers ha caído en la luna, se pone al mando de una misión para rescatar al piloto, su mentor, Sentinel Prime.',0,'2022-07-13',NULL,NULL),
-(14,'Blade Runner 2049',163,2017,'Los contenidos de una tumba atraen la atención de un magnate y obligan al agente K, un blade runner de la Policía de Los Ángeles, a seguir la pista de una leyenda.',0,'2022-07-13',NULL,NULL),
-(15,'Assassin\'s Creed',115,2016,'En esta adaptación de la aclamada franquicia de videojuegos, una misteriosa organización rescata a un hombre condenado a muerte.',0,'2022-07-13',NULL,NULL),
-(16,'FullMetal Alchemist',134,2017,'El alquimista Edward Elric busca la manera de devolverle el cuerpo a su hermano Al. Pero tanto los militares como unos misteriosos monstruos le vigilan atentamente.',0,'2022-07-13',NULL,NULL),
-(17,'El monstruo marino',119,2022,'Una joven polizona se cuela en el navío de un cazador legendario de monstruos marinos y juntos emprenden un viaje épico por mares inexplorados. Y hacen historia.',0,'2022-07-13',NULL,NULL),
-(18,'Los pitufos: La aldea escondida',89,2017,'Pitufina se adentra en el Bosque Prohibido con sus grandes amigos Filósofo, Torpe y Fortachón para librar a una misteriosa aldea de las garras del malvado mago Gárgamel.',0,'2022-07-13',NULL,NULL),
-(19,'Mascotas unidas',93,2020,'Un perro callejero y una gata mimada lideran a unos peculiares héroes dispuestos a liberar la ciudad de las garras del malvado alcalde y su ejército de robots.',0,'2022-07-13',NULL,NULL),
-(20,'Jumanji',104,1995,'Dos hermanos descubren un juego de mesa encantado que abre una puerta a un mundo mágico y, sin saberlo, liberan a un hombre que ha estado atrapado dentro durante años.',0,'2022-07-13',NULL,NULL),
-(21,'Animales fantásticos: Los secretos de Dumbledore',142,2022,'Albus Dumbledore confía al magizoólogo Newt Scamander la dirección de un intrépido equipo de magos, brujas y un',0,'2022-07-20',NULL,NULL),
-(22,'The Batman',176,2022,'En su segundo año luchando contra el crimen, Batman descubre un caso de corrupción en Gotham relacionado con su',0,'2022-07-20',NULL,NULL),
-(23,'Harry Potter y las Reliquias de la Muerte - Parte II',125,2011,'Harry, Ron y Hermione siguen su búsqueda de los tres horrocruxes restantes del Señor Tenebroso, los objetos mágicos',0,'2022-07-20',NULL,NULL),
-(24,'Oblivion',119,2013,'En un planeta Tierra del futuro casi irreconocible, el conflicto de un hombre con el pasado hace que se embarque en un',0,'2022-07-20',NULL,NULL),
-(25,'Dunkerke',102,2017,'Cientos de miles de tropas aliadas son rodeadas por el enemigo en Dunkerque, al norte de Francia, durante la II Guerra',0,'2022-07-20',NULL,NULL),
-(26,'Aliados',119,2016,'En 1942, tras enamorarse de una agente francesa durante una peligrosa misión en el norte de África, un agente de',0,'2022-07-20',NULL,NULL),
-(27,'Inferno',116,2016,'Robert Langdon y Sienna Brooks siguen una serie de pistas a través de Europa para evitar que un virus acabe con la mitad',0,'2022-07-20',NULL,NULL),
-(28,'El método Williams',144,2021,'La vida de Richard Williams, padre y figura fundamental en el desarrollo de dos de las deportistas más extraordinarias de',0,'2022-07-20',NULL,NULL),
-(29,'En el corazón del mar',116,2015,'Una aventura de acción sobre la catástrofe marítima real que inspiró Moby Dick.',0,'2022-07-20',NULL,NULL),
-(30,'Los Croods. Una aventura prehistórica',94,2013,'Tras perder su cueva, los Croods emprenden un viaje a través de increíbles paisajes cargados de criaturas fantásticas,',0,'2022-07-20',NULL,NULL),
-(31,'Shrek',86,2001,'Shrek emprende un viaje para rescatar a la peleona princesa Fiona con ayuda de su adorable Asno y para recuperar su',0,'2022-07-20',NULL,NULL),
-(32,'Once Upon a Time in Hollywood',160,2019,'Un actor y su doble de acción se embarcan en una odisea para darse a conocer en la industria del cine coincidiendo con los asesinatos ideados por Charles Manson en Los Ángeles en 1969.',0,'2022-07-20',NULL,NULL),
-(33,'Tres reyes',114,1999,'Tras la Guerra del Golfo un pequeño grupo de soldados estadounidenses planea robar un gran alijo de oro escondido en el desierto de Irak.',0,'2022-07-20',NULL,NULL),
-(34,'Joker',122,2019,'Arthur Fleck (Phoenix) vive en Gotham con su madre, y su única motivación en la vida es hacer reír a la gente. Actúa haciendo de payaso en pequeños trabajos, pero tiene problemas mentales que hacen que la gente le vea como un bicho raro.',0,'2022-07-20',NULL,NULL),
-(35,'El mejor verano de mi vida',91,2018,'Curro es un fantasioso vendedor de robots de cocina que sueña con un trabajo en el mundo financiero. Hace una promesa que no puede cumplir: si su hijo Nico, de 9 años, saca todo sobresalientes, le llevará a unas vacaciones de verano inolvidables. ',0,'2022-07-20',NULL,NULL),
-(36,'Interstellar',169,2014,'Al ver que la vida en la Tierra está llegando a su fin, un grupo de exploradores emprende una misión que puede ser la más importante de la historia de la humanidad: viajar más allá de nuestra galaxia.',0,'2022-07-20',NULL,NULL),
-(37,'La monja',96,2018,'Cuando una joven monja se suicida en una abadía de clausura en Rumanía, un sacerdote experto en posesiones demoniacas y una novicia a punto de tomar sus votos, son enviados por el Vaticano para investigar.',0,'2022-07-20',NULL,NULL),
-(38,'Happy Feet',108,2006,'En la gélida Antártida, los pingüinos cantan para hacer el cortejo, pero lo que a Mumble se le da bien es bailar. Cuando sus compañeros pingüinos empiezan a entonar canciones románticas, los pies de Mumble no pueden evitar moverse.',0,'2022-07-20',NULL,NULL),
-(39,'Kong: La Isla Calavera',120,2017,'En los años 70, un variopinto grupo de exploradores y soldados es reclutado para viajar a una misteriosa isla del Pacífico. Pero al adentrarse en esta bella pero traicionera isla, los exploradores encontrarán algo absolutamente sorprendente.',0,'2022-07-20',NULL,NULL),
-(40,'Kimi',89,2022,'Una empleada de una empresa tecnológica que sufre agorafobia descubre un crimen e intenta alertar a sus superiores.',0,'2022-07-20',NULL,NULL);
+(3,'Alerta Roja',118,2021,'Un criminólogo del FBI y el ladrón de arte más buscado del mundo se hacen compinches para atrapar a una escurridiza estafadora que siempre va un paso por delante.',0,'2022-07-13',NULL,'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/alerta-roja-ftogramas-1634823584.jpg'),
+(4,'Uno más de la familia',95,2019,'Una fiel perrita, que echa de menos su hogar, emprende un peligroso viaje por el corazón de los Estados Unidos para volver con su dueño.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Uno_m_s_de_la_familia-824139098-large.jpg'),
+(5,'El Hombre de Toronto',112,2022,'Un caso de identidad equivocada obliga a un empresario inepto a colaborar con el asesino conocido como el «Hombre de Toronto» para sobrevivir.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/El_hombre_de_Toronto-684883937-large.jpg'),
+(6,'Spider-Man: Homecoming',133,2017,'Peter Parker regresa a su vida cotidiana de estudiante. Pero la aparición de un villano le da la oportunidad de demostrar que es todo un superhéroe arácnido.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Spider_Man_Homecoming-336093112-large.jpg'),
+(7,'Pixels',106,2015,'Cuando los extraterrestres invaden la Tierra como en un videojuego clásico, el presidente y sus amigos de infancia, antiguos reyes de los recreativos, entran en acción.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Pixels-718646873-large.jpg'),
+(8,'El proyecto Adam',106,2022,'Adam Reed es un piloto de caza que viaja en el tiempo. Cuando se estrella en el año 2022, conoce a su yo de 12 años y juntos emprenden una misión para salvar el futuro.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/El_proyecto_Adam-392719853-large.jpg'),
+(9,'The Equalizer 2',120,2018,'Robert McCall, un exagente de la CIA convertido en justiciero, vuelve a hacer uso de sus habilidades letales para vengar la muerte de una excolega muy amiga suya.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/The_Equalizer_2-467654738-large.jpg'),
+(10,'Enola Holmes',124,2020,'Enola Holmes, una intrépida joven que busca a su madre, utiliza su brillante instinto investigador para superar a su hermano Sherlock y ayudar a un lord en su fuga.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Enola_Holmes-862602767-large.jpg'),
+(11,'Tiburón',124,1975,'Cuando un insaciable gran tiburón blanco siembra el terror en Amity Island, un oceanógrafo y un curtido cazador de escualos se unen para acabar con la bestia.',0,'2022-07-13',NULL,'https://es.web.img3.acsta.net/pictures/14/03/17/10/10/562887.jpg'),
+(12,'Transformers',144,2007,'Los Autobots y los Decepticons luchan por hacerse con los recursos de la Tierra, y Sam Witwicky no sabe que él es la única esperanza de supervivencia para la raza humana.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Transformers-365863398-large.jpg'),
+(13,'Transformers: El lado oscuro de la luna',155,2011,'Cuando Optimus Prime se entera de que una nave de Transformers ha caído en la luna, se pone al mando de una misión para rescatar al piloto, su mentor, Sentinel Prime.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Transformers_El_lado_oscuro_de_la_Luna-868681391-large.jpg'),
+(14,'Blade Runner 2049',163,2017,'Los contenidos de una tumba atraen la atención de un magnate y obligan al agente K, un blade runner de la Policía de Los Ángeles, a seguir la pista de una leyenda.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Blade_Runner_2049-681477614-large.jpg'),
+(15,'Assassin\'s Creed',115,2016,'En esta adaptación de la aclamada franquicia de videojuegos, una misteriosa organización rescata a un hombre condenado a muerte.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Assassin_s_Creed-271195640-large.jpg'),
+(16,'FullMetal Alchemist',134,2017,'El alquimista Edward Elric busca la manera de devolverle el cuerpo a su hermano Al. Pero tanto los militares como unos misteriosos monstruos le vigilan atentamente.',0,'2022-07-13',NULL,'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/02/fullmetal-alchemist.jpg?itok=lLFtvOD4'),
+(17,'El monstruo marino',119,2022,'Una joven polizona se cuela en el navío de un cazador legendario de monstruos marinos y juntos emprenden un viaje épico por mares inexplorados. Y hacen historia.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/El_monstruo_marino-740718637-large.jpg'),
+(18,'Los pitufos: La aldea escondida',89,2017,'Pitufina se adentra en el Bosque Prohibido con sus grandes amigos Filósofo, Torpe y Fortachón para librar a una misteriosa aldea de las garras del malvado mago Gárgamel.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Los_pitufos_La_aldea_escondida-593951434-large.jpg'),
+(19,'Mascotas unidas',93,2020,'Un perro callejero y una gata mimada lideran a unos peculiares héroes dispuestos a liberar la ciudad de las garras del malvado alcalde y su ejército de robots.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/pets_united-423137626-large.jpg'),
+(20,'Jumanji',104,1995,'Dos hermanos descubren un juego de mesa encantado que abre una puerta a un mundo mágico y, sin saberlo, liberan a un hombre que ha estado atrapado dentro durante años.',0,'2022-07-13',NULL,'https://pics.filmaffinity.com/Jumanji-685043467-large.jpg'),
+(21,'Animales fantásticos: Los secretos de Dumbledore',142,2022,'Albus Dumbledore confía al magizoólogo Newt Scamander la dirección de un intrépido equipo de magos, brujas y un',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Animales_fant_sticos_Los_secretos_de_Dumbledore-224990969-large.jpg'),
+(22,'The Batman',176,2022,'En su segundo año luchando contra el crimen, Batman descubre un caso de corrupción en Gotham relacionado con su',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/The_Batman-449856406-large.jpg'),
+(23,'Harry Potter y las Reliquias de la Muerte - Parte II',125,2011,'Harry, Ron y Hermione siguen su búsqueda de los tres horrocruxes restantes del Señor Tenebroso, los objetos mágicos',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Harry_Potter_y_las_reliquias_de_la_muerte_Parte_2-697522700-large.jpg'),
+(24,'Oblivion',119,2013,'En un planeta Tierra del futuro casi irreconocible, el conflicto de un hombre con el pasado hace que se embarque en un',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Oblivion-455596741-large.jpg'),
+(25,'Dunkerke',102,2017,'Cientos de miles de tropas aliadas son rodeadas por el enemigo en Dunkerque, al norte de Francia, durante la II Guerra',0,'2022-07-20',NULL,'https://es.web.img3.acsta.net/pictures/17/06/09/12/52/190097.jpg'),
+(26,'Aliados',119,2016,'En 1942, tras enamorarse de una agente francesa durante una peligrosa misión en el norte de África, un agente de',0,'2022-07-20',NULL,'https://es.web.img2.acsta.net/pictures/16/11/04/09/50/257986.jpg'),
+(27,'Inferno',116,2016,'Robert Langdon y Sienna Brooks siguen una serie de pistas a través de Europa para evitar que un virus acabe con la mitad',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Inferno-993771440-large.jpg'),
+(28,'El método Williams',144,2021,'La vida de Richard Williams, padre y figura fundamental en el desarrollo de dos de las deportistas más extraordinarias de',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/El_m_todo_Williams-212327278-mmed.jpg'),
+(29,'En el corazón del mar',116,2015,'Una aventura de acción sobre la catástrofe marítima real que inspiró Moby Dick.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/En_el_coraz_n_del_mar-237681157-large.jpg'),
+(30,'Los Croods. Una aventura prehistórica',94,2013,'Tras perder su cueva, los Croods emprenden un viaje a través de increíbles paisajes cargados de criaturas fantásticas,',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Los_Croods_Una_aventura_prehist_rica-675771807-large.jpg'),
+(31,'Shrek',86,2001,'Shrek emprende un viaje para rescatar a la peleona princesa Fiona con ayuda de su adorable Asno y para recuperar su',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Shrek-903764423-large.jpg'),
+(32,'Once Upon a Time in Hollywood',160,2019,'Un actor y su doble de acción se embarcan en una odisea para darse a conocer en la industria del cine coincidiendo con los asesinatos ideados por Charles Manson en Los Ángeles en 1969.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/rase_una_vez_en_Hollywood-987163522-large.jpg'),
+(33,'Tres reyes',114,1999,'Tras la Guerra del Golfo un pequeño grupo de soldados estadounidenses planea robar un gran alijo de oro escondido en el desierto de Irak.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Tres_reyes-962518031-large.jpg'),
+(34,'Joker',122,2019,'Arthur Fleck (Phoenix) vive en Gotham con su madre, y su única motivación en la vida es hacer reír a la gente. Actúa haciendo de payaso en pequeños trabajos, pero tiene problemas mentales que hacen que la gente le vea como un bicho raro.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Joker-118854213-large.jpg'),
+(35,'El mejor verano de mi vida',91,2018,'Curro es un fantasioso vendedor de robots de cocina que sueña con un trabajo en el mundo financiero. Hace una promesa que no puede cumplir: si su hijo Nico, de 9 años, saca todo sobresalientes, le llevará a unas vacaciones de verano inolvidables. ',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/El_mejor_verano_de_mi_vida-275334251-large.jpg'),
+(36,'Interstellar',169,2014,'Al ver que la vida en la Tierra está llegando a su fin, un grupo de exploradores emprende una misión que puede ser la más importante de la historia de la humanidad: viajar más allá de nuestra galaxia.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Interstellar-366875261-large.jpg'),
+(37,'La monja',96,2018,'Cuando una joven monja se suicida en una abadía de clausura en Rumanía, un sacerdote experto en posesiones demoniacas y una novicia a punto de tomar sus votos, son enviados por el Vaticano para investigar.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/La_monja-562330123-large.jpg'),
+(38,'Happy Feet',108,2006,'En la gélida Antártida, los pingüinos cantan para hacer el cortejo, pero lo que a Mumble se le da bien es bailar. Cuando sus compañeros pingüinos empiezan a entonar canciones románticas, los pies de Mumble no pueden evitar moverse.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Happy_Feet_Rompiendo_el_hielo-637452144-large.jpg'),
+(39,'Kong: La Isla Calavera',120,2017,'En los años 70, un variopinto grupo de exploradores y soldados es reclutado para viajar a una misteriosa isla del Pacífico. Pero al adentrarse en esta bella pero traicionera isla, los exploradores encontrarán algo absolutamente sorprendente.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Kong_La_isla_calavera-804915386-large.jpg'),
+(40,'Kimi',89,2022,'Una empleada de una empresa tecnológica que sufre agorafobia descubre un crimen e intenta alertar a sus superiores.',0,'2022-07-20',NULL,'https://pics.filmaffinity.com/Kimi-147311693-large.jpg');
 
 
 INSERT INTO `genres` (`id`,`title`) 
@@ -291,10 +313,3 @@ values
 (11,38),
 (5,39),
 (6,40);
-
-
-
-
-
-
-
