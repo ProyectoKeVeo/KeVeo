@@ -4,6 +4,7 @@ import com.example.KeVeo.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class HomeControler extends AbstractController{
@@ -13,10 +14,9 @@ public class HomeControler extends AbstractController{
         super(menuService);
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String viewHomePage() {
-        return "index";
+        return "home";
     }
-
 
 }

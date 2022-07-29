@@ -6,6 +6,7 @@ import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.GenreService;
 import com.example.KeVeo.service.Mapper.FilmMapper;
+import com.example.KeVeo.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,13 +24,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-public class FilmController {
+public class FilmController extends AbstractController<FilmDTO>{
     @Autowired
     private FilmService filmService;
     @Autowired
     private GenreService genreService;
     @Autowired
     private FilmMapper filmMapper;
+
+    protected FilmController(MenuService menuService) {
+        super(menuService);
+    }
 
     //    @Autowired
 //    public FilmController(FilmService filmService,GenreService genreService,FilmMapper filmMapper){
@@ -48,6 +53,18 @@ public class FilmController {
                 .addAttribute("films", all)
                 .addAttribute("pageNumbers", getPageNumbers(all));
         return "film/list";
+    }
+
+    @GetMapping("/gestionfilms")
+    public String listAll2(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
+                          Model model) {
+        //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
+                size.orElse(9)));
+        model
+                .addAttribute("films", all)
+                .addAttribute("pageNumbers", getPageNumbers(all));
+        return "film/gestionfilms";
     }
 
     protected List<Integer> getPageNumbers(Page<FilmDTO> pages) {

@@ -28,6 +28,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
 
+
     <script th:src="@{/js/carrusel.js}"></script>
     <script th:src="@{/js/main.js}"></script>
 
@@ -42,7 +43,7 @@
     <div class="contenedor">
         <!-- Logotipo imagen-->
 
-        <img src="img/logo.png" width="10%" height="10%" alt="KeVeo">
+        <img th:src="@{img/logo.png}" width="10%" height="10%" alt="KeVeo">
         <!-- Buscador - estilobuscador.css-->
 
         <form class="form-wrapper cf">
@@ -54,24 +55,18 @@
         <nav class="nav-bar">
             <div class="container-fluid">
                 <div class="btn-group" role="group" th:each="menuItem : ${menuList}">
-                    <a th:href="${menuItem.url}" class="btn btn-primary btn-lg active" role="button"
+                    <a th:href="${menuItem.url}" class="btn btn-danger btn-lg active" role="button"
                        aria-pressed="true" th:text="${menuItem.description}"> </a>
                 </div>
-<!--                            <a href="#" class="activo">Inicio</a>-->
-<!--                            <a href="#">Películas</a>-->
-<!--                            <a href="#">Plataformas</a>-->
-<!--                            <a href="#">Géneros</a>-->
-<!--                            <a href="#">Login</a>-->
+
                 <!-- Botón de alertas -->
-                <button type="button" class="my-btn btn btn-danger position-relative" id="btn-perdido"
+                <button type="button" class="my-btn btn btn-danger btn-lg active position-relative" id="btn-perdido"
                         data-bs-toggle="modal" data-bs-target="#exampleModal">Alertas
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">1
-				</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">1</span>
                 </button>
 
                 <!-- Modal del botón de alertas -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

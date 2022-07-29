@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}" >
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
 <head>
     <title>Home</title>
 </head>
 <body>
+<div layout:fragment="breadcrumb" style="color:black">
+    <h1>Home</h1>
+</div>
 
 <!-- Portada - su css está en estilos.css-->
 <div layout:fragment="content">

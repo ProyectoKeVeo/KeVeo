@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <!DOCTYPE html>
-        <html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout}">
-        <head>
-        <title>Film's management</title>
+
+<head>
+    <meta charset="utf-8">
 </head>
 <body>
-<div layout:fragment="breadcrumb" th:object="${film}">
-    <h1>Film Management</h1>
-    <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/film"><i class="fa fa-tasks"></i> Film</a></li>
-        <li class="active" th:utext="@{'film ID: <b>' + ${film.id}} + '</b>'"></li>
-    </ol>
+<div layout:fragment="breadcrumb" style="color:black">
+    <h1>Edición Película</h1>
+
 </div>
 
 <div layout:fragment="content">
@@ -30,7 +23,7 @@
                             <div class="tab-pane active" id="1a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="name" th:text="#{film.name}"></label>
+                                        <label for="name" style="color:black">Película: </label>
                                         <input type="text" class="form-control"
                                                id="name"
                                                th:field="${film.name}"
@@ -56,8 +49,8 @@
 <!--                                               th:field="${film.genres}"-->
 <!--                                               maxlength="255">-->
                                         <div class="form-group row">
-                                            <label class="col-4 col-form-label">Genres: </label>
-                                            <div class="col-8">
+                                            <label class="col-4 col-form-label" style="color:black">Géneros: </label>
+                                            <div class="col-8" style="color:black">
                                                 <th:block th:each="genre: ${listGenres}">
                                                     <input type="checkbox" th:field="*{genres}"
                                                            th:text="${genre.title}" th:value="${genre.id}"
@@ -73,19 +66,24 @@
                 </div>
 
                 <div class="box-footer with-border">
-                    <a th:href="@{/film}" class="btn btn-default" role="button"
-                       title="Back list" th:text="#{General.Cancel}">
+                    <a th:href="@{/gestionfilms}" class="btn btn-default" role="button"
+                       title="Back list" th:text="Cancelar">
                         <span aria-hidden="true"></span>
                     </a>
                     <button type="submit" class="box-title btn btn-primary"
-                            title="Save Data" th:text="#{General.Save}">
+                            title="Save Data" th:text="Guardar">
                     </button>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </form>
         </div>
     </div>
 </div>
-</head>
 
 </body>
 </html>

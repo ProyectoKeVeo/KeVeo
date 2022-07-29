@@ -8,7 +8,7 @@ import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.RoleRepository;
 import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.DTO.UserDTO;
-import com.example.KeVeo.service.Mapper.MapperUser;
+import com.example.KeVeo.service.Mapper.UserMapper;
 import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,13 @@ public class GestionUserController extends AbstractController<UserDTO>{
 
     private UserService userService;
     private RoleRepository roleRepository;
-    private MapperUser userMapper;
+    private UserMapper userMapper;
     private UserRepository userRepository;
 
 
     @Autowired
     protected GestionUserController(MenuService menuService, UserService userService, RoleRepository roleRepository,
-                                    MapperUser userMapper, UserRepository userRepository) {
+                                    UserMapper userMapper, UserRepository userRepository) {
         super(menuService);
         this.userService=userService;
         this.roleRepository=roleRepository;
@@ -97,7 +97,7 @@ public class GestionUserController extends AbstractController<UserDTO>{
     public String saveUser(UserDTO userDto) {
 
         UserEntity user=userMapper.toEntity(userDto);
-        userService.save(user);
+        userService.save(userMapper.toDto(user));
 
         return "redirect:/gestionUser";
     }
