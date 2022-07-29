@@ -33,5 +33,10 @@ public class RoleEntity {
     // Añado relación con MenuEntity
     @ManyToMany(mappedBy = "roles")
     private Set<MenuEntity> menus;
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
 

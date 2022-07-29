@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class RegistroControlador {
+public class LoginControlador {
 
     @Autowired
     private UserService service;
@@ -25,12 +25,5 @@ public class RegistroControlador {
         return "login";
     }
 
-    @GetMapping("/")
-    public String verPaginaDeInicio(Model modelo) {
-//        final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        user.getRoleEntitiesUser();
 
-        modelo.addAttribute("usuarios", service.listarUsuarios());
-        return "index";
-    }
 }

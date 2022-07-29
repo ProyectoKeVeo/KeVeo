@@ -61,9 +61,8 @@
             <th>Activo</th>
             <th>E-mail</th>
             <th>Nombre</th>
-            <th>Apellidos</th>
+            <th>Nombre Cuenta</th>
             <th>Fecha de nacimiento</th>
-            <th>Fecha de Registro</th>
             <th>Roles</th>
             <th></th>
         </tr>
@@ -72,11 +71,11 @@
         <tr th:each="user: ${listUsers}">
             <td th:text="${user.id}">User ID</td>
             <td th:text="${user.active}">Activo</td>
-            <td th:text="${user.userEmail}">E-mail</td>
-            <td th:text="${user.userName}">Nombre</td>
-            <td th:text="${user.userSurname}">Apellidos</td>
+            <td th:text="${user.email}">E-mail</td>
+            <td th:text="${user.username}">Nombre</td>
+            <td th:text="${user.accountName}">Nombre Cuenta</td>
             <td th:text="${user.date}">Fecha de Naciento</td>
-            <td th:text="${user.registerDate}">Fecha de Registro</td>
+
             <td th:text="${user.roles}">Roles</td>
             <td><a th:href="@{'/gestionUser/edit/' + ${user.id}}">
                 <button  type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>

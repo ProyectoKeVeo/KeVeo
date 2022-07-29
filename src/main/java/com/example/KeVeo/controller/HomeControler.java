@@ -15,7 +15,7 @@ public class HomeControler extends AbstractController{
 
     @GetMapping("")
     public String viewHomePage() {
-        return "home";
+        return "index";
     }
 
 

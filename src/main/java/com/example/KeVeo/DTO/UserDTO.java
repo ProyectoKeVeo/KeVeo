@@ -1,12 +1,13 @@
 package com.example.KeVeo.DTO;
 
+import com.example.KeVeo.data.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-
+import java.util.List;
 
 
 @Getter
@@ -32,7 +33,8 @@ public class UserDTO implements Serializable {
 
     private ZonedDateTime registerDate;
 
-    private String roleName;
+    private List<RoleEntity> roles;
+
 
     public ZonedDateTime getregisterDate(){
         ZonedDateTime fecha = ZonedDateTime.now();
