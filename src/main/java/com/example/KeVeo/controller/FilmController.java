@@ -1,12 +1,16 @@
 package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
+import com.example.KeVeo.DTO.PunctuationDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
+import com.example.KeVeo.data.entity.PunctuationEntity;
+import com.example.KeVeo.data.repository.PunctuationRepository;
 import com.example.KeVeo.service.FilmService;
 import com.example.KeVeo.service.GenreService;
 import com.example.KeVeo.service.Mapper.FilmMapper;
 import com.example.KeVeo.service.MenuService;
+import com.example.KeVeo.service.PunctuationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +29,8 @@ import java.util.stream.IntStream;
 
 @Controller
 public class FilmController extends AbstractController<FilmDTO>{
+    @Autowired
+    private PunctuationService punctuationService;
     @Autowired
     private FilmService filmService;
     @Autowired
@@ -58,10 +64,12 @@ public class FilmController extends AbstractController<FilmDTO>{
     @GetMapping("/gestionfilms")
     public String listAll2(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                           Model model) {
+        PunctuationDTO punctuationDTO= new PunctuationDTO();
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(9)));
         model
+                .addAttribute("rating", punctuationDTO)
                 .addAttribute("films", all)
                 .addAttribute("pageNumbers", getPageNumbers(all));
         return "film/gestionfilms";
@@ -77,6 +85,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     @PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     public String detail(@PathVariable("id") Integer id, ModelMap model) {
         model.addAttribute("film", this.filmService.findById(id).get());
+        model.addAttribute("rating",this.punctuationService.findById(id).get());
         return "film/detail";
     }
 
@@ -93,6 +102,7 @@ public class FilmController extends AbstractController<FilmDTO>{
         List<GenreEntity> listGenres = filmService.listGenres();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("listGenres", listGenres);
+        model.addAttribute("rating",this.punctuationService.findById(id).get());
         return "film/edit";
     }
 
@@ -100,9 +110,11 @@ public class FilmController extends AbstractController<FilmDTO>{
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String create(ModelMap model) {
         FilmDTO filmDTO = new FilmDTO();
+        PunctuationDTO punctuationDTO=new PunctuationDTO();
         List<GenreEntity> listGenres = filmService.listGenres();
         model.addAttribute("film", filmDTO);
         model.addAttribute("listGenres", listGenres);
+        model.addAttribute("rating",punctuationDTO);
 
         return "film/edit";
     }
