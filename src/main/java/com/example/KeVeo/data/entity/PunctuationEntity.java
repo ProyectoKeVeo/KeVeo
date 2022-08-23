@@ -18,7 +18,7 @@ public class PunctuationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    private Float stars;
     private String opinion;
 
     // Añadimos relaciones con FilmEntity y UserEntity
