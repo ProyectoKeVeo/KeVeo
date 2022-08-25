@@ -84,18 +84,14 @@ public class FilmController extends AbstractController<FilmDTO>{
     @GetMapping("/film/{id}")
     @PostAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     public String detail(@PathVariable("id") Integer id, ModelMap model) {
+        PunctuationEntity punctuationEntity= new PunctuationEntity();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("rating",this.punctuationService.findById(id).get());
+//        model.addAttribute("media", this.filmService.puntuacionMedia(punctuationEntity, id));
         return "film/detail";
     }
 
-    //    @GetMapping(value = "/film/{id}/edit")
-//    @PostAuthorize("hasRole('ROLE_ADMIN')")
-//    public String edit(@PathVariable("id") Integer id, ModelMap model) {
-//        model.addAttribute("film", this.filmService.findById(id).get());
-//
-//        return "film/edit";
-//    }
+
     @GetMapping(value = "/film/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {

@@ -38,7 +38,7 @@
                     <div class="box-body">
                         <div class="tab-content">
                             <input th:type="hidden" th:field="${film.id}"/>
-                            <div class="tab-pane active" id="1a">
+                            <div class="tab-pane active" id="a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="name" style="color:black">Película: </label>
@@ -75,19 +75,19 @@
                                                            th:text="${genre.title}" th:value="${genre.id}"
                                                            class="m-2"/>
                                                 </th:block>
-                                                    <th:block role="form"  th:object="${rating}" class="mt-5" method="post">
-                                                    <input value="0" type="hidden" class="rating" data-glyphicon="0"
+                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">
+                                                    <input value="6" type="submit" class="rating" data-glyphicon="3"
                                                            th:value="*{stars}"/>
                                                     <th:block/>
-                                                    <script>
-                                                $(document).ready(function(){
-                                                    $('#input-3').rating({displayOnly: true, step: 0.5});
-                                                    $('#input-5').rating({clearCaption: 'No stars yet'});
-                                                    $('#input-8').rating({rtl: true, containerClass: 'is-star'});
-                                                    $('#input-9').rating();
-                                                });
+                                                    <!--                                                    <script>-->
+                                                    <!--                                                $(document).ready(function(){-->
+                                                    <!--                                                    $('#input-3').rating({displayOnly: true, step: 0.5});-->
+                                                    <!--                                                    $('#input-5').rating({clearCaption: 'No stars yet'});-->
+                                                    <!--                                                    $('#input-8').rating({rtl: true, containerClass: 'is-star'});-->
+                                                    <!--                                                    $('#input-9').rating();-->
+                                                    <!--                                                });-->
 
-                                                    </script>
+                                                    <!--                                                    </script>-->
                                                     <!--   Stars Rating********************-->
                                                     <!--                                                <th:block>-->
                                                     <!--                                                    <div class="container-wrapper">-->
@@ -151,7 +151,7 @@
                                                     <!--                                                    </div>-->
 
 
-                                                    <!--                                                </th:block>-->
+                                                </th:block>
                                                 <div/>
                                             </div>
                                         </div>

@@ -24,7 +24,7 @@ public class FilmDTO implements Serializable {
     private String trailer;
     private String image;
     private Set<GenreEntity> genres;
-    private PunctuationEntity punctuation;
+    private Set<PunctuationEntity> punctuation;
 
     public ZonedDateTime getCreation(){
         ZonedDateTime fecha = ZonedDateTime.now();

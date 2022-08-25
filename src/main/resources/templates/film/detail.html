@@ -35,12 +35,8 @@
         <li class="active" th:utext="@{'views: <b>' + ${film.number_views}} + '</b>'"></li>
         <li class="active" th:utext="@{'Genero: <b>' + ${film.genres}} + '</b>'"></li>
         <li class="active" th:utext="@{'id: <b>' + ${film.id}} + '</b>'"></li>
-        <li class="active" th:utext="@{'rating: <b>' + ${film.punctuation}} + '</b>'"></li>
+        <li class="active" th:utext="@{'rating: <b>' + ${rating.stars}} + '</b>'"></li>
     </ol>
-        <form method="post" th:object="${rating}" class="mt-5">
-            <input value="0" type="hidden" class="rating" data-glyphicon="0"
-                   th:value="*{stars}"/>
-            <form/>
             
     <br>
     <br>

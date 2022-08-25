@@ -55,8 +55,8 @@ public class UserEntity {
     }
 
     //Añado relación hacia PuntuationEntity
-    @OneToMany (mappedBy = "userEntityPuntuation")
-    private Set<PunctuationEntity> puntuationEntitiesUsers = new HashSet<>();
+    @OneToMany (mappedBy = "users")
+    private Set<PunctuationEntity> puntuationEntity = new HashSet<>();
 
     //Añado relación hacia RoleEntity
     @ManyToMany(fetch = FetchType.EAGER)
