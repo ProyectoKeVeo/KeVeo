@@ -25,19 +25,21 @@ section.awSlider{
 }
 
 section.awSlider:hover > img{
-  -ms-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+
   opacity:1;
 }
 
 section.awSlider img{
+   width: 1000px;
+   height: 300px;
    pointer-events: none;
 }
 
 section.awSlider > img{
   position:absolute;
   top:30px;
+     width: 1000px;
+     height: 300px;
   z-index:1;
   transition:all .3s;
   filter: blur(1.8vw);
@@ -47,6 +49,6 @@ section.awSlider > img{
   -ms-filter: blur(2vw);
   -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+
   opacity:.5;
 }
