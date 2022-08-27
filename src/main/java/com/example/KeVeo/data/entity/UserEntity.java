@@ -70,4 +70,11 @@ public class UserEntity {
         this.roles = new ArrayList<>();
         this.roles.add(role);
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                '}';
+    }
 }

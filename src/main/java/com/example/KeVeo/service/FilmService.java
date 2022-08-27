@@ -37,7 +37,6 @@ public class FilmService extends AbstractBusinessService<FilmEntity, Integer, Fi
         return genreRepository.findAll();
     }
 
-
 //    public FilmDTO findByFilmName(String filmName) {
 //        FilmEntity filmEntity = this.getRepository().findByName(filmName);
 //        return this.getServiceMapper().toDto(filmEntity);

@@ -5,16 +5,16 @@ import com.example.KeVeo.DTO.PunctuationDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.data.entity.PunctuationEntity;
+import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.PunctuationRepository;
-import com.example.KeVeo.service.FilmService;
-import com.example.KeVeo.service.GenreService;
+import com.example.KeVeo.service.*;
 import com.example.KeVeo.service.Mapper.FilmMapper;
-import com.example.KeVeo.service.MenuService;
-import com.example.KeVeo.service.PunctuationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -36,7 +36,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     @Autowired
     private GenreService genreService;
     @Autowired
-    private FilmMapper filmMapper;
+    private UserService userService;
 
     protected FilmController(MenuService menuService) {
         super(menuService);
@@ -95,10 +95,15 @@ public class FilmController extends AbstractController<FilmDTO>{
     @GetMapping(value = "/film/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
+        UserEntity principal = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<GenreEntity> listGenres = filmService.listGenres();
+        PunctuationDTO punctuationDTO = new PunctuationDTO();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("listGenres", listGenres);
-        model.addAttribute("rating",this.punctuationService.findById(id).get());
+        model.addAttribute("rating",this.punctuationService.PunctuationByFilmIdUserId(id, principal.getId()));
+//        PunctuationEntity starsUpdate = punctuationService.getRepository().getOne(id);
+//        starsUpdate.setStars(punctuationDTO.getStars());
+//        punctuationService.getRepository().save(starsUpdate);
         return "film/edit";
     }
 
@@ -117,16 +122,18 @@ public class FilmController extends AbstractController<FilmDTO>{
 
     @Transactional
     @PostMapping(value = {"/film/{id}/edit", "/film/create"})
-    public String save(FilmDTO dto) {
-        return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
+    public String save(FilmDTO dto, PunctuationDTO ratingDto) {
+//        this.punctuationService.save(ratingDto);
+        return String.format("redirect:/film/%s/", this.filmService.save(dto).getId());
     }
 
     @PostMapping(value = {"/film/{id}/delete"})
     public String delete(@PathVariable(value = "id") Integer id) {
         FilmDTO filmDTO = this.filmService.findById(id).get();
-        FilmEntity filmEntity= filmMapper.toEntity(filmDTO);
+        FilmEntity filmEntity= filmService.getServiceMapper().toEntity(filmDTO);
         filmService.getRepository().delete(filmEntity);
         return "redirect:/film";
 
     }
+
 }
