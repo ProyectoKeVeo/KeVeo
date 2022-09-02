@@ -46,7 +46,7 @@ public class FilmEntity {
     private String image;
 
     //Añado la relación con PuntuationEntity
-    @OneToMany (mappedBy = "filmEntityPuntuation")
+    @OneToMany (mappedBy = "films")
     private Set<PunctuationEntity> puntuationEntitiesFilms = new HashSet<>();
 
 

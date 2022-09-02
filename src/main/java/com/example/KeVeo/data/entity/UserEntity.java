@@ -55,8 +55,8 @@ public class UserEntity {
     }
 
     //Añado relación hacia PuntuationEntity
-    @OneToMany (mappedBy = "userEntityPuntuation")
-    private Set<PunctuationEntity> puntuationEntitiesUsers = new HashSet<>();
+    @OneToMany (mappedBy = "users")
+    private Set<PunctuationEntity> puntuationEntity = new HashSet<>();
 
     //Añado relación hacia RoleEntity
     @ManyToMany(fetch = FetchType.EAGER)
@@ -69,5 +69,12 @@ public class UserEntity {
     public void addRole (RoleEntity role){
         this.roles = new ArrayList<>();
         this.roles.add(role);
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                '}';
     }
 }
