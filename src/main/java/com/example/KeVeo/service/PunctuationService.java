@@ -24,6 +24,9 @@ public class PunctuationService extends AbstractBusinessService<PunctuationEntit
         PunctuationEntity punctuationEntity = getServiceMapper().toEntity(punctuationDTO);
         getRepository().save(punctuationEntity);
     }
+    public PunctuationDTO PunctuationByFilmIdUserId(Integer filmId, Integer userId){
+        return getServiceMapper().toDto(getRepository().findByUserAndFilmId(userId, filmId));
+       }
 
 
 }

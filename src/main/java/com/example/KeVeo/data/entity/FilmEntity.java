@@ -24,6 +24,12 @@ public class FilmEntity {
     private Integer id;
 
     @Column(nullable = false)
+    private boolean active;
+    @Lob
+    @Column(nullable = false)
+    private String cast;
+
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -31,23 +37,16 @@ public class FilmEntity {
 
     @Column(nullable = false)
     private Integer year;
-
+    @Lob
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private Integer number_views;
-
-    @Column(name= "creation_date", nullable = false)
-    private ZonedDateTime creation;
-
     private String trailer;
-
 
     private String image;
 
     //Añado la relación con PuntuationEntity
-    @OneToMany (mappedBy = "filmEntityPuntuation")
+    @OneToMany (mappedBy = "films")
     private Set<PunctuationEntity> puntuationEntitiesFilms = new HashSet<>();
 
 

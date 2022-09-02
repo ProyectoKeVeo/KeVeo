@@ -38,7 +38,7 @@
                     <div class="box-body">
                         <div class="tab-content">
                             <input th:type="hidden" th:field="${film.id}"/>
-                            <div class="tab-pane active" id="1a">
+                            <div class="tab-pane active" id="a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="name" style="color:black">Película: </label>
@@ -75,83 +75,11 @@
                                                            th:text="${genre.title}" th:value="${genre.id}"
                                                            class="m-2"/>
                                                 </th:block>
-                                                    <th:block role="form"  th:object="${rating}" class="mt-5" method="post">
-                                                    <input value="0" type="hidden" class="rating" data-glyphicon="0"
+                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">
+                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"
                                                            th:value="*{stars}"/>
                                                     <th:block/>
-                                                    <script>
-                                                $(document).ready(function(){
-                                                    $('#input-3').rating({displayOnly: true, step: 0.5});
-                                                    $('#input-5').rating({clearCaption: 'No stars yet'});
-                                                    $('#input-8').rating({rtl: true, containerClass: 'is-star'});
-                                                    $('#input-9').rating();
-                                                });
-
-                                                    </script>
-                                                    <!--   Stars Rating********************-->
-                                                    <!--                                                <th:block>-->
-                                                    <!--                                                    <div class="container-wrapper">-->
-                                                    <!--                                                        <div class="container d-flex align-items-center justify-content-center">-->
-                                                    <!--                                                            <div class="row justify-content-center">-->
-
-                                                    <!--                                                                &lt;!&ndash; star rating &ndash;&gt;-->
-                                                    <!--                                                                <div class="rating-wrapper">-->
-
-                                                    <!--                                                                    &lt;!&ndash; star 5 &ndash;&gt;-->
-                                                    <!--                                                                    <input type="radio" id="5-star-rating"-->
-                                                    <!--                                                                           name="star-rating" value="5">-->
-                                                    <!--                                                                    <label for="5-star-rating" class="star-rating">-->
-                                                    <!--                                                                        <i class="fas fa-star d-inline-block"></i>-->
-                                                    <!--                                                                    </label>-->
-
-                                                    <!--                                                                    &lt;!&ndash; star 4 &ndash;&gt;-->
-                                                    <!--                                                                    <input type="radio" id="4-star-rating"-->
-                                                    <!--                                                                           name="star-rating" value="4">-->
-                                                    <!--                                                                    <label for="4-star-rating" class="star-rating star">-->
-                                                    <!--                                                                        <i class="fas fa-star d-inline-block"></i>-->
-                                                    <!--                                                                    </label>-->
-
-                                                    <!--                                                                    &lt;!&ndash; star 3 &ndash;&gt;-->
-                                                    <!--                                                                    <input type="radio" id="3-star-rating"-->
-                                                    <!--                                                                           name="star-rating" value="3">-->
-                                                    <!--                                                                    <label for="3-star-rating" class="star-rating star">-->
-                                                    <!--                                                                        <i class="fas fa-star d-inline-block"></i>-->
-                                                    <!--                                                                    </label>-->
-
-                                                    <!--                                                                    &lt;!&ndash; star 2 &ndash;&gt;-->
-                                                    <!--                                                                    <input type="radio" id="2-star-rating"-->
-                                                    <!--                                                                           name="star-rating" value="2">-->
-                                                    <!--                                                                    <label for="2-star-rating" class="star-rating star">-->
-                                                    <!--                                                                        <i class="fas fa-star d-inline-block"></i>-->
-                                                    <!--                                                                    </label>-->
-
-                                                    <!--                                                                    &lt;!&ndash; star 1 &ndash;&gt;-->
-                                                    <!--                                                                    <input type="radio" id="1-star-rating"-->
-                                                    <!--                                                                           name="star-rating" value="1">-->
-                                                    <!--                                                                    <label for="1-star-rating" class="star-rating star">-->
-                                                    <!--                                                                        <i class="fas fa-star d-inline-block"></i>-->
-                                                    <!--                                                                    </label>-->
-                                                    <!--                                                                    <label for="input-1" class="control-label">Rate This</label>-->
-                                                    <!--                                                                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">-->
-
-                                                    <!--                                                                </div>-->
-
-                                                    <!--                                                            </div>-->
-                                                    <!--                                                        </div>-->
-                                                    <!--                                                    </div>-->
-                                                    <!--                                                    <div class="container">-->
-                                                    <!--                                                        <form method="post" th:object="${rating}" class="mt-5">-->
-
-                                                    <!--                                                            <input value="0" type="hidden" class="rating" data-glyphicon="0"-->
-                                                    <!--                                                                   th:field="*{stars}">-->
-
-                                                    <!--                                                            <button class="btn btn-primary" type="submit">Submit form</button>-->
-                                                    <!--                                                        </form>-->
-
-                                                    <!--                                                    </div>-->
-
-
-                                                    <!--                                                </th:block>-->
+                                                </th:block>
                                                 <div/>
                                             </div>
                                         </div>
