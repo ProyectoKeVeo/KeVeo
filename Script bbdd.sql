@@ -165,7 +165,8 @@ INSERT INTO MENUS VALUES
 (1, 1, 'Home', 0, '/', NULL),
 (2, 1, 'Gestion de Usuarios', 1, '/gestionUser', NULL),
 (3, 1, 'Películas', 10, '/film', NULL),
-(4, 1, 'Gestión de Películas', 20, '/gestionfilms',NULL);
+(4, 1, 'Gestión de Películas', 20, '/gestionfilms',NULL),
+(5, 1, 'Recomendador', 30, '/recomendador',NULL);
 
              
 CREATE TABLE MENUS_ROLES(
@@ -182,6 +183,8 @@ ALTER TABLE MENUS_ROLES ADD CONSTRAINT CONSTRAINT_4 PRIMARY KEY(MENUS_ID, ROLES_
 (3, 2),
 (3, 1),
 (4, 1),
+(5, 1),
+(5, 2),
 (1,3),
 (3,3);
 
