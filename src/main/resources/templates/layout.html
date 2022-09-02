@@ -38,6 +38,12 @@
             <a class="treeview" th:each="menuItem : ${menuList}">
                 <a th:href="${menuItem.url}"></span><span th:text="${menuItem.description}"></span></a>
             </a>
+            <a th:if="${#authentication.getPrincipal() == 'anonymousUser'}"class="treeview" >
+                <a th:href="@{/login}"></span><span>Login</span></a>
+            </a>
+            <a th:unless="${#authentication.getPrincipal() == 'anonymousUser'}"class="treeview" >
+                <a href="/logout"></span><span>Logout</span></a>
+            </a>
         </div>
     </div>
 
