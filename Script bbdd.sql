@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification` (
   PRIMARY KEY (`id`));
 
 
-CREATE TABLE IF NOT EXISTS `base_KeVeo`.`type_notification` (
+CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notificationtype` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(255) NOT NULL,
   `notification_id` INT NOT NULL,
