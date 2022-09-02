@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notificationtype` (
     REFERENCES `base_KeVeo`.`notification` (`id`));
 
 
-CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification_has_user` (
+CREATE TABLE IF NOT EXISTS `base_KeVeo`.`notification_users` (
   `notification_id` INT NOT NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`notification_id`, `users_id`),
