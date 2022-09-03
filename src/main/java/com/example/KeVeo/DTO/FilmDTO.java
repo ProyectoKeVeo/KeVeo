@@ -18,15 +18,11 @@ public class FilmDTO implements Serializable {
     private Integer duration;
     private Integer year;
     private String description;
-    private Integer number_views;
-    private ZonedDateTime creation;
+    private String cast;
+   private boolean active;
     private String trailer;
     private String image;
     private Set<GenreEntity> genres;
 
-    public ZonedDateTime getCreation(){
-        ZonedDateTime fecha = ZonedDateTime.now();
-        return fecha;
-    }
 
 }

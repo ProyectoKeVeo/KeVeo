@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,33 +26,27 @@ import java.util.stream.IntStream;
 
 @Controller
 public class FilmController extends AbstractController<FilmDTO>{
-    @Autowired
-    private FilmService filmService;
-    @Autowired
-    private GenreService genreService;
-    @Autowired
-    private FilmMapper filmMapper;
 
-    protected FilmController(MenuService menuService) {
+    private FilmService filmService;
+    private GenreService genreService;
+    private FilmMapper filmMapper;
+    @Autowired
+    protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService,FilmMapper filmMapper) {
         super(menuService);
+        this.filmService=filmService;
+        this.genreService=genreService;
+        this.filmMapper=filmMapper;
     }
 
-    //    @Autowired
-//    public FilmController(FilmService filmService,GenreService genreService,FilmMapper filmMapper){
-//        this.filmService=filmService;
-//        this.genreService=genreService;
-//        this.filmMapper=filmMapper;
-//
-//    }
     @GetMapping("/film")
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                           Model model) {
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
-                size.orElse(9)));
+        Page<FilmDTO> listFilms = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
+                size.orElse(12)));
         model
-                .addAttribute("films", all)
-                .addAttribute("pageNumbers", getPageNumbers(all));
+                .addAttribute("listFilms", listFilms)
+                .addAttribute("pageNumbers", getPageNumbers(listFilms));
         return "film/list";
     }
 
@@ -80,13 +75,6 @@ public class FilmController extends AbstractController<FilmDTO>{
         return "film/detail";
     }
 
-    //    @GetMapping(value = "/film/{id}/edit")
-//    @PostAuthorize("hasRole('ROLE_ADMIN')")
-//    public String edit(@PathVariable("id") Integer id, ModelMap model) {
-//        model.addAttribute("film", this.filmService.findById(id).get());
-//
-//        return "film/edit";
-//    }
     @GetMapping(value = "/film/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
@@ -120,5 +108,25 @@ public class FilmController extends AbstractController<FilmDTO>{
         filmService.getRepository().delete(filmEntity);
         return "redirect:/film";
 
+    }
+
+    @GetMapping("/film/filmInfo/{id}")
+    public String viewInfo(@PathVariable("id") Integer id, ModelMap model) {
+        /*Integer userId ;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            userId=3;
+        }else userId=((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        User user = userRepository.findById(userId).get();
+        CommentDTO commentDTO=new CommentDTO();*/
+        FilmDTO filmDTO = filmService.findById(id).get();
+        FilmEntity film= filmMapper.toEntity(filmDTO);
+        //List<CommentDTO> listComments= commentService.findByFilmId(id);
+        model
+                .addAttribute("film", film);
+                //.addAttribute("listComments",listComments)
+                //.addAttribute("user",user)
+                //.addAttribute("comment", commentDTO);
+
+        return "film/filmInfo";
     }
 }
