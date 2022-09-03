@@ -29,8 +29,7 @@ public class FilmEntity {
     private String cast;
     @Column(nullable = false)
     private Integer duration;
-    @Column(nullable = false)
-    private Boolean active;
+
     @Column(nullable = false)
     private Integer year;
     @Lob
