@@ -25,7 +25,10 @@ public class UrlEntity {
 
     // Añadimos relación de UrlEntity hacia PlatformEntity
     @ManyToOne
-    private PlatformEntity platformEntityUrl;
+    @JoinColumn(name = "platform_id")
+    private PlatformEntity platform;
+
     @ManyToOne
-    private FilmEntity filmEntityUrl;
+    @JoinColumn(name = "films_id")
+    private FilmEntity films;
 }

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="#" th:href="@{/css/cards.css}"/>
 </head>
 <body>
-<div layout:fragment="breadcrumb" style="color:black">
+<div layout:fragment="breadcrumb">
     <h1>Películas</h1>
 </div>
 <br>
@@ -43,11 +43,11 @@
         </thead>
         <tbody>
         <tr th:each="item,iter : ${films}">
-            <td th:text="${item.id}" style="color:black">ID</td>
-            <td th:text="${item.name}" style="color:black">ID</td>
-            <td th:text="${item.year}" style="color:black">ID</td>
-            <td th:text="${item.duration}" style="color:black">ID</td>
-            <td th:text="${item.genres}" style="color:black"></td>
+            <td th:text="${item.id}">ID</td>
+            <td th:text="${item.name}">ID</td>
+            <td th:text="${item.year}">ID</td>
+            <td th:text="${item.duration}">ID</td>
+            <td th:text="${item.genres}"></td>
             <td>
                 <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id}}"
                    title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>

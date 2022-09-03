@@ -25,12 +25,10 @@ public class ClicksEntity {
     private Date date;
 
 
-    // Añado @ManyToOne dirigida hacia PlatformEntity.
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private PlatformEntity platformEntity;
     // Añadimos relación de ClicksEntity hacia PlatformEntity de @ManyToOne
     @ManyToOne
-    private PlatformEntity platformEntities;
+    @JoinColumn(name = "platform_id")
+    private PlatformEntity platform;
 
 
 }

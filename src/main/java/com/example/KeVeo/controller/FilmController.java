@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -96,7 +97,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         UserEntity principal = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<GenreEntity> listGenres = filmService.listGenres();
+        List<GenreEntity> listGenres = genreService.listGenres();
         PunctuationDTO punctuationDTO = new PunctuationDTO();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("listGenres", listGenres);
@@ -112,7 +113,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     public String create(ModelMap model) {
         FilmDTO filmDTO = new FilmDTO();
         PunctuationDTO punctuationDTO=new PunctuationDTO();
-        List<GenreEntity> listGenres = filmService.listGenres();
+        List<GenreEntity> listGenres = genreService.listGenres();
         model.addAttribute("film", filmDTO);
         model.addAttribute("listGenres", listGenres);
         model.addAttribute("rating",punctuationDTO);
@@ -134,6 +135,44 @@ public class FilmController extends AbstractController<FilmDTO>{
         filmService.getRepository().delete(filmEntity);
         return "redirect:/film";
 
+    }
+
+    @GetMapping("/recomendador")
+    public String listRec(Model model) {
+
+        List<GenreEntity> listGenres = genreService.listGenres();
+        model
+                .addAttribute("listGenres", listGenres)
+                .addAttribute("noCargues", true);
+        return "recomendador";
+
+
+    }
+
+    @PostMapping("/recomendador")
+    public String listRec(Model model, @Param("keygenre") String keygenre, @Param("minvalue") String minvalue, @Param("maxvalue") String maxvalue,
+                          @Param("minyear") String minyear, @Param("maxyear") String maxyear, @Param("platformid") String platformid, @Param("rate") String rate) {
+
+        List<GenreEntity> listGenres = genreService.listGenres();
+        try {
+            List<FilmDTO> all = this.filmService.recomList(keygenre, minvalue, maxvalue, minyear, maxyear, platformid, rate);
+            model
+                    .addAttribute("listGenres", listGenres)
+                    .addAttribute("films", all)
+                    .addAttribute("keygenre", keygenre)
+                    .addAttribute("minvalue", minvalue)
+                    .addAttribute("maxvalue", maxvalue)
+                    .addAttribute("minyear", minyear)
+                    .addAttribute("maxyear", maxyear)
+                    .addAttribute("platformid", platformid)
+                    .addAttribute("rate", rate)
+                    .addAttribute("boton2", true);
+        }catch(Exception e){
+            model
+                    .addAttribute("listGenres", listGenres)
+                    .addAttribute("error",true);
+        }
+        return "recomendador";
     }
 
 }

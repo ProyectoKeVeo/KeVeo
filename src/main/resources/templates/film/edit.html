@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/locales/LANG.js"></script>
 </head>
 <body>
-<div layout:fragment="breadcrumb" style="color:black">
+<div layout:fragment="breadcrumb">
     <h1>Edición Película</h1>
 
 </div>
@@ -41,7 +41,7 @@
                             <div class="tab-pane active" id="a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="name" style="color:black">Película: </label>
+                                        <label for="name">Película: </label>
                                         <input type="text" class="form-control"
                                                id="name"
                                                th:field="${film.name}"
@@ -55,10 +55,6 @@
                                                th:field="${film.duration}"
                                                maxlength="255">
                                         <input type="text" class="form-control"
-                                               id="numer_views"
-                                               th:field="${film.number_views}"
-                                               maxlength="255">
-                                        <input type="text" class="form-control"
                                                id="description"
                                                th:field="${film.description}"
                                                maxlength="255">
@@ -67,8 +63,8 @@
                                         <!--                                               th:field="${film.genres}"-->
                                         <!--                                               maxlength="255">-->
                                         <div class="form-group row">
-                                            <label class="col-4 col-form-label" style="color:black">Géneros: </label>
-                                            <div class="col-8" style="color:black">
+                                            <label class="col-4 col-form-label">Géneros: </label>
+                                            <div class="col-8">
 
                                                 <th:block th:each="genre: ${listGenres}">
                                                     <input type="checkbox" th:field="*{genres}"

@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "type_notification")
+@Table(name = "notificationtype")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,5 +26,5 @@ public class NotificationTypeEntity {
     // Añado relación hacia NotificationEntity
     @OneToOne
     @JoinColumn(name = "notification_id", referencedColumnName = "id")
-    private NotificationEntity notificationEntity;
+    private NotificationEntity notification;
 }

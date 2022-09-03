@@ -27,16 +27,16 @@ public class NotificationEntity {
     private ZonedDateTime date;
 
     // Añado relación hacia UserEntity
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "notification_has_user",
+            name = "notification_users",
             joinColumns = @JoinColumn(name= "notification_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<UserEntity> userEntitiesNotification;
+            inverseJoinColumns = @JoinColumn(name = "users_id"))
+    private Set<UserEntity> users;
 
 
     //Añado relación con NotificationTypeEntity
-    @OneToOne(mappedBy = "notificationEntity", cascade = CascadeType.ALL)
-    private NotificationTypeEntity notificationTypeEntity;
+    @OneToOne(mappedBy = "notification", cascade = CascadeType.ALL)
+    private NotificationTypeEntity notificationtype;
 
 }

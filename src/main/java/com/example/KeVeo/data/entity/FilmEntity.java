@@ -47,12 +47,12 @@ public class FilmEntity {
 
     //Añado la relación con PuntuationEntity
     @OneToMany (mappedBy = "films")
-    private Set<PunctuationEntity> puntuationEntitiesFilms = new HashSet<>();
+    private Set<PunctuationEntity> punctuation;
 
 
     // Añadimos relación de FilmEntity con UrlEntity
-    @OneToMany (mappedBy = "filmEntityUrl")
-    private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
+    @OneToMany (mappedBy = "films")
+    private Set<UrlEntity> url;
 
     // Añadimos relación de FilmEntity y GenreEntity
     @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)

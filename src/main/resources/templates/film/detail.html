@@ -17,7 +17,7 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div layout:fragment="breadcrumb" style="color:black">
+<div layout:fragment="breadcrumb">
     <h1>Detalle de Película</h1>
     <br>
     <br>
@@ -32,7 +32,6 @@
         <li><a href="/film"><i class="fa fa-tasks"></i> Films</a></li>
         <li class="active" th:utext="@{'nombre: <b>' + ${film.name}} + '</b>'"></li>
         <li class="active" th:utext="@{'year: <b>' + ${film.year}} + '</b>'"></li>
-        <li class="active" th:utext="@{'views: <b>' + ${film.number_views}} + '</b>'"></li>
         <li class="active" th:utext="@{'Genero: <b>' + ${film.genres}} + '</b>'"></li>
         <li class="active" th:utext="@{'id: <b>' + ${film.id}} + '</b>'"></li>
         <li class="active" th:utext="@{'rating: <b>' + ${rating.stars}} + '</b>'"></li>
