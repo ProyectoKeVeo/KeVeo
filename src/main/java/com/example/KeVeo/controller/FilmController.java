@@ -98,7 +98,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     @Transactional
     @PostMapping(value = {"/film/{id}/edit", "/film/create"})
     public String save(FilmDTO dto) {
-        return String.format("redirect:/film/%s", this.filmService.save(dto).getId());
+        return String.format("redirect:/film/filmInfo/%s", this.filmService.save(dto).getId());
     }
 
     @PostMapping(value = {"/film/{id}/delete"})

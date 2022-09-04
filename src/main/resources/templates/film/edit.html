@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
 
 <head>
     <meta charset="utf-8">
+<!--    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">-->
+    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
+    <link rel="stylesheet" type="text/css" href="./css/footerstyle.css" th:href="@{/css/footerstyle.css}">
+
 </head>
 <body>
 <div layout:fragment="breadcrumb" style="color:black">
-    <h1>Edición Película</h1>
-
 </div>
 
 <div layout:fragment="content">
@@ -18,9 +20,6 @@
             <form role="form" th:object="${film}" method="post">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <div class="tab-content">
-                            <input th:type="hidden" th:field="${film.id}"/>
-                            <div class="tab-pane active" id="1a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="name" style="color:black">Película: </label>
@@ -28,26 +27,49 @@
                                                id="name"
                                                th:field="${film.name}"
                                                maxlength="255">
+                                        <br>
+
+                                        <label for="name" style="color:black">Año de estreno: </label>
                                         <input type="text" class="form-control"
                                                id="year"
                                                th:field="${film.year}"
                                                maxlength="255">
+                                        <br>
+
+                                        <label for="name" style="color:black">Duración: </label>
                                         <input type="text" class="form-control"
                                                id="duration"
                                                th:field="${film.duration}"
                                                maxlength="255">
-                                        <input type="text" class="form-control"
-                                               id="numer_views"
-                                               th:field="${film.number_views}"
-                                               maxlength="255">
+                                        <br>
+
+                                        <label for="name" style="color:black">Descripción: </label>
                                         <input type="text" class="form-control"
                                                id="description"
                                                th:field="${film.description}"
                                                maxlength="255">
-<!--                                        <input type="text" class="form-control"-->
-<!--                                               id="genres"-->
-<!--                                               th:field="${film.genres}"-->
-<!--                                               maxlength="255">-->
+                                        <br>
+
+                                        <label for="name" style="color:black">Cast: </label>
+                                        <input type="text" class="form-control"
+                                               id="cast"
+                                               th:field="${film.cast}"
+                                               maxlength="255">
+                                        <br>
+
+                                        <label for="name" style="color:black">Trailer: </label>
+                                        <input type="text" class="form-control"
+                                               id="trailer"
+                                               th:field="${film.trailer}"
+                                               maxlength="255">
+                                        <br>
+
+                                        <label for="name" style="color:black">Imagen: </label>
+                                        <input type="text" class="form-control"
+                                               id="image"
+                                               th:field="${film.image}"
+                                               maxlength="255">
+                                        <br>
                                         <div class="form-group row">
                                             <label class="col-4 col-form-label" style="color:black">Géneros: </label>
                                             <div class="col-8" style="color:black">
@@ -63,7 +85,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                <form/>
+        </div>
+        <div/>
 
                 <div class="box-footer with-border">
                     <a th:href="@{/gestionfilms}" class="btn btn-default" role="button"
@@ -75,10 +99,9 @@
                     </button>
                     <br>
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+
+
+
                 </div>
             </form>
         </div>
