@@ -25,7 +25,12 @@ CREATE TABLE IF NOT EXISTS `base_KeVeo`.`platform` (
   `name` VARCHAR(45) NOT NULL,
   `commission` DOUBLE NOT NULL,
   PRIMARY KEY (`id`));
-
+  
+INSERT INTO platform VALUES
+(1, 'Netflix', 0.05),
+(2, 'HBO MAX', 0.05),
+(3, 'Prime Video', 0.05),
+(4, 'Disney+', 0.05);
 
 
 CREATE TABLE IF NOT EXISTS `base_KeVeo`.`films` (
