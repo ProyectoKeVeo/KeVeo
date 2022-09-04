@@ -47,11 +47,14 @@ public class FilmController extends AbstractController<FilmDTO>{
 
     @GetMapping("/film")
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
-                          Model model) {
+                          Model model, @Param("keyWord") String keyWord) {
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Page<FilmDTO> listFilms = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
+        List<GenreEntity> listGenres = genreService.listGenres();
+        Page<FilmDTO> listFilms = this.filmService.findAll(keyWord, PageRequest.of(page.orElse(1) - 1,
                 size.orElse(12)));
         model
+                .addAttribute("keyWord", keyWord)
+                .addAttribute("listGenres", listGenres)
                 .addAttribute("listFilms", listFilms)
                 .addAttribute("pageNumbers", getPageNumbers(listFilms));
         return "film/list";

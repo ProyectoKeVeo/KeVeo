@@ -1,22 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
 </head>
 <body>
+
+<div layout:fragment="buscador">
+    <div class="row" align="center">
+        <form class="form-wrapper cf" action="#" th:action="film" method="get">
+            <input type="text" name="keyWord" placeholder="Buscar película..."/>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
 <div layout:fragment="content">
+
     <link rel="stylesheet" type="text/css" href="static/css/coverStyle.css" th:href="@{/css/coverStyle.css}">
 
     <div class="container">
         <span sd:page-size-selector="javascript"></span>
-        <br>
+
         <h1 class="neonText">
             Películas
         </h1>
+        <br>
 
+        <div class="btn-group">
+            <button type="button" class="btn-gender">Géneros</button>
+            <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu">
+                <div th:each="genre: ${listGenres}">
+                    <span class="btngroup">
+                        <a class="btngroup--a" th:href="@{/film(keyWord=${genre.title})}" th:text="${genre.title}"></a>
+                    </span>
+                </div>
+            </div>
+        </div>&nbsp;&nbsp;
+
+        <div class="btn-group">
+            <button type="button" class="btn-gender">Plataformas</button>
+            <button type="button" class="btn-gender dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" >
+                <div>
+                <span class="btngroup">
+                    <a class="dropdown-item">
+                              <img src="./img/netflix.png" width="32" height="26">
+                              <a class="btngroup--a" th:href="@{/film(keyWord='Netflix')}">Netflix</a></a>
+
+                    <a class="dropdown-item">
+                              <img src="./img/hbo.png" width="32" height="26">
+                              <a class="btngroup--a" th:href="@{/film(keyWord='HBO')}">HBO Max</a></a>
+
+                    <a class="dropdown-item">
+                              <img src="./img/prime.png" width="32" height="26">
+                              <a class="btngroup--a" th:href="@{/film(keyWord='Prime')}">Prime Video</a></a>
+
+                    <a class="dropdown-item">
+                              <img src="./img/disney.png" width="32" height="26">
+                              <a class="btngroup--a" th:href="@{/film(keyWord='Disney')}">Disney+</a></a>
+                </span>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
         <br>
 
         <div th:each="film: ${listFilms}">
@@ -67,6 +128,8 @@
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+</script>
+
 </body>
 </html>

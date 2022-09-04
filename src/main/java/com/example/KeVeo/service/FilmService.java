@@ -32,7 +32,10 @@ public class FilmService extends AbstractBusinessService<FilmEntity, Integer, Fi
         this.genreRepository = genreRepository;
         this.punctuationRepository= punctuationRepository;
     }
-    public Page<FilmDTO> findAll(Pageable pageable) {
+    public Page<FilmDTO> findAll(String keyWord, Pageable pageable) {
+        if (keyWord != null){
+            return getRepository().findAll(keyWord, pageable).map(getServiceMapper()::toDto);
+        }
         return getRepository().findAll(pageable).map(getServiceMapper()::toDto);
     }
 
