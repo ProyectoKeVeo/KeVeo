@@ -63,7 +63,8 @@ public class FilmEntity {
     )
     private Set<GenreEntity> genres;
 
-
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    private List<CommentEntity> comments;
 
 }
 

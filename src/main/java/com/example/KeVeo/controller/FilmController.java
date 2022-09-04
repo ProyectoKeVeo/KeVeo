@@ -1,5 +1,6 @@
 package com.example.KeVeo.controller;
 
+import com.example.KeVeo.DTO.CommentDTO;
 import com.example.KeVeo.DTO.FilmDTO;
 import com.example.KeVeo.DTO.PunctuationDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
@@ -7,9 +8,11 @@ import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.data.entity.PunctuationEntity;
 import com.example.KeVeo.data.entity.UserEntity;
 import com.example.KeVeo.data.repository.PunctuationRepository;
+import com.example.KeVeo.data.repository.UserRepository;
 import com.example.KeVeo.service.*;
 import com.example.KeVeo.service.Mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.CrudRepository;
@@ -21,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,10 @@ public class FilmController extends AbstractController<FilmDTO>{
     private GenreService genreService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CommentService commentService;
     @Autowired
     protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService) {
         super(menuService);
@@ -171,21 +180,46 @@ public class FilmController extends AbstractController<FilmDTO>{
 
     @GetMapping("/film/filmInfo/{id}")
     public String viewInfo(@PathVariable("id") Integer id, ModelMap model) {
-        /*Integer userId ;
+        Integer userId ;
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             userId=3;
-        }else userId=((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        User user = userRepository.findById(userId).get();
-        CommentDTO commentDTO=new CommentDTO();*/
+        }else userId=((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        UserEntity user = userRepository.findById(userId).get();
+        CommentDTO commentDTO=new CommentDTO();
         FilmDTO filmDTO = filmService.findById(id).get();
         FilmEntity film= filmService.getServiceMapper().toEntity(filmDTO);
-        //List<CommentDTO> listComments= commentService.findByFilmId(id);
+        List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
-                .addAttribute("film", film);
-                //.addAttribute("listComments",listComments)
-                //.addAttribute("user",user)
-                //.addAttribute("comment", commentDTO);
+                .addAttribute("film", film)
+                .addAttribute("listComments",listComments)
+                .addAttribute("user",user)
+                .addAttribute("comment", commentDTO);
 
         return "film/filmInfo";
     }
+
+    @PostMapping({ "/comment/delete/{id}/{idFilm}" })
+    public Object delete(@PathVariable(value = "id") Integer id,@PathVariable(value = "idFilm") Integer idFilm,
+                         SessionStatus status) {
+        try {
+            this.commentService.delete(id);
+        } catch (DataIntegrityViolationException exception) {
+            status.setComplete();
+            return new ModelAndView("error/errorHapus")
+                    .addObject("entityId", id)
+                    .addObject("entityName", "task")
+                    .addObject("errorCause", exception.getRootCause().getMessage())
+                    .addObject("backLink", "/film/filmInfo/{idFilm}");
+        }
+        status.setComplete();
+        return "redirect:/film/filmInfo/{idFilm}";
+    }
+    @PostMapping("/filmInfo/save/{id}")
+    public String saveComment(CommentDTO commentDTO,@PathVariable("id") Integer id) {
+
+        commentService.save(commentDTO);
+
+        return "redirect:/film/filmInfo/{id}";
+    }
+
 }

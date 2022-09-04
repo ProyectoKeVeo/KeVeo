@@ -179,7 +179,7 @@ h3 {
 
 }
 .comments-section .comment {
-  background: rgb(20, 51, 91);
+  background: #484545;
   border-radius:20px;
   padding: 20px;
   font-size: 15px;
@@ -224,6 +224,7 @@ h3 {
   padding: 0 20px 10px;
   display: flex;
   align-items: center;
+
 }
 .comments-section .comment .comment-user .avatar img {
   width: 48px;
@@ -234,7 +235,7 @@ h3 {
   color: #76daff;
 }
 .comments-section .comment .comment-user .user-details {
-  color: #666;
+  color: #FFFFFF;
   margin-left: 10px;
 }
 .comments-section .comment .comment-user .user-details span:last-child {
