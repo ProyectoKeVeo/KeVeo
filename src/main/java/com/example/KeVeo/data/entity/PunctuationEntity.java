@@ -19,11 +19,17 @@ public class PunctuationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = true)
+    private Float stars;
+
     private String opinion;
 
     // Añadimos relaciones con FilmEntity y UserEntity
     @ManyToOne
-    private FilmEntity filmEntityPuntuation;
+    @JoinColumn(name = "films_id")
+    private FilmEntity films;
+
     @ManyToOne
-    private UserEntity userEntityPuntuation;
+    @JoinColumn(name = "users_id")
+    private UserEntity users;
 }

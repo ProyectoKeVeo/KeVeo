@@ -22,7 +22,7 @@
                     <div class="box-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="name" style="color:black">Película: </label>
+                                        <label for="name">Película: </label>
                                         <input type="text" class="form-control"
                                                id="name"
                                                th:field="${film.name}"
@@ -71,13 +71,20 @@
                                                maxlength="255">
                                         <br>
                                         <div class="form-group row">
-                                            <label class="col-4 col-form-label" style="color:black">Géneros: </label>
-                                            <div class="col-8" style="color:black">
+                                            <label class="col-4 col-form-label">Géneros: </label>
+                                            <div class="col-8">
+
                                                 <th:block th:each="genre: ${listGenres}">
                                                     <input type="checkbox" th:field="*{genres}"
                                                            th:text="${genre.title}" th:value="${genre.id}"
                                                            class="m-2"/>
                                                 </th:block>
+                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">
+                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"
+                                                           th:value="*{stars}"/>
+                                                    <th:block/>
+                                                </th:block>
+                                                <div/>
                                             </div>
                                         </div>
                                     </div>
@@ -107,6 +114,9 @@
         </div>
     </div>
 </div>
-
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
 </body>
 </html>

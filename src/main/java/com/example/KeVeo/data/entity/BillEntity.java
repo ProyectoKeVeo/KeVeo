@@ -26,8 +26,7 @@ public class BillEntity {
     // Añadimos relación @OneToOne hacia PlatformEntity.
     @OneToOne
     @JoinColumn(name = "platform_id", referencedColumnName = "id", unique = true)
-    private PlatformEntity platformEntity;
+    private PlatformEntity platform;
 
-    // Añado getter y setter
 
 }

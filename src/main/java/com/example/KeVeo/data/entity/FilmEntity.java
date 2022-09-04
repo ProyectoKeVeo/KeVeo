@@ -24,6 +24,12 @@ public class FilmEntity {
     private Integer id;
 
     @Column(nullable = false)
+    private boolean active;
+    @Lob
+    @Column(nullable = false)
+    private String cast;
+
+    @Column(nullable = false)
     private String name;
     @Lob
     private String cast;
@@ -41,13 +47,13 @@ public class FilmEntity {
     private String image;
 
     //Añado la relación con PuntuationEntity
-    @OneToMany (mappedBy = "filmEntityPuntuation")
-    private Set<PunctuationEntity> puntuationEntitiesFilms = new HashSet<>();
+    @OneToMany (mappedBy = "films")
+    private Set<PunctuationEntity> punctuation;
 
 
     // Añadimos relación de FilmEntity con UrlEntity
-    @OneToMany (mappedBy = "filmEntityUrl")
-    private Set<UrlEntity> urlEntitiesFilms = new HashSet<>();
+    @OneToMany (mappedBy = "films")
+    private Set<UrlEntity> url;
 
     // Añadimos relación de FilmEntity y GenreEntity
     @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)

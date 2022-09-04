@@ -27,15 +27,15 @@ public class PlatformEntity {
     private Double commission;
 
     // Añado relación de Platform hacia BillENtity. Una relación de Uno a uno.
-    @OneToOne(mappedBy = "platformEntity", cascade = CascadeType.ALL)
-    private BillEntity billEntity;
+    @OneToOne(mappedBy = "platform", cascade = CascadeType.ALL)
+    private BillEntity bill;
 
     // Añadimos relación @OneToMany de platformEntity hacia ClicksEntity
-    @OneToMany (mappedBy = "platformEntities")
-    private Set<ClicksEntity> clicksEntities = new HashSet<>();
+    @OneToMany (mappedBy = "platform")
+    private Set<ClicksEntity> clicks;
 
     // Añadimos relación entre PlatformEntity con Url
-    @OneToMany (mappedBy = "platformEntityUrl")
-    private Set<UrlEntity> urlEntities = new HashSet<>();
+    @OneToMany (mappedBy = "platform")
+    private Set<UrlEntity> url;
 
 }

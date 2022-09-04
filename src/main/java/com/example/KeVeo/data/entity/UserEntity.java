@@ -55,19 +55,26 @@ public class UserEntity {
     }
 
     //Añado relación hacia PuntuationEntity
-    @OneToMany (mappedBy = "userEntityPuntuation")
-    private Set<PunctuationEntity> puntuationEntitiesUsers = new HashSet<>();
+    @OneToMany (mappedBy = "users")
+    private Set<PunctuationEntity> punctuation;
 
     //Añado relación hacia RoleEntity
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
 
     //Añado relación hacia NotificationEntity
-    @ManyToMany(mappedBy = "userEntitiesNotification")
-    private Set<NotificationEntity> notificationEntitiesUser;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private Set<NotificationEntity> notification;
 
     public void addRole (RoleEntity role){
         this.roles = new ArrayList<>();
         this.roles.add(role);
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                '}';
     }
 }

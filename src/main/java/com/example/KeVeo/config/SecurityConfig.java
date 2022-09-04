@@ -49,13 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Login
         http.formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login-error")
                 .permitAll();
 
         // Logout
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout").deleteCookies("JSESSIONID").invalidateHttpSession(true)
+                .logoutSuccessUrl("/?logout").deleteCookies("JSESSIONID").invalidateHttpSession(true)
                 .permitAll();
 
         // CSRF is enabled by default, with Java Config
@@ -68,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/*").hasAnyRole("ROLE_ADMIN")
                 .antMatchers("/login/*").permitAll()
                 .antMatchers("/registro**").permitAll()
+                .antMatchers("/film**").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/*", "/api/*").authenticated()

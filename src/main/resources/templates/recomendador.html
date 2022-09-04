@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="#" th:href="@{/css/cards.css}"/>
+    <link rel="stylesheet" href="#" th:href="@{/css/recomendador.css}"/>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript" th:src="@{/js/slider1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/slider2.js}"></script>
+
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Recomendador</h1>
+</div>
+
+<br>
+<div layout:fragment="content">
+<div class="row" style="margin-left: 30px; margin-top:10px; margin-right: 30px; border:2px solid black; background-color: #f5f5f5;">
+    <div class="col-md-3" style="border:2px solid black">
+        <div class="form">
+            <form action="#" th:action="recomendador" method="post">
+
+                <div style="border-bottom:1px solid black">
+                    <label class="col-4 col-form-label" style="margin-left: 30px; margin-top: 10px">Género: </label>
+                    <div class="radio-buttons" style="margin-left: 40px">
+                        <div th:each="genre: ${listGenres}">
+                            <input id="colorcheck" type="radio" th:text="${genre.title}"  th:value="${genre.title}" name="keygenre"  class="m-2"/>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <br>
+
+                <div style="border-bottom:1px solid black">
+                    <label class="col-4 col-form-label" style="margin-left: 30px">Minutos de Duración: </label>
+                    <br>
+                    <br>
+                    <div class="col-4" style="margin-left: 65px">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div id="slider-range"></div>
+                            </div>
+                        </div>
+                        <div class="row slider-labels">
+                            <div class="col-xs-6 caption" style="margin-left:-10px">
+                                <strong>Min:</strong> <span id="slider-range-value1" ></span>
+                            </div>
+                            <div class="col-xs-3 text-right caption" style="margin-left:20px">
+                                <strong>Max:</strong> <span id="slider-range-value2"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <input id="minvalue" type="hidden" name="minvalue" value="">
+                                <input id="maxvalue" type="hidden" name="maxvalue" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <br>
+
+                <div style="border-bottom:1px solid black">
+                    <label class="col-4 col-form-label" style="margin-left: 30px">Año: </label>
+                    <br>
+                    <br>
+                    <div class="col-4" style="margin-left: 65px">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div id="slider-range2"></div>
+                            </div>
+                        </div>
+                        <div class="row slider-labels">
+                            <div class="col-xs-6 caption" style="margin-left:-10px">
+                                <strong>Min:</strong> <span id="slider-range-value12"></span>
+                            </div>
+                            <div class="col-xs-3 text-right caption" style="margin-left:25px">
+                                <strong>Max:</strong> <span id="slider-range-value22"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <input id="minyear" type="hidden" name="minyear" value="">
+                                <input id="maxyear" type="hidden" name="maxyear" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <br>
+
+                <div style="border-bottom:1px solid black">
+                    <label class="col-4 col-form-label" style="margin-left: 30px">Plataforma: </label>
+                    <br>
+                    <br>
+                    <div class="boxed" style="margin-left: 70px">
+                        <input type="radio" id="netflix" name="platformid" value="1">
+                        <label for="netflix">
+                            <img th:src="@{/img/netflix.png}" height="50px" width="50px">
+                        </label>
+
+                        <input type="radio" id="hbo" name="platformid" value="2">
+                        <label for="hbo">
+                            <img th:src="@{/img/hbo.png}" height="50px" width="50px">
+                        </label>
+
+                        <input type="radio" id="prime" name="platformid" value="3">
+                        <label for="prime">
+                            <img th:src="@{/img/prime.png}" height="50px" width="50px">
+                        </label>
+
+                        <input type="radio" id="disney" name="platformid" value="4">
+                        <label for="disney">
+                            <img th:src="@{/img/disney.png}" height="50px" width="50px">
+                        </label>
+                    </div>
+                    <br>
+                </div>
+
+                <br>
+
+                <div style="border-bottom:1px solid black">
+                    <label class="col-4 col-form-label" style="margin-left: 30px">Puntuación mínima: </label>
+                    <br>
+                    <br>
+                    <div class="rate" style="margin-left: 100px">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                        <input checked class="rating__input--none" type="radio" id="star0" name="rate" value="0"/>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+                <br>
+
+                <button type="submit" class="custom-btn" style="margin-left: 110px; margin-bottom: 15px; margin-top: 2px">Recomendar </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="container">
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                Seleccione el género y la plataforma para poder realizar la recomendación.
+            </div>
+            <div class="card-deck" style="margin-left:300px; margin-top:-100px">
+                <div class="col-md-5 my-5" style="display: grid" th:each="film : ${films}"
+                     th:object="${film}">
+                    <a th:href="@{/film/{id}(id=*{id})}" class="card shadow-lg"
+                       style="text-decoration: none;"> <img
+                            th:src="*{image}" width="250"
+                            height="300"
+                            th:alt="*{name}" class="card-img-top">
+                        <div class="card-body">
+                            <h2 class="card-title fs-5" th:text="*{name}" ></h2>
+                            <p th:text="*{year}"
+                               class="text-muted small"></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div th:unless="${error}">
+                <div th:unless="${noCargues}">
+                    <div th:if="${#lists.isEmpty(films)}">
+                        <label class="alert alert-danger" style="margin-top: 200px; margin-left: 350px">No se han encontrado películas que cumplan los requisitos. Por favor, inténtelo de nuevo.</label>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${#lists.isEmpty(films)}">
+                <div th:if="${boton2}" style="margin-top: 10px; margin-left: 530px">
+                    <form action="#" th:action="recomendador" method="post">
+                        <input hidden name="keygenre" th:value="${keygenre}">
+                        <input hidden name="minvalue" th:value="${minvalue}">
+                        <input hidden name="maxvalue" th:value="${maxvalue}">
+                        <input hidden name="minyear" th:value="${minyear}">
+                        <input hidden name="maxyear" th:value="${maxyear}">
+                        <input hidden name="platformid" th:value="${platformid}">
+                        <input hidden name="rate" th:value="${rate}">
+                        <button type="submit" class="custom-btn">Mostrar más </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" th:src="@{/js/slider1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/slider2.js}"></script>
+
+</html>
