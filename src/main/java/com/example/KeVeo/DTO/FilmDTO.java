@@ -21,8 +21,6 @@ public class FilmDTO implements Serializable {
     private Integer duration;
     private Integer year;
     private String description;
-    private String cast;
-   private boolean active;
     private String trailer;
     private String image;
     private Set<GenreEntity> genres;

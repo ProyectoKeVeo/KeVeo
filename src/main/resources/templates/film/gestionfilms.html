@@ -24,8 +24,6 @@
 <br>
 <br>
 <div layout:fragment="content">
-    <a class="btn btn-success"  th:href="@{/film/create}">
-        <span class="glyphicon glyphicon-cd"></span><a/>
 
 <div class="container">
     <br>
@@ -37,7 +35,9 @@
             <th>Año</th>
             <th>Duración</th>
             <th>Géneros</th>
-            <th></th>
+            <th>
+                <a class="btn btn-success"  th:href="@{/film/create}">Crear Pelicula<a/>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +52,6 @@
                    title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
                 <a href="#" class="btn btn-default" th:href="@{'/film/' + ${item.id} + '/edit'}"
                    title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-
                 <a><form th:action="@{'/film/' + ${item.id} + '/delete'}" th:object="${emp2}" method="post">
                     <button class="btn btn-danger" type="submit" value="Delete">
                         <span class="glyphicon glyphicon-trash"></span>

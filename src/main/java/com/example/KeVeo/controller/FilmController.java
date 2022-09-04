@@ -38,16 +38,11 @@ public class FilmController extends AbstractController<FilmDTO>{
     private GenreService genreService;
     @Autowired
     private UserService userService;
-
-    private FilmService filmService;
-    private GenreService genreService;
-    private FilmMapper filmMapper;
     @Autowired
-    protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService,FilmMapper filmMapper) {
+    protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService) {
         super(menuService);
         this.filmService=filmService;
         this.genreService=genreService;
-        this.filmMapper=filmMapper;
     }
 
     @GetMapping("/film")
@@ -70,7 +65,7 @@ public class FilmController extends AbstractController<FilmDTO>{
         Page<FilmDTO> all = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
                 size.orElse(9)));
         model
-				.addAttribute("rating", punctuationDTO)
+//				.addAttribute("rating", punctuationDTO)
                 .addAttribute("films", all)
                 .addAttribute("pageNumbers", getPageNumbers(all));
         return "film/gestionfilms";
@@ -87,7 +82,7 @@ public class FilmController extends AbstractController<FilmDTO>{
     public String detail(@PathVariable("id") Integer id, ModelMap model) {
         PunctuationEntity punctuationEntity= new PunctuationEntity();
         model.addAttribute("film", this.filmService.findById(id).get());
-        model.addAttribute("rating",this.punctuationService.findById(id).get());
+//        model.addAttribute("rating",this.punctuationService.findById(id).get());
 //        model.addAttribute("media", this.filmService.puntuacionMedia(punctuationEntity, id));
         return "film/detail";
     }
@@ -101,7 +96,7 @@ public class FilmController extends AbstractController<FilmDTO>{
         PunctuationDTO punctuationDTO = new PunctuationDTO();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("listGenres", listGenres);
-        model.addAttribute("rating",this.punctuationService.PunctuationByFilmIdUserId(id, principal.getId()));
+//        model.addAttribute("rating",this.punctuationService.PunctuationByFilmIdUserId(id, principal.getId()));
 //        PunctuationEntity starsUpdate = punctuationService.getRepository().getOne(id);
 //        starsUpdate.setStars(punctuationDTO.getStars());
 //        punctuationService.getRepository().save(starsUpdate);
@@ -116,7 +111,7 @@ public class FilmController extends AbstractController<FilmDTO>{
         List<GenreEntity> listGenres = genreService.listGenres();
         model.addAttribute("film", filmDTO);
         model.addAttribute("listGenres", listGenres);
-        model.addAttribute("rating",punctuationDTO);
+//        model.addAttribute("rating",punctuationDTO);
 
         return "film/edit";
     }
@@ -183,7 +178,7 @@ public class FilmController extends AbstractController<FilmDTO>{
         User user = userRepository.findById(userId).get();
         CommentDTO commentDTO=new CommentDTO();*/
         FilmDTO filmDTO = filmService.findById(id).get();
-        FilmEntity film= filmMapper.toEntity(filmDTO);
+        FilmEntity film= filmService.getServiceMapper().toEntity(filmDTO);
         //List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
                 .addAttribute("film", film);

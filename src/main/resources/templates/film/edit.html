@@ -8,7 +8,14 @@
 <!--    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">-->
     <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
     <link rel="stylesheet" type="text/css" href="./css/footerstyle.css" th:href="@{/css/footerstyle.css}">
-
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 </head>
 <body>
 <div layout:fragment="breadcrumb" style="color:black">
@@ -79,11 +86,11 @@
                                                            th:text="${genre.title}" th:value="${genre.id}"
                                                            class="m-2"/>
                                                 </th:block>
-                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">
-                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"
-                                                           th:value="*{stars}"/>
-                                                    <th:block/>
-                                                </th:block>
+<!--                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">-->
+<!--                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"-->
+<!--                                                           th:value="*{stars}"/>-->
+<!--                                                    <th:block/>-->
+<!--                                                </th:block>-->
                                                 <div/>
                                             </div>
                                         </div>
@@ -102,7 +109,7 @@
                         <span aria-hidden="true"></span>
                     </a>
                     <button type="submit" class="box-title btn btn-primary"
-                            title="Save Data" th:text="Guardar">
+                            onclick="alert('Cambios guardados')" title="Save Data" th:text="Guardar">
                     </button>
                     <br>
                     <br>

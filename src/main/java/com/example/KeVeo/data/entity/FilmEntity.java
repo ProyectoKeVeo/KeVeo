@@ -31,8 +31,7 @@ public class FilmEntity {
 
     @Column(nullable = false)
     private String name;
-    @Lob
-    private String cast;
+
     @Column(nullable = false)
     private Integer duration;
 

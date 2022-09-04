@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:sd="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="utf-8">
-    <title>KeVeo/GestiónUsuarios</title>
+    <title>GestiónUser</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,29 +18,12 @@
           crossorigin="anonymous">
 </head>
 <body>
+<div layout:fragment="breadcrumb" style="color:black">
+</div>
+<br>
+<br>
+<div layout:fragment="content">
 
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/}">Bienvenido a KeVeo</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
-                    sesión</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <br>
 <br>
@@ -48,9 +32,6 @@
     <span sd:page-size-selector="javascript"></span>
     <form action="#" class="form" th:action="@{'/'}" method="post">
     <br>
-    <h1>
-        GESTIÓN DE USUARIOS
-    </h1>
 
     <br>
 
@@ -109,7 +90,7 @@
         </nav>
     </div>
 </div>
-<!--"@{'/gestionUser/delete/' + ${user.id}}"-->
+
 
 
 
