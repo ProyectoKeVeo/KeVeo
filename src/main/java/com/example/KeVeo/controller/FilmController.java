@@ -2,6 +2,7 @@ package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
 import com.example.KeVeo.DTO.PunctuationDTO;
+import com.example.KeVeo.DTO.UrlDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.data.entity.PunctuationEntity;
@@ -39,6 +40,8 @@ public class FilmController extends AbstractController<FilmDTO>{
     @Autowired
     private UserService userService;
     @Autowired
+    private UrlService urlService;
+    @Autowired
     protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService) {
         super(menuService);
         this.filmService=filmService;
@@ -47,11 +50,14 @@ public class FilmController extends AbstractController<FilmDTO>{
 
     @GetMapping("/film")
     public String listAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
-                          Model model) {
+                          Model model, @Param("keyWord") String keyWord) {
         //final UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Page<FilmDTO> listFilms = this.filmService.findAll(PageRequest.of(page.orElse(1) - 1,
+        List<GenreEntity> listGenres = genreService.listGenres();
+        Page<FilmDTO> listFilms = this.filmService.findAll(keyWord, PageRequest.of(page.orElse(1) - 1,
                 size.orElse(12)));
         model
+                .addAttribute("keyWord", keyWord)
+                .addAttribute("listGenres", listGenres)
                 .addAttribute("listFilms", listFilms)
                 .addAttribute("pageNumbers", getPageNumbers(listFilms));
         return "film/list";
@@ -179,8 +185,10 @@ public class FilmController extends AbstractController<FilmDTO>{
         CommentDTO commentDTO=new CommentDTO();*/
         FilmDTO filmDTO = filmService.findById(id).get();
         FilmEntity film= filmService.getServiceMapper().toEntity(filmDTO);
+        List<UrlDTO> urls = urlService.findByFilmId(id);
         //List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
+                .addAttribute("urls", urls)
                 .addAttribute("film", film);
                 //.addAttribute("listComments",listComments)
                 //.addAttribute("user",user)

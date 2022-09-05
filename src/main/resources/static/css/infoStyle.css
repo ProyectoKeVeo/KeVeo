@@ -316,3 +316,11 @@ color:rgb(233, 179, 17);
 .star-favorite .glyphicon{
 font-size: 50px;
 }
+
+.boxed {
+  display: inline-block;
+  width: 40px;
+  padding: 0px;
+  transition: all 0.3s;
+  vertical-align: top;
+}

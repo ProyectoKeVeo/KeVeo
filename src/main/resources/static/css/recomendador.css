@@ -16,7 +16,7 @@
 }
 
 #colorcheck{
-  accent-color: #e74c3c;
+  accent-color: #060449;
 }
 
 .custom-btn {
@@ -26,16 +26,16 @@
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: #ff6188;
+  background-color: #494b98;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
 
-.custom-btn:hover {background-color: #ed1111}
+.custom-btn:hover {background-color: #060449}
 
 .custom-btn:active {
-  background-color: #ed1111;
+  background-color: #060449;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -169,17 +169,17 @@
   border-radius: 50%;
   left: -7px;
   top: -7px;
-  background-color: #f7001d;
+  background-color: #060449;
 }
 
 /* Styling;
  */
 .noUi-background {
-  background: #D6D7D9;
+  background: white;
 }
 
 .noUi-connect {
-  background: #f7001d;
+  background: #060449;
   -webkit-transition: background 450ms;
   transition: background 450ms;
 }

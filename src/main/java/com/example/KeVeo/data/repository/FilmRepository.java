@@ -12,7 +12,13 @@ import java.util.Optional;
 
 @Repository
 public interface FilmRepository extends JpaRepository<FilmEntity, Integer> {
-    Page<FilmEntity>findAll(Pageable pageable);
+    @Query("SELECT distinct f FROM FilmEntity f " +
+            "JOIN f.genres g " +
+            "JOIN f.url u  " +
+            "JOIN u.platform p  " +
+            "WHERE CONCAT(f.name, g.title, f.cast, p.name) " +
+            "LIKE %?1% ORDER BY f.id ")
+    Page<FilmEntity>findAll(String keyWord, Pageable pageable);
     Optional<FilmEntity> findById(Integer id);
     FilmEntity findByName(String name);
 

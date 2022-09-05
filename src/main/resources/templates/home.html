@@ -6,6 +6,16 @@
     <title>Home</title>
 </head>
 <body>
+<div layout:fragment="buscador">
+    <div class="row" align="center">
+        <form class="form-wrapper cf" action="#" th:action="film" method="get">
+            <input type="text" name="keyWord" placeholder="Buscar película..."/>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+
 <div layout:fragment="breadcrumb">
 
     <h1></h1>
