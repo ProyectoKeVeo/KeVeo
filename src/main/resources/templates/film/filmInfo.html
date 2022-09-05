@@ -57,10 +57,9 @@
                     <div class="header-section">
                         <h2 th:text="${film.name}"></h2>
                         <p>
-                            <span>generos/</span>
-<!--                        <span th:each="genre: ${film.genres}">-->
-<!--                            <i th:text="${genre.name} + ' / '"></i>-->
-<!--                        </span>--><i th:text="${film.year} + ' / ' + ${film.duration} + 'min'"></i>
+                        <span th:each="genre: ${film.genres}">
+                            <i th:text="${genre.title} + ' / '"></i>
+                      </span><i th:text="${film.year} + ' / ' + ${film.duration} + 'min'"></i>
                         </p>
 
                         <div class="extra">
