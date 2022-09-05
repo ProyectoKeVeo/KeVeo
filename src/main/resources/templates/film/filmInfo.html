@@ -73,7 +73,32 @@
 
                     <div>
                         <h3>PLATAFORMAS</h3>
-                        <a><spa>Plataformas</spa></a>
+
+                            <div class="boxed" th:each="url1: ${urls}">
+                                <th:block th:switch="${url1.platformId}">
+                                    <div th:case="1">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/netflix.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="2">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/hbo.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="3">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/prime.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="4">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/disney.png}"></label></a>
+                                    </div>
+                                </th:block>
+
+                            </div>
+
 <!--                        <a th:each="num: ${film.platforms}">-->
 
 <!--                            <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">-->

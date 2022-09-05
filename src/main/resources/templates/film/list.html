@@ -10,6 +10,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" href="static/css/coverStyle.css" th:href="@{/css/coverStyle.css}">
 </head>
 <body>
 
@@ -90,14 +91,35 @@
 
                     </div>
 
-                    <div class="text" >
+                    <div class="text">Plataformas disponibles: </div>
+                    &nbsp;&nbsp;
+                    <a th:each="url1 : ${film.url}">
+<!--                        <div th:if="${url1.active == 1}">-->
+                            <a class="boxed" th:each="platform : ${url1.platform}">
+                                <th:block th:switch="${platform.id}">
+                                    <a th:case="1">
+                                        <a th:href="${url1.url}">
+                                            <span><img class="platform" th:src="@{/img/netflix.png}"></span></a>
+                                    </a>
 
-                        Plataformas disponibles:
+                                    <a th:case="2">
+                                        <a th:href="${url1.url}">
+                                            <span><img class="platform" th:src="@{/img/hbo.png}"></span></a>
+                                    </a>
 
+                                    <a th:case="3">
+                                        <a th:href="${url1.url}">
+                                            <span><img class="platform" th:src="@{/img/prime.png}"></span></a>
+                                    </a>
 
-
-
-                    </div>
+                                    <a th:case="4">
+                                        <a th:href="${url1.url}">
+                                            <span><img class="platform" th:src="@{/img/disney.png}"></span></a>
+                                    </a>
+                                </th:block>
+                            </a>
+<!--                        </div>-->
+                    </a>
                 </div>
             </div>
         </div>

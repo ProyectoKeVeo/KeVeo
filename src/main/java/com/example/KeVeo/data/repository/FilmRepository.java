@@ -17,7 +17,7 @@ public interface FilmRepository extends JpaRepository<FilmEntity, Integer> {
             "JOIN f.url u  " +
             "JOIN u.platform p  " +
             "WHERE CONCAT(f.name, g.title, f.cast, p.name) " +
-            "LIKE %?1% ")
+            "LIKE %?1% ORDER BY f.id ")
     Page<FilmEntity>findAll(String keyWord, Pageable pageable);
     Optional<FilmEntity> findById(Integer id);
     FilmEntity findByName(String name);

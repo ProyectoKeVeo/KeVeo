@@ -2,6 +2,7 @@ package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.FilmDTO;
 import com.example.KeVeo.DTO.PunctuationDTO;
+import com.example.KeVeo.DTO.UrlDTO;
 import com.example.KeVeo.data.entity.FilmEntity;
 import com.example.KeVeo.data.entity.GenreEntity;
 import com.example.KeVeo.data.entity.PunctuationEntity;
@@ -38,6 +39,8 @@ public class FilmController extends AbstractController<FilmDTO>{
     private GenreService genreService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UrlService urlService;
     @Autowired
     protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService) {
         super(menuService);
@@ -182,8 +185,10 @@ public class FilmController extends AbstractController<FilmDTO>{
         CommentDTO commentDTO=new CommentDTO();*/
         FilmDTO filmDTO = filmService.findById(id).get();
         FilmEntity film= filmService.getServiceMapper().toEntity(filmDTO);
+        List<UrlDTO> urls = urlService.findByFilmId(id);
         //List<CommentDTO> listComments= commentService.findByFilmId(id);
         model
+                .addAttribute("urls", urls)
                 .addAttribute("film", film);
                 //.addAttribute("listComments",listComments)
                 //.addAttribute("user",user)
