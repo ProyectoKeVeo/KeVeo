@@ -84,4 +84,10 @@ public class FilmService extends AbstractBusinessService<FilmEntity, Integer, Fi
         return random;
     }
 
+
+    public Page<FilmDTO> findAllFavourite(Pageable pageable, Integer id) {
+
+        return this.getRepository().findAllFavourite(pageable,id).map(getServiceMapper()::toDto);
+    }
+
 }
