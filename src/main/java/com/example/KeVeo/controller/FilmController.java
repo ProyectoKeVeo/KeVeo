@@ -48,10 +48,13 @@ public class FilmController extends AbstractController<FilmDTO>{
     @Autowired
     private CommentService commentService;
     @Autowired
-    protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService) {
+    private FilmMapper filmMapper;
+    @Autowired
+    protected FilmController(MenuService menuService,FilmService filmService,GenreService genreService,FilmMapper filmMapper) {
         super(menuService);
         this.filmService=filmService;
         this.genreService=genreService;
+        this.filmMapper=filmMapper;
     }
 
     @GetMapping("/film")
@@ -214,6 +217,33 @@ public class FilmController extends AbstractController<FilmDTO>{
         status.setComplete();
         return "redirect:/film/filmInfo/{idFilm}";
     }
+
+    @PostMapping({ "/favourite/agree/{id}" })
+    public Object favourite(@PathVariable(value = "id") Integer id) {
+        Integer userId ;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            userId=3;
+        }else userId=((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        UserEntity user = userRepository.findById(userId).get();
+        user.addFavourite(filmMapper.toEntity(filmService.findById(id).get()));
+        userRepository.save(user);
+
+
+        return "redirect:/film/filmInfo/{id}?successful";
+    }
+
+    @PostMapping({ "/favourite/remove/{id}" })
+    public Object quitFavourite(@PathVariable(value = "id") Integer id) {
+        Integer userId ;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            userId=3;
+        }else userId=((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        UserEntity user = userRepository.findById(userId).get();
+        userRepository.deleteFavourite(id,user.getId());
+
+        return "redirect:/film/filmInfo/{id}?remove";
+    }
+
     @PostMapping("/filmInfo/save/{id}")
     public String saveComment(CommentDTO commentDTO,@PathVariable("id") Integer id) {
 

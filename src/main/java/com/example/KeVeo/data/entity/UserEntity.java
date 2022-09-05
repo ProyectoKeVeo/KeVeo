@@ -66,6 +66,11 @@ public class UserEntity {
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<NotificationEntity> notification;
 
+    @ManyToMany(cascade = CascadeType.ALL)     //Un poco de dudas con lazy y cascade
+    @JoinTable(name = "users_films", joinColumns = @JoinColumn(name = "Users_ID"),
+            inverseJoinColumns = @JoinColumn(name = "Films_ID"))
+    private List<FilmEntity> films;
+
     public void addRole (RoleEntity role){
         this.roles = new ArrayList<>();
         this.roles.add(role);
@@ -76,5 +81,18 @@ public class UserEntity {
         return "UserEntity{" +
                 "id=" + id +
                 '}';
+    }
+    public void addFavourite(FilmEntity film) {
+        this.films.add(film);
+    }
+    public boolean favourite(Integer id){
+        boolean prueba=false;
+        for(FilmEntity film:this.films){
+
+            if(id==film.getId()){
+                prueba=true;
+            }
+        }
+        return prueba;
     }
 }

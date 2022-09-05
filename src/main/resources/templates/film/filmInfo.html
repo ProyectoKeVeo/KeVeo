@@ -8,28 +8,30 @@
     <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">
     <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
     <link rel="stylesheet" type="text/css" href="./css/footerstyle.css" th:href="@{/css/footerstyle.css}">
-<!--    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>-->
-<!--    <script type="text/javascript">-->
-<!--$(document).ready(function() {-->
-<!--    setTimeout(function() {-->
-<!--        $(".alert").fadeOut(1500);-->
-<!--    },500);-->
-<!--});-->
-<!--</script>-->
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".alert").fadeOut(1500);
+        },500);
+    });
+    </script>
 </head>
 <body>
 
 <div layout:fragment="content">
 
     <main>
-<!--        <div th:if="${param.successful}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">-->
-<!--            Se ha añadido a tus favoritos.-->
-<!--        </div>-->
-<!--        <div th:if="${param.remove}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">-->
-<!--            Se ha eliminado de tus favoritos.-->
-<!--        </div>-->
         <br>
         <br>
+        <div th:if="${param.successful}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha añadido a tus favoritos.
+        </div>
+        <div th:if="${param.remove}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha eliminado de tus favoritos.
+        </div>
+
+
         <br>
         <form th:action="@{'/'}" th:object="${film}" method="post">
             <!-- <div class="container"> -->
@@ -40,17 +42,17 @@
 
                     </div>
                 </div>
-<!--                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">-->
+                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
 
-<!--                </form>-->
-<!--                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">-->
-<!--                    <div>-->
-<!--                        <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"  class="star-favorite"  th:formaction="'/favourite/remove/' + ${film.id}">-->
-<!--                            <span class="glyphicon glyphicon-star"></span></button>-->
-<!--                        <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite" class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">-->
-<!--                            <span class="glyphicon glyphicon-star-empty"></span></button>-->
-<!--                    </div>-->
-<!--                </form>-->
+                </form>
+                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+                    <div>
+                        <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"  class="star-favorite"  th:formaction="'/favourite/remove/' + ${film.id}">
+                            <span class="glyphicon glyphicon-star"></span></button>
+                        <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite" class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">
+                            <span class="glyphicon glyphicon-star-empty"></span></button>
+                    </div>
+                </form>
                 <div class="movie-info">
                     <div class="header-section">
                         <h2 th:text="${film.name}"></h2>
