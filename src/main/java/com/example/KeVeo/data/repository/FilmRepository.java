@@ -39,4 +39,9 @@ public interface FilmRepository extends JpaRepository<FilmEntity, Integer> {
     @Transactional
     @Query(value="SELECT f.* FROM films AS f INNER JOIN users_films AS uf ON f.id = uf.films_id INNER JOIN users AS u ON uf.users_id = u.id WHERE u.id LIKE %?1%", nativeQuery = true)
     Page<FilmEntity> findAllFavourite(Pageable pageable,Integer id);
+
+    @Query("SELECT f FROM FilmEntity f ORDER BY f.year DESC")
+    List<FilmEntity> findByYear();
+    @Query("SELECT f FROM FilmEntity f ORDER BY f.id DESC")
+    List<FilmEntity> findByIdDesc();
 }

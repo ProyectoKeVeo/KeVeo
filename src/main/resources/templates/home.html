@@ -4,6 +4,7 @@
         layout:decorate="~{layout}">
 <head>
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="static/css/homeStyle.css" th:href="@{/css/homeStyle.css}">
 </head>
 <body>
 <div layout:fragment="buscador">
@@ -37,55 +38,118 @@
         </div>
     </div>
 </main>
+    <section>
+        <h2>Nuevos Estrenos</h2>
+        <div class="section">
+            <div class="recents-movies">
+                <div class="recents-movie-container">
+                    <div class="carousel-wrap">
+                        <div class="owl-carousel">
+                            <div class="item"  th:if="${iterator.count lt 6}" th:each="film, iterator : ${listFilmsYear}">
+                                <div  class="film" >
+                                    <img th:src="${film.image}" alt="">
+                                    <div class="desc">
+                                        <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                            <button>INFO</button>
+                                        </a>
+                                        <hr>
+                                        <div class="text" th:text="${film.name}">
+                                        </div>
+                                        <div class="text">
+
+                                            Plataformas disponibles:
+                                            <p> </p>
+
+                                            <!--                                            <a th:each="num: ${film.platforms}">-->
+
+                                            <!--                                                <a th:if="${num.toString() == 'Netflix'}"-->
+                                            <!--                                                   href="https://www.netflix.com/es/browse/genre/839338"-->
+                                            <!--                                                   target="_blank">-->
+                                            <!--                                                    <span><img src="./img/platform/netflix.png"></span></a>-->
+
+                                            <!--                                                <a th:if="${num.toString() == 'HBO Max'}"-->
+                                            <!--                                                   href="https://www.hbomax.com/" target="_blank">-->
+                                            <!--                                                    <span><img src="./img/platform/hbo.png"></span></a>-->
+
+                                            <!--                                                <a th:if="${num.toString() == 'Prime Video'}"-->
+                                            <!--                                                   href="https://www.primevideo.com/" target="_blank">-->
+                                            <!--                                                    <span><img src="./img/platform/prime.png"></span></a>-->
+
+                                            <!--                                                <a th:if="${num.toString() == 'Disney+'}"-->
+                                            <!--                                                   href="https://www.disneyplus.com/" target="_blank">-->
+                                            <!--                                                    <span><img src="./img/platform/disney.png"></span></a>-->
+                                            <!--                                            </a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Añadidas Recientemente</h2>
+        <div class="section">
+            <div class="recents-movies">
+                <div class="recents-movie-container">
+                    <div class="carousel-wrap">
+                        <div class="owl-carousel">
+                            <div class="item"  th:if="${iterator.count lt 6}" th:each="film, iterator : ${listFilmsIdDesc}">
+                                <div  class="film" >
+                                    <img th:src="${film.image}" alt="">
+                                    <div class="desc">
+                                        <a th:href="@{'/film/filmInfo/' + ${film.id}}">
+                                            <button>INFO</button>
+                                        </a>
+                                        <hr>
+                                        <div class="text" th:text="${film.name}">
+                                        </div>
+                                        <div class="text">
+
+                                            Plataformas disponibles:
+                                            <p> </p>
+
+<!--                                            <a th:each="num: ${film.platforms}">-->
+
+<!--                                                <a th:if="${num.toString() == 'Netflix'}"-->
+<!--                                                   href="https://www.netflix.com/es/browse/genre/839338"-->
+<!--                                                   target="_blank">-->
+<!--                                                    <span><img src="./img/platform/netflix.png"></span></a>-->
+
+<!--                                                <a th:if="${num.toString() == 'HBO Max'}"-->
+<!--                                                   href="https://www.hbomax.com/" target="_blank">-->
+<!--                                                    <span><img src="./img/platform/hbo.png"></span></a>-->
+
+<!--                                                <a th:if="${num.toString() == 'Prime Video'}"-->
+<!--                                                   href="https://www.primevideo.com/" target="_blank">-->
+<!--                                                    <span><img src="./img/platform/prime.png"></span></a>-->
+
+<!--                                                <a th:if="${num.toString() == 'Disney+'}"-->
+<!--                                                   href="https://www.disneyplus.com/" target="_blank">-->
+<!--                                                    <span><img src="./img/platform/disney.png"></span></a>-->
+<!--                                            </a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
 
 <!-- Carrusel -->
-<section class="awSlider">
-    <div class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target=".carousel" data-slide-to="0" class="active"></li>
-            <li data-target=".carousel" data-slide-to="1"></li>
-            <li data-target=".carousel" data-slide-to="2"></li>
-            <li data-target=".carousel" data-slide-to="3"></li>
-        </ol>
 
-        <!-- Wrapper for slides -->
-
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="https://poptv.orange.es/wp-content/uploads/sites/3/2018/10/marvel-1100x514.jpg">
-                <div class="carousel-caption">Görsel #1</div>
-            </div>
-            <div class="item">
-                <img src="https://www.lavanguardia.com/files/article_main_microformat/uploads/2020/05/04/5fa922920d3b5.png">
-                <div class="carousel-caption">Görsel #2</div>
-            </div>
-            <div class="item">
-                <img src="https://www.moviesandactors-sf.com/wp-content/uploads/2021/11/Cuantas-peliculas-son-de-Harry-Potter.jpeg">
-                <div class="carousel-caption">Görsel #3</div>
-            </div>
-            <div class="item">
-                <img src="https://phantom-marca.unidadeditorial.es/3f8ff39deed35761874f53920ece11f3/resize/1320/f/jpg/assets/multimedia/imagenes/2022/04/01/16488201951473.jpg">
-                <div class="carousel-caption">Görsel #4</div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Geri</span>
-        </a>
-        <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">İleri</span>
-        </a>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</section>
+
 </div>
 
 </body>
