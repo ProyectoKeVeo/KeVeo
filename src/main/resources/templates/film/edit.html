@@ -79,16 +79,14 @@
                                        maxlength="255">
                                 <br>
 
-                                <div class="form-group row" style="margin-left: 1px">
-                                    <label class="col-4 col-form-label">Url: </label>
-                                    <div class="col-8">
-
-                                        <th:block th:each="item: ${urlsEdit}">
-                                            <input type="text" class="form-control" th:value="${item.url}"/>
-                                            <input type="text" class="form-control" th:value="${item.platformId}"/>
-                                        </th:block>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group row" style="margin-left: 1px">-->
+<!--                                    <label class="col-4 col-form-label">Url: </label>-->
+<!--                                    <div class="col-8">-->
+<!--                                        <div th:each="url: ${film.url}">-->
+<!--                                                <input type="text" class="form-control" th:value="${url.url}"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">Géneros: </label>
