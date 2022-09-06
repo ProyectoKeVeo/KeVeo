@@ -1,6 +1,7 @@
 package com.example.KeVeo.controller;
 
 import com.example.KeVeo.DTO.UserDTO;
+import com.example.KeVeo.service.MenuService;
 import com.example.KeVeo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +15,15 @@ import java.text.ParseException;
 
 @Controller
 @RequestMapping("/registro")
-public class RegistroUsuarioControlador {
+public class RegistroUsuarioControlador extends AbstractController{
 
     @Autowired
     private UserService userService;
 
-
-    public RegistroUsuarioControlador(UserService userService) {
-        super();
-        this.userService = userService;
+    protected RegistroUsuarioControlador(MenuService menuService) {
+        super(menuService);
     }
+
 
     @ModelAttribute("usuario")
     public UserDTO retornarNuevoUsuarioRegistroDTO() {

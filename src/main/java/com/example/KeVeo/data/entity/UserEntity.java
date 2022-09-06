@@ -37,13 +37,12 @@ public class UserEntity {
     private boolean active;
 
     @Column(name = "birth_date")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date date;
+    private String date;
 
     @Column(name = "register_date")
     private ZonedDateTime registerDate;
 
-    public UserEntity(String username, String password, String accountName, String email, boolean active, Date date, ZonedDateTime registerDate, List<RoleEntity> roleEntitiesUser) {
+    public UserEntity(String username, String password, String accountName, String email, boolean active, String date, ZonedDateTime registerDate, List<RoleEntity> roleEntitiesUser) {
         this.username = username;
         this.password = password;
         this.accountName = accountName;

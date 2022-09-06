@@ -16,6 +16,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -36,16 +37,18 @@ public class GestionUserController extends AbstractController<UserDTO>{
     private RoleRepository roleRepository;
     private UserMapper userMapper;
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
 
     @Autowired
     protected GestionUserController(MenuService menuService, UserService userService, RoleRepository roleRepository,
-                                    UserMapper userMapper, UserRepository userRepository) {
+                                    UserMapper userMapper, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         super(menuService);
         this.userService=userService;
         this.roleRepository=roleRepository;
         this.userMapper=userMapper;
         this.userRepository=userRepository;
+        this.passwordEncoder=passwordEncoder;
     }
 
 
@@ -95,9 +98,8 @@ public class GestionUserController extends AbstractController<UserDTO>{
 
     @PostMapping("/gestionUser/save")
     public String saveUser(UserDTO userDto) {
-
         UserEntity user=userMapper.toEntity(userDto);
-        userService.save(userMapper.toDto(user));
+        userService.updateUser(userMapper.toDto(user));
 
         return "redirect:/gestionUser";
     }

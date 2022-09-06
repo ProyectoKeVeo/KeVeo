@@ -39,6 +39,11 @@ public class UserService extends AbstractBusinessService<UserEntity, Integer, Us
         encodePassword(entity);
         getRepository().save(entity);
     }
+    public void updateUser(UserDTO userDTO) {
+        UserEntity entity=getServiceMapper().toEntity(userDTO);
+        encodePassword(entity);
+        getRepository().save(entity);
+    }
 
     private void encodePassword(UserEntity user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
