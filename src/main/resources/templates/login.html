@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sd="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}">
+      >
 <head>
 
   <!--JQUERY-->
@@ -37,16 +37,19 @@
         <button type="submit" class="form-control btn-primary"><i class="fas fa-sign-in-alt" name="login-submit"
                                                                   id="login-submit"></i> Ingresar
         </button>
-        <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
-
-      </form>
-      <div class="col-12 forgot">
-        <a href="#">Recordar contrasena?</a>
+        <div class="col-12 forgot">
+        <span><a th:href="@{/}">Volver a la página principal</a></span>
       </div>
+        <!-- <input type="submit" class="form-control btn btn-primary " name="login-submit" id="login-submit"value="Ingresar"/>-->
+      </form>
+<!--      <div class="col-12 forgot">-->
+<!--        <a href="#">Recordar contrasena?</a>-->
+<!--      </div>-->
       <div class="form-group">
 					<span>Si eres nuevo usuario <a th:href="@{/registro}">regístrate
 							aqui</a></span>
       </div>
+
       <div th:if="${errors}" class="alert alert-danger" role="alert">
         Invalid username and password.
       </div>

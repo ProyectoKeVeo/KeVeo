@@ -77,9 +77,9 @@
                                                th:field="${film.image}"
                                                maxlength="255">
                                         <br>
-                                        <div class="form-group row">
+                                        <div class="form-group row"style="margin-left:1px">
                                             <label class="col-4 col-form-label">Géneros: </label>
-                                            <div class="col-8">
+                                            <div class="col-8" >
 
                                                 <th:block th:each="genre: ${listGenres}">
                                                     <input type="checkbox" th:field="*{genres}"
@@ -103,7 +103,7 @@
         </div>
         <div/>
 
-                <div class="box-footer with-border">
+                <div class="box-footer with-border" style="margin-left:32px">
                     <a th:href="@{/gestionfilms}" class="btn btn-default" role="button"
                        title="Back list" th:text="Cancelar">
                         <span aria-hidden="true"></span>

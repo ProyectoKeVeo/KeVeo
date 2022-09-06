@@ -20,20 +20,17 @@
 <body>
 <div layout:fragment="breadcrumb" style="color:black">
 </div>
-<br>
-<br>
+
+
 <div layout:fragment="content">
-
-
 <br>
 <br>
 
 <div class="container">
     <span sd:page-size-selector="javascript"></span>
     <form action="#" class="form" th:action="@{'/'}" method="post">
-    <br>
 
-    <br>
+
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -75,7 +72,7 @@
     </form>
 </div>
 
-<div th:if="${not #lists.isEmpty(listUsers.content)}">
+<div th:if="${not #lists.isEmpty(listUsers.content)}" style="margin-bottom:9px">
     <div class="text-center">
         <nav>
             <ul class="pagination" sd:pagination="full">
@@ -90,6 +87,9 @@
         </nav>
     </div>
 </div>
+
+    <br th:each="user: ${listUsers}">
+
 
 
 
