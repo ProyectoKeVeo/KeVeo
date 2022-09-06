@@ -82,9 +82,9 @@
 <!--                                <div class="form-group row" style="margin-left: 1px">-->
 <!--                                    <label class="col-4 col-form-label">Url: </label>-->
 <!--                                    <div class="col-8">-->
-<!--                                        <div th:each="url: ${film.url}">-->
-<!--                                                <input type="text" class="form-control" th:value="${url.url}"/>-->
-<!--                                        </div>-->
+<!--                                        <a th:each="item: ${film.url}">-->
+<!--                                                <input type="text" class="form-control" th:name="${item.url}" th:value="${item.url}"/>-->
+<!--                                        </a>-->
 <!--                                    </div>-->
 <!--                                </div>-->
 
