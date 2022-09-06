@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
+    <title>KeVeo</title>
     <meta charset="UTF-8">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
@@ -40,7 +41,7 @@
         <div class="form">
             <form action="#" th:action="recomendador" method="post">
 
-                <div style="border-bottom:1px solid black">
+                <div style="border-bottom:1px solid #060449">
                     <label class="col-4 col-form-label" style="margin-left: 30px; margin-top: 10px">Género: </label>
                     <div class="radio-buttons" style="margin-left: 40px">
                         <div th:each="genre: ${listGenres}">
@@ -52,7 +53,7 @@
 
                 <br>
 
-                <div style="border-bottom:1px solid black">
+                <div style="border-bottom:1px solid #060449">
                     <label class="col-4 col-form-label" style="margin-left: 30px">Minutos de Duración: </label>
                     <br>
                     <br>
@@ -82,7 +83,7 @@
 
                 <br>
 
-                <div style="border-bottom:1px solid black">
+                <div style="border-bottom:1px solid #060449">
                     <label class="col-4 col-form-label" style="margin-left: 30px">Años: </label>
                     <br>
                     <br>
@@ -112,7 +113,7 @@
 
                 <br>
 
-                <div style="border-bottom:1px solid black">
+                <div style="border-bottom:1px solid #060449">
                     <label class="col-4 col-form-label" style="margin-left: 30px">Plataforma: </label>
                     <br>
                     <br>
@@ -142,7 +143,7 @@
 
                 <br>
 
-                <div style="border-bottom:1px solid black">
+                <div style="border-bottom:1px solid #060449">
                     <label class="col-4 col-form-label" style="margin-left: 30px">Puntuación mínima: </label>
                     <br>
                     <br>
@@ -188,11 +189,35 @@
 
                                 </div>
 
-                                <div class="text" >
+                                <div class="text">Plataformas disponibles: </div>
+                                &nbsp;&nbsp;
+                                <a th:each="url1 : ${film.url}">
+                                    <a th:if="${url1.active == true}">
+                                        <a class="boxed" th:each="platform : ${url1.platform}">
+                                            <th:block th:switch="${platform.id}">
+                                                <a th:case="1">
+                                                    <a th:href="${url1.url}">
+                                                        <span><img class="platform" th:src="@{/img/netflix.png}"></span></a>
+                                                </a>
 
-                                    Plataformas disponibles:
+                                                <a th:case="2">
+                                                    <a th:href="${url1.url}">
+                                                        <span><img class="platform" th:src="@{/img/hbo.png}"></span></a>
+                                                </a>
 
-                                </div>
+                                                <a th:case="3">
+                                                    <a th:href="${url1.url}">
+                                                        <span><img class="platform" th:src="@{/img/prime.png}"></span></a>
+                                                </a>
+
+                                                <a th:case="4">
+                                                    <a th:href="${url1.url}">
+                                                        <span><img class="platform" th:src="@{/img/disney.png}"></span></a>
+                                                </a>
+                                            </th:block>
+                                        </a>
+                                    </a>
+                                </a>
                             </div>
                         </div>
                     </div>

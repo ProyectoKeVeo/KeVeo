@@ -4,6 +4,7 @@
       xmlns:sd="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
+    <title>KeVeo</title>
     <meta charset="utf-8">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -63,15 +64,15 @@
 
                     <a class="dropdown-item">
                               <img src="./img/hbo.png" width="32" height="26">
-                              <a class="btngroup--a" th:href="@{/film(keyWord='HBO')}">HBO Max</a></a>
+                              <a class="btngroup--a" th:href="@{/film(keyWord='HBO MAX')}">HBO MAX</a></a>
 
                     <a class="dropdown-item">
                               <img src="./img/prime.png" width="32" height="26">
-                              <a class="btngroup--a" th:href="@{/film(keyWord='Prime')}">Prime Video</a></a>
+                              <a class="btngroup--a" th:href="@{/film(keyWord='Prime Video')}">Prime Video</a></a>
 
                     <a class="dropdown-item">
                               <img src="./img/disney.png" width="32" height="26">
-                              <a class="btngroup--a" th:href="@{/film(keyWord='Disney')}">Disney+</a></a>
+                              <a class="btngroup--a" th:href="@{/film(keyWord='Disney+')}">Disney+</a></a>
                 </span>
                 </div>
             </div>
@@ -94,7 +95,7 @@
                     <div class="text">Plataformas disponibles: </div>
                     &nbsp;&nbsp;
                     <a th:each="url1 : ${film.url}">
-<!--                        <div th:if="${url1.active == 1}">-->
+                        <a th:if="${url1.active == true}">
                             <a class="boxed" th:each="platform : ${url1.platform}">
                                 <th:block th:switch="${platform.id}">
                                     <a th:case="1">
@@ -118,7 +119,7 @@
                                     </a>
                                 </th:block>
                             </a>
-<!--                        </div>-->
+                        </a>
                     </a>
                 </div>
             </div>
