@@ -1,0 +1,234 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,800,800italic,700italic&subset=latin,greek,greek-ext,latin-ext);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+body {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.film {
+	position: relative;
+	z-index: 1;
+	background: #ddd;
+	width: 220px;
+	height: 320px;
+	float: left;
+	margin: 22px;
+	cursor: pointer;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	overflow: hidden;
+}
+
+.film img {
+	width: 220px;
+	height: 320px;
+}
+
+
+.film > .desc {
+    opacity: 0;
+ 	transition: all 520ms ease;
+}
+
+.film:hover > .desc {
+	position: relative;
+	z-index: 2;
+    margin-top: -280px;
+	background: rgba(0, 0, 0, 0.7);
+	width: 9cm;
+	height: 8cm;
+	opacity: 1;
+    backdrop-filter: blur(12px);
+}
+
+.film > .desc button {
+	background: rgba(67, 66, 77, 0.8);
+	transition: all 250ms ease;
+	padding: 15px 44px 15px 44px;
+	border-radius: 60px;
+	border: 0;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 21px;
+	font-weight: 300;
+	cursor: pointer;
+	margin: 22px 0 0 18px;
+	outline: none;
+  border: 2px solid transparent;
+}
+
+.film > .desc button:hover {
+	background: transparent;
+  border: 2px solid rgba(67, 66, 77, 0.9);
+}
+
+.film > .desc hr {
+	margin-top: 15px;
+	border: none;
+  height: 1px;
+  background-color: rgba(81, 68, 63, 0.5);
+}
+.film > .desc img{
+	width: 48px;
+	height: 48px;
+}
+
+.film > .desc > .text {
+	color: #fff;
+	margin: 22px 0 0 22px;
+	width: 205px;
+}
+/*Neon titulo peliculas*/
+.neonText {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #F4370E,
+    0 0 41px #F4370E,
+    0 0 46px #F4370E,
+    0 0 51px #F4370E,
+    0 0 75px #F4370E;
+}
+@import url(https://fonts.googleapis.com/css?family=Raleway:700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+/*Boton principal para desplegar*/
+.btn-gender{
+font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color:rgb(233, 179, 17) ;
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+  box-shadow:
+      0 0 2px #fff,
+      0 0 5px #fff;
+
+}
+/*Stilo desplegables*/
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.btngroup {
+  font-size: 0;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline;
+}
+.btngroup--a {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-color: #f8c407
+  background: transparent;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  outline: 0;
+
+
+}
+
+.btngroup--a:link {
+  color: #bdc3c7;
+}
+.btngroup--a:visted {
+  color: #bdc3c7;
+}
+.btngroup--a:hover {
+  background: #34495e;
+  color: #fff;
+}
+.btngroup--a:active {
+  background: #fff;
+  color: #34495e;
+}
+
+.boxed {
+   display: inline-block;
+   vertical-align: middle;
+}
+section{
+	width: 100%
+}
+.section{
+
+	width: 100%;
+    margin-left:6%;
+
+}
+section > h2{
+	border-bottom: 1px solid rgb(233, 179, 17);
+	color: #F31313;
+	line-height: 1.5em;
+	text-align: center;
+	width: 100%;
+}
+
+.recents-movies{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.recents-movie-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+
+}
+.carousel-wrap {
+/* margin: 90px auto;*/
+ padding: 0 0 0 0;
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+
+
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    .owl-carousel .item {
+      position: relative;
+      z-index: 100;
+      -webkit-backface-visibility: hidden;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+
+    }
+
+    .owl-nav > div {
+      margin-top: -26px;
+      position: absolute;
+      top: 50%;
+      color: #cdcbcd;
+    }
+
+    .owl-nav i {
+      font-size: 52px;
+    }
+    .owl-nav .owl-prev {
+      left: -22px;
+    }
+
+    .owl-nav .owl-next {
+      right: -30px;
+    }
+    .carousel-wrap {
+    /* margin: 90px auto;*/
+     padding: 0 5% 0 0;
+      width: 100%;
+      position: relative;
+      justify-content: space-between;
+
+    }
+}
