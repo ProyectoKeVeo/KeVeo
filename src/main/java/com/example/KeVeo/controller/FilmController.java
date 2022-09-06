@@ -110,9 +110,11 @@ public class FilmController extends AbstractController<FilmDTO>{
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         UserEntity principal = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<GenreEntity> listGenres = genreService.listGenres();
+        List<UrlDTO> urlsEdit = urlService.findByFilmId(id);
         PunctuationDTO punctuationDTO = new PunctuationDTO();
         model.addAttribute("film", this.filmService.findById(id).get());
         model.addAttribute("listGenres", listGenres);
+        model.addAttribute("urlsEdit", urlsEdit);
 //        model.addAttribute("rating",this.punctuationService.PunctuationByFilmIdUserId(id, principal.getId()));
 //        PunctuationEntity starsUpdate = punctuationService.getRepository().getOne(id);
 //        starsUpdate.setStars(punctuationDTO.getStars());
@@ -124,10 +126,12 @@ public class FilmController extends AbstractController<FilmDTO>{
     @PostAuthorize("hasRole('ROLE_ADMIN')")
     public String create(ModelMap model) {
         FilmDTO filmDTO = new FilmDTO();
+        UrlDTO urlDTO = new UrlDTO();
         PunctuationDTO punctuationDTO=new PunctuationDTO();
         List<GenreEntity> listGenres = genreService.listGenres();
         model.addAttribute("film", filmDTO);
         model.addAttribute("listGenres", listGenres);
+        model.addAttribute("urlsEdit", urlDTO);
 //        model.addAttribute("rating",punctuationDTO);
 
         return "film/edit";

@@ -9,10 +9,10 @@ $(document).ready(function() {
     decimals: 0,
   });
   noUiSlider.create(rangeSlider, {
-    start: [1980, 2022],
+    start: [1970, 2022],
     step: 1,
     range: {
-      'min': [1980],
+      'min': [1970],
       'max': [2022]
     },
     format: moneyFormat,

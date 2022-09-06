@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
   <meta charset="UTF-8">
-  <title>Peliculas</title>
+  <title>KeVeo</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -35,27 +35,35 @@
 
           </div>
 
-          <div class="text" >
+          <div class="text">Plataformas disponibles: </div>
+          &nbsp;&nbsp;
+          <a th:each="url1 : ${film.url}">
+            <a th:if="${url1.active == true}">
+              <a class="boxed" th:each="platform : ${url1.platform}">
+                <th:block th:switch="${platform.id}">
+                  <a th:case="1">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/netflix.png}"></span></a>
+                  </a>
 
-            Plataformas disponibles:
+                  <a th:case="2">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/hbo.png}"></span></a>
+                  </a>
 
-<!--            <a th:each="num: ${film.platforms}">-->
+                  <a th:case="3">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/prime.png}"></span></a>
+                  </a>
 
-<!--              <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">-->
-<!--                <span><img src="./img/platform/netflix.png"></span></a>-->
-
-<!--              <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">-->
-<!--                <span><img src="./img/platform/hbo.png"></span></a>-->
-
-<!--              <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">-->
-<!--                <span><img src="./img/platform/prime.png"></span></a>-->
-
-<!--              <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">-->
-<!--                <span><img src="./img/platform/disney.png"></span></a>-->
-<!--            </a>-->
-            <a><span>Plataformas</span></a>
-
-
+                  <a th:case="4">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/disney.png}"></span></a>
+                  </a>
+                </th:block>
+              </a>
+            </a>
+          </a>
           </div>
         </div>
       </div>
