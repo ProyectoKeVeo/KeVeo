@@ -178,7 +178,7 @@
                 Seleccione el género y la plataforma para poder realizar la recomendación.
             </div>
             <div class="row">
-                <div class="card-deck" style="margin-left:300px; margin-top:-100px">
+                <div class="card-deck" style="margin-left:400px; margin-top:-100px">
                     <div th:each="film: ${films}">
                         <div class="film">
                             <img th:src="${film.image}" alt="">
@@ -196,22 +196,27 @@
                                         <a class="boxed" th:each="platform : ${url1.platform}">
                                             <th:block th:switch="${platform.id}">
                                                 <a th:case="1">
-                                                    <a th:href="${url1.url}">
+                                                    <a target="_blank"
+                                                       th:href="${url1.url}">
                                                         <span><img class="platform" th:src="@{/img/netflix.png}"></span></a>
                                                 </a>
 
                                                 <a th:case="2">
-                                                    <a th:href="${url1.url}">
+                                                    <a target="_blank"
+                                                       th:href="${url1.url}">
                                                         <span><img class="platform" th:src="@{/img/hbo.png}"></span></a>
                                                 </a>
 
                                                 <a th:case="3">
-                                                    <a th:href="${url1.url}">
+                                                    <a target="_blank"
+                                                       th:href="${url1.url}">
                                                         <span><img class="platform" th:src="@{/img/prime.png}"></span></a>
                                                 </a>
 
                                                 <a th:case="4">
-                                                    <a th:href="${url1.url}">
+                                                    <a target="_blank"
+
+                                                       th:href="${url1.url}">
                                                         <span><img class="platform" th:src="@{/img/disney.png}"></span></a>
                                                 </a>
                                             </th:block>
@@ -234,7 +239,7 @@
 
             <div class="row">
                 <div th:unless="${#lists.isEmpty(films)}">
-                    <div th:if="${boton2}" style="margin-top: 20px; margin-left: 470px">
+                    <div th:if="${boton2}" style="margin-top: 50px; margin-left: 570px;">
                         <form action="#" th:action="recomendador" method="post">
                             <input hidden name="keygenre" th:value="${keygenre}">
                             <input hidden name="minvalue" th:value="${minvalue}">

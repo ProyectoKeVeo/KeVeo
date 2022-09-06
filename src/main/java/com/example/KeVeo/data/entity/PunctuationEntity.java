@@ -22,8 +22,6 @@ public class PunctuationEntity {
     @Column(nullable = true)
     private Float stars;
 
-    private String opinion;
-
     // Añadimos relaciones con FilmEntity y UserEntity
     @ManyToOne
     @JoinColumn(name = "films_id")

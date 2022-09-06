@@ -8,6 +8,6 @@ import java.io.Serializable;
 public class PunctuationDTO implements Serializable {
     private Integer id;
     private Float stars;
-    private String opinion;
+
 
 }
