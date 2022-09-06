@@ -16,6 +16,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
+<!--    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+<!--    <link th:rel="stylesheet" th:href="@{/assets/bootstrapless-star-rating/star-rating.css} "/>-->
 </head>
 <body>
 <div layout:fragment="breadcrumb" style="color:black">
@@ -77,9 +79,9 @@
                                                th:field="${film.image}"
                                                maxlength="255">
                                         <br>
-                                        <div class="form-group row">
+                                        <div class="form-group row"style="margin-left:1px">
                                             <label class="col-4 col-form-label">Géneros: </label>
-                                            <div class="col-8">
+                                            <div class="col-8" >
 
                                                 <th:block th:each="genre: ${listGenres}">
                                                     <input type="checkbox" th:field="*{genres}"
@@ -90,20 +92,13 @@
 <!--                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"-->
 <!--                                                           th:value="*{stars}"/>-->
 <!--                                                    <th:block/>-->
-<!--                                                </th:block>-->
-                                                <div/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <form/>
-        </div>
-        <div/>
 
-                <div class="box-footer with-border">
+                                            </div>
+
+
+
+
+                <div class="box-footer with-border" style="margin-left:32px">
                     <a th:href="@{/gestionfilms}" class="btn btn-default" role="button"
                        title="Back list" th:text="Cancelar">
                         <span aria-hidden="true"></span>
@@ -113,10 +108,11 @@
                     </button>
                     <br>
                     <br>
-
-
-
                 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
             </form>
         </div>
     </div>
