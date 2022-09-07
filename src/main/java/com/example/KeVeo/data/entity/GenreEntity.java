@@ -1,36 +1,33 @@
 package com.example.KeVeo.data.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "genres")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class GenreEntity {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_genre")
     private Integer id;
+
+    @Column(nullable = false)
     private String title;
-    //*********************************GETTERS & SETTERS****************************************************************
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    //**************************************CONSTRUCTORS****************************************************************
-    public GenreEntity() {
-    }
-    public GenreEntity(Integer id) {
-        this.id = id;
-    }
-    public GenreEntity(String title) {
-        this.title = title;
+
+
+    // Añado relación de genre a FilmEntity
+    @ManyToMany (mappedBy = "genres", fetch = FetchType.EAGER)
+    private Set<FilmEntity> films;
+    @Override
+    public String toString() {
+        return this.title;
     }
 }

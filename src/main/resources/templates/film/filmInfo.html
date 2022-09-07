@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>KeVeo</title>
+    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">
+    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
+    <link rel="stylesheet" type="text/css" href="./css/footerstyle.css" th:href="@{/css/footerstyle.css}">
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".alert").fadeOut(1500);
+        },500);
+    });
+    </script>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <main>
+        <br>
+        <br>
+        <div th:if="${param.successful}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha añadido a tus favoritos.
+        </div>
+        <div th:if="${param.remove}" class="alert alert-success" role="alert" style="width:50%; margin-left:25%; text-align:center;">
+            Se ha eliminado de tus favoritos.
+        </div>
+
+
+        <br>
+        <form th:action="@{'/'}" th:object="${film}" method="post">
+            <!-- <div class="container"> -->
+            <div class="movie-card">
+                <div class="poster-wrapper">
+                    <div class="poster">
+                        <img th:src="${film.image}" alt="poster"/>
+
+                    </div>
+                </div>
+                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+
+                </form>
+                <form action="#" class="form cnt-favorite" th:action="@{'/'}" method="post">
+                    <div>
+                        <button th:if="${user.favourite(film.id)}" type="submit" value="quitFavourite"  class="star-favorite"  th:formaction="'/favourite/remove/' + ${film.id}">
+                            <span class="glyphicon glyphicon-star"></span></button>
+                        <button th:unless="${user.favourite(film.id)}" type="submit" value="Favourite" class="star-favorite" th:formaction="'/favourite/agree/' + ${film.id}">
+                            <span class="glyphicon glyphicon-star-empty"></span></button>
+                    </div>
+                </form>
+                <div class="movie-info">
+                    <div class="header-section">
+                        <h2 th:text="${film.name}"></h2>
+                        <p>
+                        <span th:each="genre: ${film.genres}">
+                            <i th:text="${genre.title} + ' / '"></i>
+                      </span><i th:text="${film.year} + ' / ' + ${film.duration} + 'min'"></i>
+                        </p>
+
+                        <div class="extra">
+                            <div class="ratings"><p> &#9733; &#9733; &#9733; &#9733; &#9734; 4.0</p></div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div>
+                        <h3>PLATAFORMAS</h3>
+
+                            <div class="boxed" th:each="url1: ${urls}">
+                                <th:block th:switch="${url1.platformId}">
+                                    <div th:case="1">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/netflix.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="2">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/hbo.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="3">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/prime.png}"></label></a>
+                                    </div>
+
+                                    <div th:case="4">
+                                        <a th:href="${url1.url}">
+                                            <label><img class="platform" th:src="@{/img/disney.png}"></label></a>
+                                    </div>
+                                </th:block>
+
+                            </div>
+
+<!--                        <a th:each="num: ${film.platforms}">-->
+
+<!--                            <a th:if="${num.toString() == 'Netflix'}" href="https://www.netflix.com/es/browse/genre/839338" target="_blank">-->
+<!--                                <span><img class="platform" th:src="@{/img/platform/netflix.png}"></span></a>-->
+
+<!--                            <a th:if="${num.toString() == 'HBO Max'}" href="https://www.hbomax.com/" target="_blank">-->
+<!--                                <span><img  class="platform" th:src="@{/img/platform/hbo.png}"></span></a>-->
+
+<!--                            <a th:if="${num.toString() == 'Prime Video'}" href="https://www.primevideo.com/" target="_blank">-->
+<!--                                <span><img  class="platform" th:src="@{/img/platform/prime.png}"></span></a>-->
+
+<!--                            <a th:if="${num.toString() == 'Disney+'}" href="https://www.disneyplus.com/" target="_blank">-->
+<!--                                <span><img  class="platform" th:src="@{/img/platform/disney.png}"></span></a>-->
+<!--                        </a>-->
+
+
+                    </div>
+
+                    <div class="cast-section">
+                        <h3>THE CAST</h3>
+                        <div th:text="${film.cast}">
+
+                        </div>
+                    </div>
+
+                    <div class="synopsis-section">
+                        <h3>SYNOPSIS</h3>
+                        <span class="more" th:text="${film.description}"></span>
+                    </div>
+                    <div class="gallery-section">
+                        <h3>TRAILER</h3>
+                        <div class="gallery">
+                            <iframe th:src="${film.trailer} + '?autoplay=1&mute=1'">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end movie-card -->
+            <!-- </div> --> <form th:action="@{/gestionFilm/save}" th:object="${film}"
+                                  method="post" style="max-width: 600px; margin: 0 auto;">
+        </form>
+        </form>
+
+    </main>
+    <br>
+    <div class="comments-section">
+        <div class="comments">
+            <h3>COMENTARIOS</h3>
+            <div id="comments-container">
+
+                <div th:if="${#authentication.getPrincipal() == 'anonymousUser'}" class="log">
+                    <p>*Para poder comentar en esta película necesitas <a th:href="@{/registro}">Registrarte</a> o <a th:href="@{/login}">Iniciar Sesión</a> en tu cuenta de KeVeo.</p>
+                </div>
+                <form th:unless="${#authentication.getPrincipal() == 'anonymousUser'}" th:action="@{'/filmInfo/save/' + ${film.id}}"  th:object="${comment}" method="post" >
+                    <div class="comment">
+                        <div class="comment-user">
+                            <div class="avatar">
+                                <img   th:src="@{/img/user.png}" />
+
+                            </div>
+                            <span class="user-details">
+                                    <span class="username" th:text="${#authentication.getPrincipal().getUsername()}"></span><span>  Comentar..</span></span>
+                        </div>
+                        <div class="comment-text">
+                            <textarea name ="text" th:field="${comment.content}" class="section text" maxlength="1000" minlength="5" placeholder="Escribe aquí, tu comentario u opinion sobre la película..."></textarea>
+                            <input type="hidden" name="id"  th:value="${comment.id}">
+                            <input type="hidden" name="film"  th:value="${film.id}">
+                            <input type="hidden" name="user" th:value="${#authentication.getPrincipal().id}">
+                        </div>
+                        <div class="submit agree">
+                            <button type="submit" class="btn btn-success" value="Submit">Añadir Comentario</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="comment" th:each="comment : ${listComments}">
+                    <div class="comment-user">
+                        <div class="avatar">
+                            <img  th:src="@{/img/user.png}" />
+
+                        </div>
+                        <span class="user-details">
+                        <span class="username" th:text="${comment.user.username}"></span><span> publicado el </span><span class="username" th:text="${comment.creation}"></span></span>
+
+                        <div  th:if="${#authentication.getPrincipal() ne 'anonymousUser'}" class="delete">
+                            <form action="#" class="form" th:action="@{'/'}" method="post" th:each="rol:${#authentication.getPrincipal().getRoles()}">
+                                <button th:if="${rol.getName() == 'ROLE_ADMIN'}"class="btn btn-danger" type="submit" value="Delete" th:formaction="'/comment/delete/' + ${comment.id} + '/' + ${film.id}">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comment-text" th:text="${comment.content}">
+
+                    </div>
+                </div>
+
+
+                <div class="comment">
+                    <div class="comment-user">
+                        <div class="avatar"><img src="https://i.pinimg.com/564x/58/6a/87/586a8788cd417189821cc7e40166dd04.jpg" alt="Riccardo"/></div><span class="user-details"><span class="username">Riccardo </span><span>on </span><span>MARCH 7, 2016</span></span>
+                    </div>
+                    <div class="comment-text">
+                        Hay que analizarla con ojo crítico con el fin de formarnos tanto en la comprensión del cine como contador de historias, como transmisor de valores y portador de arte y de conocimientos.<br><br>
+                        <a href="https://facebook.github.io/draft-js/">Draft.js</a> home page.
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-user">
+                        <div class="avatar"><img src="https://i.pinimg.com/736x/da/f0/d0/daf0d0d36d8dde4829c2274dfd5fb962.jpg" alt="Alberto"/></div><span class="user-details"><span class="username">Alberto </span><span>on </span><span>MARCH 7, 2016</span></span>
+                    </div>
+                    <div class="comment-text">
+                        El cine es un medio de comunicación, y por tanto es necesario interpretar sus resultados para descubrir qué es lo que nos quieren comunicar.
+                        Una película se compone de millones de elementos diferentes que en su conjunto, forman una narración con posibilidades de variados comentarios.
+                        Como todo relato, una película utiliza técnicas que hay que conocer, descubrir e interpretar para que los mensajes lleguen a nosotros de la forma
+                        más parecida a cómo quienes han realizado la película lo han pretendido.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

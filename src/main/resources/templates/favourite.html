@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>KeVeo</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <!-- Nuestro css-->
+  <link rel="stylesheet" type="text/css" href="static/css/favoriteStyle.css" th:href="@{/css/favoriteStyle.css}">
+
+  <div class="container">
+    <span sd:page-size-selector="javascript"></span>
+
+    <h1 class="neonText">
+      Favoritos
+    </h1>
+    <br>
+
+
+
+    <br>
+
+    <div th:each="film: ${listFavourites}">
+      <div class="film">
+        <img th:src="${film.image}" alt="">
+        <div class="desc">
+          <a th:href="@{'/film/filmInfo/' + ${film.id}}"><button>INFO</button></a>
+          <hr>
+          <div class="text" th:text="${film.name}">
+
+          </div>
+
+          <div class="text">Plataformas disponibles: </div>
+          &nbsp;&nbsp;
+          <a th:each="url1 : ${film.url}">
+            <a th:if="${url1.active == true}">
+              <a class="boxed" th:each="platform : ${url1.platform}">
+                <th:block th:switch="${platform.id}">
+                  <a th:case="1">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/netflix.png}"></span></a>
+                  </a>
+
+                  <a th:case="2">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/hbo.png}"></span></a>
+                  </a>
+
+                  <a th:case="3">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/prime.png}"></span></a>
+                  </a>
+
+                  <a th:case="4">
+                    <a th:href="${url1.url}">
+                      <span><img class="platform" th:src="@{/img/disney.png}"></span></a>
+                  </a>
+                </th:block>
+              </a>
+            </a>
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div th:if="${not #lists.isEmpty(listFavourites.content)}">
+    <div class="text-center">
+      <nav>
+        <ul class="pagination" sd:pagination="full">
+          <div th:if="${listFavourites.totalPages > 0}" class="pagination"
+               th:each="pageNumber : ${pageNumbers}">
+            <li th:class="${pageNumber==listFavourites.number + 1} ? active">
+              <a href="#"
+                 th:href="@{/film(size=${listFavourites.size}, page=${pageNumber})}"
+                 th:text=${pageNumber}></a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

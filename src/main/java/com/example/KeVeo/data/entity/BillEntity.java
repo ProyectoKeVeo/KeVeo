@@ -1,29 +1,32 @@
 package com.example.KeVeo.data.entity;
-
-import org.springframework.http.converter.json.GsonBuilderUtils;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
+
 
 @Entity
+@Table(name = "bill")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BillEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "billId")
     private Integer id;
 
-    @Column(name = "billName")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "billDate")
-    private Date date;
-    public BillEntity() {}
+    @Column(nullable = false)
+    private ZonedDateTime date;
 
-    public BillEntity(Integer id, String name, Date date) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
+    // Añadimos relación @OneToOne hacia PlatformEntity.
+    @OneToOne
+    @JoinColumn(name = "platform_id", referencedColumnName = "id", unique = true)
+    private PlatformEntity platform;
 
-    }
+
 }

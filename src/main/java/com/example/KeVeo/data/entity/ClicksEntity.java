@@ -1,46 +1,34 @@
 package com.example.KeVeo.data.entity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "clicks")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClicksEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clicksName")
     private Integer id;
 
-    @Column(name = "clicksStep")
-    private byte step;
+    private Short step;
 
-    @Column(name = "clicksDate")
+    @Column(nullable = false)
     private Date date;
 
-    // TODO: 05/07/2022 foreign keys
+
+    // Añadimos relación de ClicksEntity hacia PlatformEntity de @ManyToOne
+    @ManyToOne
+    @JoinColumn(name = "platform_id")
+    private PlatformEntity platform;
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public byte getStep() {
-        return step;
-    }
-
-    public void setStep(byte step) {
-        this.step = step;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

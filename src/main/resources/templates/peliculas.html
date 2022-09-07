@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}" >
+<head>
+    <title>KeVeo</title>
+</head>
+<body>
+
+
+<!--Paginación-->
+<div th:if="${not #lists.isEmpty(FilmEntity.content)}">
+    <div class="text-center">
+        <nav>
+            <ul class="pagination" pagination="full">
+                <div th:if="${FilmEntity.totalPages > 0}" class="pagination"
+                     th:each="pageNumber : ${pageNumbers}">
+                    <li th:class="${pageNumber==FilmEntity.number + 1} ? active">
+                        <a href="#" th:href="@{/FilmEntity(size=${FilmEntity.size}, page=${pageNumber})}"
+                           th:text=${pageNumber}></a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+
+
+</body>
+</html>

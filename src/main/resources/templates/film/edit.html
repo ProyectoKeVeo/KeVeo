@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+
+<head>
+    <title>KeVeo</title>
+    <meta charset="utf-8">
+<!--    <link rel="stylesheet" type="text/css" href="static/css/infoStyle" th:href="@{/css/infoStyle.css}">-->
+    <link rel="stylesheet" type="text/css" href="static/css/layoutStyle.css" th:href="@{/css/layoutStyle.css}">
+    <link rel="stylesheet" type="text/css" href="./css/footerstyle.css" th:href="@{/css/footerstyle.css}">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+<!--    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+<!--    <link th:rel="stylesheet" th:href="@{/assets/bootstrapless-star-rating/star-rating.css} "/>-->
+</head>
+<body>
+<div layout:fragment="breadcrumb" style="color:black">
+</div>
+
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="form" th:object="${film}" method="post">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="name">Película: </label>
+                                <input type="text" class="form-control"
+                                       id="name"
+                                       th:field="${film.name}"
+                                       maxlength="255">
+                                <br>
+
+                                <label for="name" style="color:black">Año de estreno: </label>
+                                <input type="text" class="form-control"
+                                       id="year"
+                                       th:field="${film.year}"
+                                       maxlength="255">
+                                <br>
+
+                                <label for="name" style="color:black">Duración: </label>
+                                <input type="text" class="form-control"
+                                       id="duration"
+                                       th:field="${film.duration}"
+                                       maxlength="255">
+                                <br>
+
+                                <label for="name" style="color:black">Descripción: </label>
+                                <input type="text" class="form-control"
+                                       id="description"
+                                       th:field="${film.description}"
+                                       maxlength="255">
+                                <br>
+
+                                <label for="name" style="color:black">Cast: </label>
+                                <input type="text" class="form-control"
+                                       id="cast"
+                                       th:field="${film.cast}"
+                                       maxlength="255">
+                                <br>
+
+                                <label for="name" style="color:black">Trailer: </label>
+                                <input type="text" class="form-control"
+                                       id="trailer"
+                                       th:field="${film.trailer}"
+                                       maxlength="255">
+                                <br>
+
+                                        <label for="name" style="color:black">Imagen: </label>
+                                        <input type="text" class="form-control"
+                                               id="image"
+                                               th:field="${film.image}"
+                                               maxlength="255">
+                                        <br>
+                                        <div class="form-group row"style="margin-left:1px">
+                                            <label class="col-4 col-form-label">Géneros: </label>
+                                            <div class="col-8" >
+
+<!--                                <div class="form-group row" style="margin-left: 1px">-->
+<!--                                    <label class="col-4 col-form-label">Url: </label>-->
+<!--                                    <div class="col-8">-->
+<!--                                        <a th:each="item: ${film.url}">-->
+<!--                                                <input type="text" class="form-control" th:name="${item.url}" th:value="${item.url}"/>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label">Géneros: </label>
+                                    <div class="col-8">
+
+                                        <th:block th:each="genre: ${listGenres}">
+                                            <input type="checkbox" th:field="*{genres}"
+                                                   th:text="${genre.title}" th:value="${genre.id}"
+                                                   class="m-2"/>
+                                        </th:block>
+<!--                                                <th:block role="form" th:object="${rating}" class="mt-5" method="post">-->
+<!--                                                    <input value="0" type="submit" class="rating" data-glyphicon="0"-->
+<!--                                                           th:value="*{stars}"/>-->
+<!--                                                    <th:block/>-->
+
+                                            </div>
+
+
+
+
+                <div class="box-footer with-border" style="margin-left:32px">
+                    <a th:href="@{/gestionfilms}" class="btn btn-default" role="button"
+                       title="Back list" th:text="Cancelar">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <button type="submit" class="box-title btn btn-primary"
+                            onclick="alert('Cambios guardados')" title="Save Data" th:text="Guardar">
+                    </button>
+                    <br>
+                    <br>
+                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
+</body>
+</html>

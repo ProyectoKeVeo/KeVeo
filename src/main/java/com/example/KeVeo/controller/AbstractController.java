@@ -1,0 +1,49 @@
+package com.example.KeVeo.controller;
+
+
+
+import com.example.KeVeo.DTO.MenuDTO;
+
+import com.example.KeVeo.data.entity.UserEntity;
+import com.example.KeVeo.service.MenuService;
+import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public abstract class AbstractController<DTO> {
+
+    private final MenuService menuService;
+    protected final String pageNumbersAttributeKey = "pageNumbers";
+
+    protected AbstractController(MenuService menuService) {
+        this.menuService = menuService;
+    }
+
+    @ModelAttribute("menuList")
+    public List<MenuDTO> menu() {
+        try{
+
+            final Integer userId = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+            return this.menuService.getMenuForUserId(userId);
+
+        }catch (ClassCastException e){
+
+            final Integer userId=3;
+            //La id de este usuario corresponde aun usuario anonimo
+            return this.menuService.getMenuForUserId(userId);
+
+        }
+
+    }
+
+    protected List<Integer> getPageNumbers(Page<DTO> pages) {
+        return pages.getTotalPages() > 0 ?
+                IntStream.rangeClosed(1, pages.getTotalPages()).boxed().collect(Collectors.toList()) :
+                new ArrayList<>();
+    }
+}
